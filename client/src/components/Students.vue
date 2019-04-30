@@ -1,9 +1,9 @@
 <template>
 <div>
         <div >
+                <h1 class="title">SGA</h1>
                         <h1>Lista de Estudiante
-                                <button class="btn btn-success" data-toggle="modal"
-                                        data-target="#">Añadir Estudiante</button>
+                               <b-button variant="success" v-b-modal.modal-prevent-closing2>Añadir Estudiante</b-button>
                         </h1>
                         <section class="todoapp">
                         <table class="table">
@@ -15,24 +15,57 @@
                                         </tr>
                                 </thead>
                                 <tbody>
-                                        <tr v-for="(profesor) in students" :key="profesor.id">
-                                                <td> {{profesor.id}} </td>
-                                                <td> {{profesor.name}} </td>
-                                                <td> {{profesor.rol_usm}} </td>
-                                                <!-- <td>
-                                                        <button class="btn btn-info"
-                                                                v-on:click="getProfesor(profesor.id)">Edit</button>
+                                        <tr v-for="(student) in students" :key="student.id">
+                                                <td> {{student.id}} </td>
+                                                <td> {{student.name}} </td>
+                                                <td> {{student.rol_usm}} </td>
+                                                <td>
+                                                        <!--<button class="btn btn-info"
+                                                                v-on:click="getProfesor(profesor.id)">Edit</button>-->
                                                         <button class="btn btn-danger"
-                                                                v-on:click="deleteProfesor(profesor.id)">Delete</button> -->
-                                                <!-- </td> -->
+                                                                v-on:click="deleteStudent(student.id)">Delete</button>
+                                                </td> 
                                         </tr>
                                 </tbody>
                         </table>
                         </section>
                 </div>
         <div class="loading" v-if="loading===true">Loading&#8230;</div>
-
- 
+       
+                <b-modal
+                        id="modal-prevent-closing2"
+                        ref="modal"
+                        title="Submit Your Name">
+                        <form ref="form" @submit.prevent="handleSubmit2">
+                                <b-form-group
+                                        :state="newStudent.name"
+                                        label="Name"
+                                        label-for="name-input"
+                                        invalid-feedback="Name is required">
+                                        <b-form-input
+                                        id="name-input"
+                                        v-model="newStudent.name"
+                                        :state="newStudent.name"
+                                        required>
+                                        </b-form-input>
+                                </b-form-group>
+                                <b-form-group
+                                        :state="newStudent.rol_usm"
+                                        label="Rol"
+                                        label-for="rol-input"
+                                        invalid-feedback="Rol is required">
+                                        <b-form-input
+                                                id="rol-input"
+                                                v-model="newStudent.rol_usm"
+                                                :state="newStudent.rol_usm"
+                                                required
+                                        ></b-form-input>
+                                        <b-button type="submit" variant="primary">Submit</b-button>
+                                        <b-button type="reset" variant="danger">Reset</b-button>
+                                </b-form-group>
+                        </form>
+                </b-modal>
+                
 </div>
 </template>
 
@@ -51,9 +84,12 @@ import api from '../Api';
                         students: [],
                         delimiters: ['${ ', ' }'],
                         loading: false,
+                        currentStudent: {},
                         message: null,
                         newStudent: {
-                                nombre: null,
+                                id: 0,
+                                name: null,
+                                rol_usm: null,
                         },
                 };
         },
@@ -70,7 +106,7 @@ import api from '../Api';
                         })  
                         .catch(error => {  
                         this.$log.debug(error)  
-                        this.error = "Failed to load todos"  
+                        this.error = "Failed to load students"  
                         })  
                         .finally(() => this.loading = false)  
                 // this.newStudent = {
@@ -78,39 +114,47 @@ import api from '../Api';
                 // };
         },
         methods: {
-                // getArticles() {
-                //         this.loading = true;
-                //         this.$http.get('localhost:8088/students/')
-                //                 .then((response) => {
-                //                         this.students = response.data;
-                //                         this.loading = false;
-                //                 })
-                //                 .catch(() => {
-                //                         this.loading = false;
-                //                 })
-                // },
-                // addProfesor() {
-                //         this.loading = true;
-                //         this.$http.post('localhost:8088/students/', this.newStudent)
-                //                 .then(() => {
-                //                         this.loading = false;
-                //                         this.getArticles();
-                //                 })
-                //                 .catch(() => {
-                //                         this.loading = false;
-                //                 })
-                // },
-                // deleteProfesor(id) {
-                //         this.loading = true;
-                //         this.$http.delete(`localhost:8088/students/${id}/` )
-                //             .then( () => {
-                //                 this.loading = false;
-                //                 this.getArticles();
-                //             })
-                //             .catch(() => {
-                //               this.loading = false;
-                //             })
-                //        }
+                /*addStudent() {
+                        this.loading = true;
+                        api.createNewStudent(this.newStudent)
+                                .then((response) => {
+                                        this.$log.debug(response);                           
+                                        //$("#addStudentModal").modal('hide');
+                                })
+                                .catch((err) => {
+                                        this.loading = false;
+                                        this.$log.debug(err); 
+                                })
+                                .finally(() => this.loading = false) 
+                },*/
+                handleSubmit2() {
+                        api.createNewStudent(this.newStudent, false).then( (response) => {  
+                                this.students.push({  
+                                id: response.data.id,  
+                                        name: this.newStudent.name,  
+                                        rol_usm:   this.newStudent.rol_usm
+                                })  
+                        }).catch((error) => {  
+                        this.$log.debug(error);  
+                                this.error = "Failed to add student"  
+                                });  
+                        // Hide the modal manually
+                        this.$nextTick(() => {
+                        this.$refs.modal.hide()
+                        })
+                },
+                deleteStudent(id) {
+                        this.loading = true;
+                        api.removeForId(id)
+                            .then((response) => {
+                              this.$log.debug(response);  
+                            })
+                            .catch((err) => {
+                              this.$log.debug(err); 
+                              this.loading = false;
+                            })
+                            .finally(() => this.loading = false) 
+                       }
         },
   }
 

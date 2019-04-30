@@ -1,4 +1,5 @@
 import axios from 'axios'  
+import Vue from 'vue'  
   
 const SERVER_URL = 'http://localhost:8088';  
   
@@ -8,9 +9,23 @@ const instance = axios.create({
 });  
   
 export default {  
+
+  async execute(method, resource, data, config) {  
+    let accessToken = await Vue.prototype.$auth.getAccessToken()  
+    return instance({  
+      method:method,  
+      url: resource,  
+      data,  
+      headers: {  
+            Authorization: `Bearer ${accessToken}`  
+      },  
+      ...config  
+    })  
+  },  
+
   // (C)reate  
-  createNewTeacher: (Teacher) => instance.post('teachers/',Teacher ),
-  createNew: (text, completed) => instance.post('student', {title: text, completed: completed}),  
+  createNewTeacher: (Teacher) => instance.post('teachers/',Teacher ),  
+  createNewStudent: (Student) => instance.post('students/', Student),  
   // (R)ead  
   getAllStudents: () => instance.get('students/',{ useCredentails: true }, {  
     transformResponse: [function (data) {  
@@ -23,7 +38,8 @@ export default {
     }]  
   }),  
   // (U)pdate  
-  updateForId: (id, text, completed) => instance.put('students/'+id, {title: text, completed: completed}),  
+  updateForId: (id, name, rol) => instance.put('students/'+id, {name: name, rol_usm: rol }),   
   // (D)elete  
-  removeForId: (id) => instance.delete('students/'+id)  
+  removeForId: (id) => instance.delete('students/'+id),
+  removeForIdTeacher: (id) => instance.delete('teachers/'+id)
 }

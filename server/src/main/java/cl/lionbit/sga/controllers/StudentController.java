@@ -55,9 +55,9 @@ public class StudentController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Student>  findById(@PathVariable(value = "id") Long id) {
-		Student savedBeer = this.service.findOne(id);
+		Student savedStudent = this.service.findOne(id);
 
-		return new ResponseEntity<>(savedBeer, HttpStatus.FOUND);
+		return new ResponseEntity<>(savedStudent, HttpStatus.FOUND);
 	}
 
 	@PostMapping

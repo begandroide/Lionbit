@@ -18,12 +18,12 @@
                                                         <td> {{profesor.id}} </td>
                                                         <td> {{profesor.name}} </td>
                                                         <td> {{profesor.rut}} </td>
-                                                        <!-- <td>
-                                                                <button class="btn btn-info"
-                                                                        v-on:click="getProfesor(profesor.id)">Edit</button>
-                                                                <button class="btn btn-danger"
-                                                                        v-on:click="deleteProfesor(profesor.id)">Delete</button> -->
-                                                        <!-- </td> -->
+                                                        <td>
+                                                        <!--<button class="btn btn-info"
+                                                                v-on:click="getProfesor(profesor.id)">Edit</button>-->
+                                                        <button class="btn btn-danger"
+                                                                v-on:click="deleteTeacher(profesor.id)">Delete</button>
+                                                        </td> 
                                                 </tr>
                                         </tbody>
                                 </table>
@@ -101,7 +101,7 @@ import api from '../Api';
                         })  
                         .catch(error => {  
                         this.$log.debug(error)  
-                        this.error = "Failed to load todos"  
+                        this.error = "Failed to load teachers"  
                         })  
                         .finally(() => this.loading = false)  
         },
@@ -121,13 +121,25 @@ import api from '../Api';
                                 })  
                         }).catch((error) => {  
                         this.$log.debug(error);  
-                                this.error = "Failed to add todo"  
+                                this.error = "Failed to add teacher"  
                                 });  
                         // Hide the modal manually
                         this.$nextTick(() => {
                         this.$refs.modal.hide()
                         })
                 },
+                deleteTeacher(id) {
+                        this.loading = true;
+                        api.removeForIdTeacher(id)
+                            .then((response) => {
+                              this.$log.debug(response);  
+                            })
+                            .catch((err) => {
+                              this.$log.debug(err); 
+                              this.loading = false;
+                            })
+                            .finally(() => this.loading = false) 
+                       }
         },
   }
 
