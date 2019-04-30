@@ -1,0 +1,14 @@
+{
+        "configurations": [
+                {
+                        "type": "java",
+                        "name": "Spring Boot-SgaApplication<sga>",
+                        "request": "launch",
+                        "cwd": "${workspaceFolder}",
+                        "console": "internalConsole",
+                        "mainClass": "cl.lionbit.sga.SgaApplication",
+                        "projectName": "sga",
+                        "args": ""
+                }
+        ]
+}
