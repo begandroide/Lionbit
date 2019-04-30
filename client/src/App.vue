@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <Students />
-    <Teachers />
+        <h1 class="title">SGA</h1>
     <router-view :activeUser="activeUser"/>  
     <footer class="info">  
       <p v-if="activeUser" class="logout-link"><a @click="handleLogout" href="#">Logout</a></p>  
@@ -10,25 +9,6 @@
   </div>
 </template>
 
-<!--<script>
-  import Students from './components/Students'
-  import Teachers from './components/Teachers'
-// app Vue instance
-  const app = {
-    name: 'app',
-    components: {
-      Students,
-      Teachers
-    },
-    // app initial state
-    data: () => {
-      return {
-      }
-    }
-  }
-
-  export default app
-</script>-->
 
 <script>  
   // app Vue instance  
@@ -43,7 +23,8 @@
     // app initial state  
     data: () => {  
       return {  
-        activeUser: null  
+              currentRoute: window.location.pathname,
+                activeUser: null  
       }  
     },  
   
@@ -54,7 +35,12 @@
   watch: {  
     '$route': 'refreshActiveUser'  
   },  
-  
+  computed:{
+        ViewComponent () {
+        return routes[this.currentRoute] || NotFound
+        }
+  },  
+   render (h) { return h(this.ViewComponent) },
   methods: {  
     async refreshActiveUser () {  
       this.activeUser = await this.$auth.getUser()  

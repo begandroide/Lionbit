@@ -1,5 +1,7 @@
 import Auth from "@okta/okta-vue";  
 import Vue from 'vue'  
+import Student from './components/Students.vue'
+import Teacher from './components/Teachers.vue'
 import Router from 'vue-router'  
 import Students from './components/Students'  
 import Teachers from './components/Teachers'  
@@ -23,6 +25,22 @@ let router = new Router({
         requiresAuth: true  
       }  
     },  
+                {
+                        path: '/Students',
+                        component: Student,
+                        name: 'students',
+                        meta: {
+                                requiresAuth: true
+                        },
+                },  
+                {
+                        path: '/Teachers',
+                        component: Teacher,
+                        name: 'teachers',
+                        meta: {
+                                requiresAuth: true
+                        },
+                },  
 	{  
 	  path: '/implicit/callback',  
 	  component: Auth.handleCallback(),  

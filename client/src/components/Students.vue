@@ -1,8 +1,7 @@
 <template>
 <div>
         <div >
-                <h1 class="title">SGA</h1>
-                        <h1>Lista de Estudiante
+                        <h1>Lista de Estudiantes
                                <b-button variant="success" v-b-modal.modal-prevent-closing2>Añadir Estudiante</b-button>
                         </h1>
                         <section class="todoapp">
