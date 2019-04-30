@@ -9,11 +9,17 @@ const instance = axios.create({
   
 export default {  
   // (C)reate  
+  createNewTeacher: (Teacher) => instance.post('teachers/',Teacher ),
   createNew: (text, completed) => instance.post('student', {title: text, completed: completed}),  
   // (R)ead  
-  getAll: () => instance.get('students/',{ useCredentails: true }, {  
+  getAllStudents: () => instance.get('students/',{ useCredentails: true }, {  
     transformResponse: [function (data) {  
       return data? JSON.parse(data)._embedded.students : data;  
+    }]  
+  }),    
+  getAllTeachers: () => instance.get('teachers/',{ useCredentails: true }, {  
+    transformResponse: [function (data) {  
+      return data? JSON.parse(data)._embedded.teachers : data;  
     }]  
   }),  
   // (U)pdate  

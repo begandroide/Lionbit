@@ -1,9 +1,9 @@
 <template>
 <div>
         <div >
-                        <h1>Lista de Profesores
+                        <h1>Lista de Estudiante
                                 <button class="btn btn-success" data-toggle="modal"
-                                        data-target="#addProfesorModal">Añadir Profesor</button>
+                                        data-target="#">Añadir Estudiante</button>
                         </h1>
                         <section class="todoapp">
                         <table class="table">
@@ -32,38 +32,7 @@
                 </div>
         <div class="loading" v-if="loading===true">Loading&#8230;</div>
 
-        <!-- Add Article Modal -->
-        <div class="modal fade" id="addProfesorModal" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                                <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Nuevo profesor</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                        </button>
-                                </div>
-
-                                <form v-on:submit.prevent="addProfesor">
-                                        <div class="modal-body">
-                                                <div class="form-group">
-                                                        <label for="profesor_nombre">Nombre</label>
-                                                        <input type="text" class="form-control" id="nombre"
-                                                                placeholder="Ingrese nombre del profesor"
-                                                                v-model="newStudent.nombre" required="required">
-                                                </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Close</button>
-
-                                                <button type="submit" class="btn btn-success">save</button>
-                                        </div>
-                                </form>
-                        </div>
-                </div>
-                <div class="loading" v-if="loading===true">Loading&#8230;</div>
-        </div>
+ 
 </div>
 </template>
 
@@ -92,7 +61,7 @@ import api from '../Api';
                 // this.getArticles();
         },
         mounted() {
-                api.getAll()  
+                api.getAllStudents()  
                         .then(response => {  
                         this.$log.debug("Data loaded: ", response.data.content); 
                         this.students = response.data.content;
