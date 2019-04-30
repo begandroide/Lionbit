@@ -1,0 +1,10 @@
+server:
+  port: 8088
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:mysql://localhost:3306/siga
+    username: servoclay@gmail.com
+    password: jIq2atp81QIh
