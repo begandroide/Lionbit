@@ -1,7 +1,9 @@
 import Auth from "@okta/okta-vue";
 import Vue from 'vue'
 import Student from './components/Student/Students.vue'
+import StudentProfile from './components/Student/StudentProfile.vue'
 import Teacher from './components/Teacher/Teachers.vue'
+import Assignatures from './components/Assignatures/Assignatures.vue'
 import HelloWorld from './components/HelloWorld.vue'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
@@ -39,6 +41,23 @@ let router = new Router({
       path: '/Teachers',
       component: Teacher,
       name: 'teachers',
+      meta: {
+        requiresAuth: true
+      },
+    },
+    {
+      path: '/Assignatures',
+      component: Assignatures,
+      name: 'assignatures',
+      meta: {
+        requiresAuth: true
+      },
+    },
+    {
+      path: '/StudentProfile/:id',
+      props: true,
+      component: StudentProfile,
+      name: 'studentProfile',
       meta: {
         requiresAuth: true
       },

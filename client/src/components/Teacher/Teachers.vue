@@ -1,145 +1,178 @@
 <template>
-	<div>
-		<div >
-			<h1>Lista de Profesores
-					<b-button variant="success" v-b-modal.modal-prevent-closing>Añadir profesor</b-button>
-			</h1>
-			<section class="todoapp">
-					<table class="table">
-							<thead>
-									<tr>
-											<th scope="col">Id</th>
-											<th scope="col">Nombre</th>
-											<th scope="col">Rut</th>
-									</tr>
-							</thead>
-							<tbody>
-									<tr v-for="(profesor) in teachers" :key="profesor.id">
-											<td> {{profesor.id}} </td>
-											<td> {{profesor.name}} </td>
-											<td> {{profesor.rut}} </td>
-											<td>
-											<!--<button class="btn btn-info"
-													v-on:click="getProfesor(profesor.id)">Edit</button>-->
-											<button class="btn btn-danger"
-													v-on:click="deleteTeacher(profesor.id)">Delete</button>
-											</td> 
-									</tr>
-							</tbody>
-					</table>
-			</section>
-		</div>
-		<div class="loading" v-if="loading===true">Loading&#8230;</div>
+	<v-layout>
+		<v-flex md9 offset-sm1 pt-5>
+			<v-card>
+				<v-card-title primary-title>
+					<!-- Header/ Title -->
+					<v-container >
+						<v-layout row wrap>
+							<div class="col-md-8 col-sm-8">
+								<h3 class="card-title">
+									<i class="fa fa-chalkboard-teacher"></i>
+									Profesores
+								</h3>
+								<p class="text-muted card-subtitle"> Listado de profesores registrados en el sistema. </p>
+							</div>
 
-<!-- Modal añadir profesor -->
-                <b-modal
-                        id="modal-prevent-closing"
-                        ref="modal"
-                        title="Submit Your Name">
-                        <form ref="form" @submit.prevent="handleSubmit">
-                                <b-form-group
-                                        :state="newTeacher.name"
-                                        label="Name"
-                                        label-for="name-input"
-                                        invalid-feedback="Name is required">
-                                        <b-form-input
-                                        id="name-input"
-                                        v-model="newTeacher.name"
-                                        :state="newTeacher.name"
-                                        required>
-                                        </b-form-input>
-                                </b-form-group>
-                                <b-form-group
-                                        :state="newTeacher.rut"
-                                        label="Rut"
-                                        label-for="rut-input"
-                                        invalid-feedback="Rut is required">
-                                        <b-form-input
-                                                id="rut-input"
-                                                v-model="newTeacher.rut"
-                                                :state="newTeacher.rut"
-                                                required
-                                        ></b-form-input>
-                                        <b-button type="submit" variant="primary">Submit</b-button>
-                                        <b-button type="reset" variant="danger">Reset</b-button>
-                                </b-form-group>
-                        </form>
-                </b-modal>
-        </div>
+							<div class="col-md-4 col-sm-4">
+								<div align="right">
+									<Form :teachers="teachers" />
+								</div >
+							</div>
+
+						</v-layout>
+					</v-container>
+					<!-- contenido estudiantes -->
+					<v-container grid-list-xs text-xs-center>
+						<!-- busqueda en tabla -->
+						<v-text-field
+							v-model="search"
+							append-icon="search"
+							label="Search"
+							single-line
+							hide-details
+						></v-text-field>
+						<!-- /busqueda en tabla -->
+						<!-- Data table  -->
+						<v-layout row wrap>
+							<v-flex >
+							<v-data-table
+								:headers="headers"
+								:items="teachers"
+								class="elevation-1"
+								:search="search"
+								:aria-sort="true"
+							>
+								<template v-slot:items="props" >
+									<td class="hidden-id">{{props.item.id}}</td>
+									<td class="text-left">{{props.item.name}}</td>
+									<td class="text-xs-left">{{ props.item.rut }}</td>
+									<td class="text-left ">
+										<v-tooltip bottom>
+											<template v-slot:activator="{ on }">
+												<v-icon
+													v-on="on"
+													small
+													class="mr-2"
+													@click="createUserTeacher(props.item.id)"
+												>
+													fa-user-plus
+												</v-icon>
+											</template>
+											<span>Crear usuario para este profesor</span>
+										</v-tooltip>
+										
+										<v-icon
+											small
+											color="primary"
+											class="mr-2"
+										>fa fa-eye
+										</v-icon>
+										<v-icon
+											small
+											color="success"
+											class="mr-2"
+											@click="editItem(props.item)"
+										>
+											edit
+										</v-icon>
+									
+										<ActionDialog :objeto="props.item" :teachers="teachers"/>
+									
+									</td>	
+								</template>
+
+								<template v-slot:no-results>
+									<v-alert :value="true" color="error" icon="warning">
+									Tu búsqueda "{{ search }}" no tiene resultados.
+									</v-alert>
+								</template>
+
+							</v-data-table>
+							</v-flex>
+						</v-layout>
+					</v-container>
+				</v-card-title>
+			</v-card>
+		</v-flex>
+  </v-layout>
 </template>
+
 
 <script>
 import api from '../../Api';
+import Form from './Form';
+import ActionDialog from '../Common/ActionDialog';
+import Actions from '../Common/Actions';
 
 // app Vue instance
   const Teachers = {
-    name: 'Teachers',
+	name: 'Teachers',
+	components:{
+		Form,
+		ActionDialog,
+		Actions
+	},
+	metaInfo: {
+		title: 'Profesores',
+		titleTemplate: '%s | Siga web App'
+	},
     props: {
       activeUser: Object
     },
-        data: function(){
-                return{
-                        teachers: [],
-                        delimiters: ['${ ', ' }'],
-                        loading: false,
-                        message: null,
-                        newTeacher: {
-                                name: null,
-                                rut: null
-                        },
-                };
-        },
-        created: function () {
-        },
-        mounted() {
-                api.getAllTeachers()  
-                        .then(response => {  
-                        this.$log.debug("Data loaded: ", response.data.content); 
-                        this.teachers = response.data.content;
-                        this.$log.debug("teachers : ", this.teachers); 
+	data: function(){
+		return{
+			teachers: [],
+			delimiters: ['${ ', ' }'],
+			loading: false,
+			message: null,
+			newTeacher: {
+					name: null,
+					rut: null
+			},
+			search: '',
+			dialog: false,
+			headers: [
+			{
+				text: 'Id',
+				value: 'id',
+				class: 'hidden-id',
+			},
+			{
+				text: 'Nombre del profesor',
+				align: 'left',
+				sortable: true,
+				value: 'name'
+			},
+			{ 	text: 'Rut',
+				align: 'left',
+				sortable: true,
+				value: 'rut'
+			},
+			{
+				text: 'Acciones',
+				align: 'left',
+				value: 'acciones'
+			}],
+		};
+	},
+	created: function () {
+	},
+	mounted() {
+		api.getAllTeachers()  
+			.then(response => {  
+				this.$log.debug("Data loaded: ", response.data.content); 
+				this.teachers = response.data.content;
+				this.$log.debug("teachers : ", this.teachers); 
                         
-                        })  
-                        .catch(error => {  
-                        this.$log.debug(error)  
-                        this.error = "Failed to load teachers"  
-                        })  
-                        .finally(() => this.loading = false)  
+			})  
+			.catch(error => {  
+				this.$log.debug(error)  
+				this.error = "Failed to load teachers"  
+				})  
+			.finally(() => this.loading = false)  
         },
         methods: {
-                 handleSubmit() {
-                         /// postear un profesor
-                        // Exit when the form isn't valid
-                        // if (!this.checkFormValidity()) {
-                        // return
-                        this.$log.debug("New item created:", this.newTeacher) 
-                        api.createNewTeacher(this.newTeacher, false).then( (response) => {  
-                        this.$log.debug("New item created:", response);  
-                                this.teachers.push({  
-                                id: response.data.id,  
-                                        name: this.newTeacher.name,  
-                                        rut:   this.newTeacher.rut 
-                                })  
-                        }).catch((error) => {  
-                        this.$log.debug(error);  
-                                this.error = "Failed to add teacher"  
-                                });  
-                        // Hide the modal manually
-                        this.$nextTick(() => {
-                        this.$refs.modal.hide()
-                        })
-                },
-                deleteTeacher(id) {
-                        this.loading = true;
-                        api.removeForIdTeacher(id)
-                            .then((response) => {
-                              this.$log.debug(response);  
-                            })
-                            .catch((err) => {
-                              this.$log.debug(err); 
-                              this.loading = false;
-                            })
-                            .finally(() => this.loading = false) 
-                       }
         },
   }
 
@@ -148,4 +181,7 @@ import api from '../../Api';
 
 <style>
   [v-cloak] { display: none; }
+  .hidden-id{
+	  display: none;
+  }
 </style>
