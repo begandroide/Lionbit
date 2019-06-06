@@ -1,6 +1,14 @@
 # Lionbit ISW
-Para iniciar el proyecto, ingresar el siguiente comando: 
 
+## Como correr el proyecto
+
+En la carpeta server:
 ```bash
-python manage.py runserver
+mvn spring-boot:run
+```
+
+En la carpeta client:
+```
+npm install
+npm run serve
 ```
