@@ -42,17 +42,17 @@ public class TeacherServiceImpl implements TeacherService {
 
 	@Override
 	public Teacher update(Long id, Teacher student) {
-                Teacher toUpdate = this.repository.findById(id).get();
+		Teacher toUpdate = this.repository.findById(id).get();
 
-                toUpdate.setName(student.getName());
-                toUpdate.setRut(student.getRut());
-                return this.repository.save(toUpdate);
-                }
+		toUpdate.setName(student.getName());
+		toUpdate.setRut(student.getRut());
+		return this.repository.save(toUpdate);
+    }
 
 	@Override
 	public String delete(Long id) {
-                this.repository.deleteById(id);
-                return "Deleted Student with id" + id;
-                        }
+		this.repository.deleteById(id);
+		return "Deleted Student with id" + id;
+	}
 
 }
