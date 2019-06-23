@@ -1,14 +1,19 @@
 package cl.lionbit.sga.models;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+@ApiModel(description = "All details about the Student. ")
 public class Student {
 
 	@Id
 	@GeneratedValue
+	@ApiModelProperty(notes = "The database generated student ID")
 	private Long id;
 	private String name;
 	private String rol_usm;
@@ -70,5 +75,4 @@ public class Student {
 	public void setRol_usm(String rol_usm) {
 		this.rol_usm = rol_usm;
 	}
-
 }

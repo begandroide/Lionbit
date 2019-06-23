@@ -42,17 +42,17 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student update(Long id, Student student) {
-    Student toUpdate = this.repository.findById(id).get();
+		Student toUpdate = this.repository.findById(id).get();
 
-    toUpdate.setName(student.getName());
-    toUpdate.setRol_usm(student.getRol_usm());
-    return this.repository.save(toUpdate);
+		toUpdate.setName(student.getName());
+		toUpdate.setRol_usm(student.getRol_usm());
+		return this.repository.save(toUpdate);
     }
 
 	@Override
 	public String delete(Long id) {
-    this.repository.deleteById(id);
-    return "Deleted Student with id" + id;
+		this.repository.deleteById(id);
+		return "Deleted Student with id" + id;
 	}
 
 }
