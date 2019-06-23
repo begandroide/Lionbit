@@ -3,8 +3,14 @@ server:
 spring:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
   datasource:
-    url: jdbc:mysql://localhost:3306/siga
+    url: jdbc:mysql://localhost:3306/siga?serverTimezone=America/Santiago&useSSL=false
     username: servoclay@gmail.com
     password: jIq2atp81QIh
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG

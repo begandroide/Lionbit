@@ -14,5 +14,7 @@ public interface StudentRepository extends CrudRepository<Student, Long>{
     Page<Student> findByNameContainingIgnoreCase(String name, Pageable pageable);
 
     List<Student> findAll();
+
+
     
 }

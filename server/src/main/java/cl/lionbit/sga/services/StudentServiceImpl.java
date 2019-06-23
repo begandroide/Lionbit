@@ -44,6 +44,7 @@ public class StudentServiceImpl implements StudentService {
 	public Student update(Long id, Student student) {
 		Student toUpdate = this.repository.findById(id).get();
 
+		toUpdate.setLastname(student.getLastname());
 		toUpdate.setName(student.getName());
 		toUpdate.setRol_usm(student.getRol_usm());
 		return this.repository.save(toUpdate);

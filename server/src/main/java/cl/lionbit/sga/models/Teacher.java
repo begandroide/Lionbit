@@ -1,16 +1,32 @@
 package cl.lionbit.sga.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 @Entity
-public class Teacher {
+@Table(name="teachers")
+@ApiModel(description = "All details about the Teacher. ")
+public class Teacher implements Serializable {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(notes = "The database generated teacher ID")
 	private Long id;
+
+	@NotEmpty
+	@Column(name="name", length = 40)
 	private String name;
+
+	@NotEmpty
+	@Column(name="lastname", length = 40)
+	private String lastname;
+
+	@NotEmpty
+	@Column(name="rut", length = 20, unique = true, updatable = false)
 	private String rut;
     
 
@@ -26,7 +42,7 @@ public class Teacher {
 
 	@Override
 	public String toString() {
-		return "Teacher[id=" + id + ", name=" + name + "]";
+		return "Teacher[id=" + id + ", name=" + name + lastname+ "]";
 	}
 
 	/**
@@ -58,6 +74,20 @@ public class Teacher {
 	}
 
 	/**
+	 * @return the lastname
+	 */
+	public String getLastname() {
+		return lastname;
+	}
+
+	/**
+	 * @param lastname the name to set
+	 */
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	/**
 	 * @return the rut
 	 */
 	public String getRut() {
@@ -70,5 +100,7 @@ public class Teacher {
 	public void setRut(String rut) {
 		this.rut = rut;
 	}
+
+	private static final long serialVersionUID = 1L;
 
 }

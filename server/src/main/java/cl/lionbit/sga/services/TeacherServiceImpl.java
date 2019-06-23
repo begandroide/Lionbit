@@ -36,23 +36,24 @@ public class TeacherServiceImpl implements TeacherService {
 	}
 
 	@Override
-	public Teacher create(Teacher student) {
-		return this.repository.save(student);
+	public Teacher create(Teacher teacher) {
+		return this.repository.save(teacher);
 	}
 
 	@Override
-	public Teacher update(Long id, Teacher student) {
+	public Teacher update(Long id, Teacher teacher) {
 		Teacher toUpdate = this.repository.findById(id).get();
 
-		toUpdate.setName(student.getName());
-		toUpdate.setRut(student.getRut());
+		toUpdate.setName(teacher.getName());
+		toUpdate.setLastname(teacher.getLastname());
+		toUpdate.setRut(teacher.getRut());
 		return this.repository.save(toUpdate);
     }
 
 	@Override
 	public String delete(Long id) {
 		this.repository.deleteById(id);
-		return "Deleted Student with id" + id;
+		return "Deleted teacher with id" + id;
 	}
 
 }
