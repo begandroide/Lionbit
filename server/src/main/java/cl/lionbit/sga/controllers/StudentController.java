@@ -40,14 +40,14 @@ public class StudentController {
 
 	}
 
-	@GetMapping
+	/*@GetMapping
 	public @ResponseBody Page<Student> home(Pageable pageable, @RequestParam(defaultValue = "4") String filter ) {
 
 		logger.info("Controller Find Page");
 
 		return this.service.findPaginated(filter, pageable);
 
-	}
+	}*/
 
 	@ApiOperation(value = "View a list of available students", response = List.class)
 	@ApiResponses(value = {

@@ -25,10 +25,10 @@ public class StudentServiceImpl implements StudentService {
 		return (List<Student>) this.repository.findAll();
 	}
 
-	@Override
+	/*@Override
 	public Page<Student> findPaginated(String filter, Pageable pageable) {
 		return this.repository.findByNameContainingIgnoreCase(filter, pageable);
-	}
+	}*/
 
 	@Override
 	public Student findOne(Long id) {

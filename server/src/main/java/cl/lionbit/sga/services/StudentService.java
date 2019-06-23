@@ -10,13 +10,13 @@ import cl.lionbit.sga.entities.Student;
 public interface StudentService {
 	List<Student> findAll();
 
-	Page<Student> findPaginated(String filter, Pageable pageable);
+	// Page<Student> findPaginated(String filter, Pageable pageable);
 
 	Student findOne(Long id);
 
-	Student create(Student course);
+	Student create(Student student);
 
-	Student update(Long id, Student course);
+	Student update(Long id, Student student);
 
 	String delete(Long id);
 }

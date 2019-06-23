@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.Duration;
 import java.util.Date;
 
 @Entity
@@ -26,7 +25,7 @@ public class Evaluation implements Serializable {
 
     @Temporal(TemporalType.TIME)
     @Column(name="duration_eval")
-    private Duration durationEval;
+    private Date durationEval;
 
     @Column(name="create_at")
     @Temporal(TemporalType.DATE)
@@ -56,11 +55,11 @@ public class Evaluation implements Serializable {
         this.date = date;
     }
 
-    public Duration getDurationEval() {
+    public Date getDurationEval() {
         return durationEval;
     }
 
-    public void setDurationEval(Duration durationEval) {
+    public void setDurationEval(Date durationEval) {
         this.durationEval = durationEval;
     }
 

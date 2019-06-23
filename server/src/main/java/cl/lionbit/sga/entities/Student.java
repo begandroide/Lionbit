@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Entity
 @Table(name="students")
 @ApiModel(description = "All details about the Student. ")
-public class Student implements Serializable{
+public class Student{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,5 +101,5 @@ public class Student implements Serializable{
 		this.rol_usm = rol_usm;
 	}
 
-	private static final long serialVersionUID = 1L;
+	// private static final long serialVersionUID = 1L;
 }

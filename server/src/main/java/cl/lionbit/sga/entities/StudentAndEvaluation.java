@@ -2,11 +2,11 @@ package cl.lionbit.sga.entities;
 
 import io.swagger.annotations.ApiModel;
 
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-@Entity
+@Embeddable
 @Table(name="students_evaluations")
 @ApiModel(description = "This is a table resulting from a relationship many to many")
 public class StudentAndEvaluation implements Serializable {
