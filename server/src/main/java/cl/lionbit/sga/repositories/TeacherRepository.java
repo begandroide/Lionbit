@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import cl.lionbit.sga.models.Teacher;
+import cl.lionbit.sga.entities.Teacher;
 
 @Repository
 public interface TeacherRepository extends CrudRepository<Teacher, Long>{

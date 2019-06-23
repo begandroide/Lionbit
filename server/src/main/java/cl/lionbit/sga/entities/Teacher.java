@@ -1,4 +1,4 @@
-package cl.lionbit.sga.models;
+package cl.lionbit.sga.entities;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,42 +8,41 @@ import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Entity
-@Table(name="students")
-@ApiModel(description = "All details about the Student. ")
-public class Student implements Serializable{
+@Table(name="teachers")
+@ApiModel(description = "All details about the Teacher. ")
+public class Teacher implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@ApiModelProperty(notes = "The database generated student ID")
+	@ApiModelProperty(notes = "The database generated teacher ID")
 	private Long id;
 
 	@NotEmpty
-	@Column(name="name_student", length = 40)
+	@Column(name="name", length = 40)
 	private String name;
 
 	@NotEmpty
-	@Column(name="lastname_student", length = 40)
+	@Column(name="lastname", length = 40)
 	private String lastname;
 
 	@NotEmpty
-	@Column(name="rol_usm_student", length = 20, unique = true, updatable = false)
-	private String rol_usm;
+	@Column(name="rut", length = 20, unique = true, updatable = false)
+	private String rut;
     
 
-	public Student() {
+	public Teacher() {
 	}
 	
 
-	public Student(Long id, String name, String lastname, String rol) {
+	public Teacher(Long id, String name, String rut) {
 		this.id = id;
 		this.name = name;
-		this.lastname = lastname;
-		this.rol_usm = rol;
+		this.rut = rut;
 	}
 
 	@Override
 	public String toString() {
-		return "Student[id=" + id + ", name=" + name + lastname + "]";
+		return "Teacher[id=" + id + ", name=" + name + lastname+ "]";
 	}
 
 	/**
@@ -89,18 +88,19 @@ public class Student implements Serializable{
 	}
 
 	/**
-	 * @return the rol_usm
+	 * @return the rut
 	 */
-	public String getRol_usm() {
-		return rol_usm;
+	public String getRut() {
+		return rut;
 	}
 
 	/**
-	 * @param rol_usm the rol_usm to set
+	 * @param rut the rut to set
 	 */
-	public void setRol_usm(String rol_usm) {
-		this.rol_usm = rol_usm;
+	public void setRut(String rut) {
+		this.rut = rut;
 	}
 
 	private static final long serialVersionUID = 1L;
+
 }

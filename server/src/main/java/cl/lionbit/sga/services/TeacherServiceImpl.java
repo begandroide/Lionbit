@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import cl.lionbit.sga.models.Teacher;
+import cl.lionbit.sga.entities.Teacher;
 import cl.lionbit.sga.repositories.TeacherRepository;
 
 @Service

@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import cl.lionbit.sga.models.Teacher;
+import cl.lionbit.sga.entities.Teacher;
 import cl.lionbit.sga.services.TeacherService;
 
 @RestController

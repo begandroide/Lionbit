@@ -11,7 +11,7 @@
 	<groupId>cl.lionbit</groupId>
 	<artifactId>sga</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sga</name>
+	<firstName>sga</firstName>
 	<description>Proyecto sga para ISW</description>
 
 	<properties>

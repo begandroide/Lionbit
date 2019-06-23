@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import cl.lionbit.sga.models.Student;
+import cl.lionbit.sga.entities.Student;
 import cl.lionbit.sga.services.StudentService;
 
 @RestController
@@ -41,7 +41,7 @@ public class StudentController {
 	}
 
 	@GetMapping
-	public @ResponseBody Page<Student> home(Pageable pageable, @RequestParam(defaultValue = "") String filter ) {
+	public @ResponseBody Page<Student> home(Pageable pageable, @RequestParam(defaultValue = "4") String filter ) {
 
 		logger.info("Controller Find Page");
 
