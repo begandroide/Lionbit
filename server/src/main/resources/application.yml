@@ -1,9 +1,9 @@
 server:
-  port: 8088
+  port: 8089
 spring:
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
   datasource:
     url: jdbc:mysql://localhost:3306/siga
     username: bgautier

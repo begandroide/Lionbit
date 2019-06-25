@@ -46,6 +46,7 @@
 								<template v-slot:items="props" >
 									<td class="hidden-id">{{props.item.id}}</td>
 									<td class="text-left">{{props.item.name}}</td>
+									<td class="text-left">{{props.item.last_name}}</td>
 									<td class="text-xs-left">{{ props.item.rut }}</td>
 									<td class="text-left ">
 										<v-tooltip bottom>
@@ -128,6 +129,7 @@ import Actions from '../Common/Actions';
 			message: null,
 			newTeacher: {
 					name: null,
+					last_name: null,
 					rut: null
 			},
 			search: '',
@@ -139,10 +141,16 @@ import Actions from '../Common/Actions';
 				class: 'hidden-id',
 			},
 			{
-				text: 'Nombre del profesor',
+				text: 'Nombres',
 				align: 'left',
 				sortable: true,
 				value: 'name'
+			},
+			{
+				text: 'Apellidos',
+				align: 'left',
+				sortable: true,
+				value: 'last_name'
 			},
 			{ 	text: 'Rut',
 				align: 'left',

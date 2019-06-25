@@ -8,7 +8,7 @@
         <v-card-title>
           <span class="headline">Nuevo estudiante</span>
         </v-card-title>
-            <form ref="form" @submit.prevent="handleSubmit2">
+            <form ref="form" @submit.prevent="CreateStudent">
         <v-card-text>
           <v-container grid-list-md>
                 <v-layout wrap>
@@ -21,7 +21,7 @@
                 </v-flex>
                 <v-flex xs12 sm6 md6>
                     <v-text-field label="Apellidos*"
-                        id="last-input"
+                        id="last-name-input"
 						v-model="newStudent.last_name"
 						:state="newStudent.last_name" hint="example of helper text only on focus"></v-text-field>
                 </v-flex>
@@ -67,25 +67,34 @@ import Students from './Students'
         },
     }),
     methods:{
-        handleSubmit2() {
-            this.newStudent.name = this.newStudent.name + " " + this.newStudent.last_name;
-            api.createNewStudent(this.newStudent, false).then( (response) => {  
-                console.log(this.$root);
-                this.students.push({  
-                    id: response.data.id,  
-                    name: this.newStudent.name,  
-                    rol_usm:   this.newStudent.rol_usm
-                })  
-        }).catch((error) => {  
+      CreateStudent() {
+        if(this.newStudent.last_name != null){
+          api.createNewStudent(this.newStudent).
+            then( (response) => {  
+              console.log(this.$root);
+              this.students.push({  
+                  id: response.data.id,  
+                  name: this.newStudent.name,  
+                  last_name: this.newStudent.last_name,
+                  rol_usm:   this.newStudent.rol_usm
+              })  
+          }).catch((error) => {  
             this.$log.debug(error);  
-                this.error = "Failed to add student"  
-                });  
+              this.error = "Failed to add student"  
+          }).finally( () => { 
+            this.newStudent.id = 0;
+            this.newStudent.name = "";
+            this.newStudent.last_name = "";
+            this.newStudent.rol_usm = "";
+          });  
         // Hide the modal manually
         this.$nextTick(() => {
-            this.dialog = false;
-        })
-        },
-},
+          this.dialog = false;
+        });
+
+        }
+      },
+    },
   }
   export default Form;
 </script>

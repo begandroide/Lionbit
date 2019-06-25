@@ -1,22 +1,18 @@
 <template>
     <div class="card-body">
         <div class="row">
-            <div class="col-lg-10 col-sm-12">
+            <div class="col-lg-8 col-sm-12">
                 <div align="left">
                     <div class="btn-group">
-                            <button class="btn btn-secondary" :disabled="(selected == null)">
-                                <i class="fa fa-eye"></i> Detalles
-                            </button>
-                            <button class="btn btn-primary" :disabled="(selected == null)" v-on:click="myEventHandler">
-                                <i class="fa fa-edit"></i> Editar
-                            </button>
-                            <button class="btn btn-danger" :disabled="(selected == null)">
-                                <i class="fa fa-trash"></i> Eliminar
-                            </button>
+                        <button class="btn btn-primary" :disabled="(selected == null)">
+                            <i class="fa fa-eye"></i> Detalles
+                        </button>
+                        <FormEdit :newAssignature="selected" />
+                        <FormDelete :objeto="selected" />
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-sm-12">
+            <div class="col-lg-4 col-sm-12">
                 <div class="text-right">
                     <p class="text-muted" v-if="selected != null">{{selected.name}}</p>
                 </div>
@@ -29,8 +25,14 @@
 </style>
 
 <script>
+import FormEdit from './FormEdit';
+import FormDelete from './FormDelete';
   const Actions = {
     name: 'Actions',
+    components:{
+        FormEdit,
+        FormDelete
+    },
 	props:{
         selected: Object,
 	},

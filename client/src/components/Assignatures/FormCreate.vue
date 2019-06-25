@@ -22,15 +22,31 @@
                 <v-flex xs12 sm6 md6>
                     <v-text-field label="Siglas*"
                         id="last-input"
-                        v-model="newAssignature.last_name"
-                        :state="newAssignature.last_name" hint="example of helper text only on focus"></v-text-field>
+                        v-model="newAssignature.sigla"
+                        :state="newAssignature.sigla" 
+                        hint="Siglas descriptivas del curso"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md6>
                     <v-text-field 
+                        type = "number"
+                        min = 1
                         label="Cantidad alumnos*" 
                         id="cant-alumnos"
-						v-model="newAssignature.cantAlumnos"
-						:state="newAssignature.cantAlumnos" hint="example of helper text only on focus"></v-text-field>
+                        v-model="newAssignature.num_students"
+                        :state="newAssignature.num_students" 
+                        hint="Cantidad de alumnos totales para este curso">
+                    </v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md6>
+                    <v-text-field
+                        type = "number" 
+                        min = 1
+                        label="Cantidad paralelos*" 
+                        id="num-paralelos"
+						            v-model="newAssignature.num_paralelos"
+						            :state="newAssignature.num_paralelos" 
+                        hint="Cantidad de paralelos para el curso">
+                    </v-text-field>
                 </v-flex>
                 </v-layout>
           </v-container>
@@ -38,8 +54,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" type="submit" flat>Save</v-btn>
+          <v-btn color="error darken-1" flat @click="dialog = false">Close</v-btn>
+          <v-btn color="success darken-1" type="submit" flat>Save</v-btn>
         </v-card-actions>
             </form>
       </v-card>
@@ -50,42 +66,43 @@
 <script>
 import api from '../../Api';
 import Assignatures from './Assignatures'
-  const Form =  {
-      component:{
+  const FormCreate =  {
+      components:{
         Assignatures,
       },
       props:{
-          Assignatures: Array
+        assignatures: Array
       },
-    data: () => ({
-      dialog: false,
-      newAssignature: {
-        id: 0,
-        name: null,
-        sigla_usm: null,
-        cantAlumnos: null,
+      data: () => ({
+        dialog: false,
+        newAssignature: {
+          id: 0,
+          name: null,
+          sigla: null,
+          num_students: null,
+          num_paralelos: null,
         },
     }),
     methods:{
         handleSubmit2() {
             api.createNewAssignature(this.newAssignature, false).then( (response) => {  
                 console.log(this.$root);
-                this.assignatures.push({  
+                this.Assignatures.push({  
                     id: response.data.id,  
                     name: this.newAssignature.name,  
-                    sigla_usm:   this.newAssignature.sigla_usm,
-                    cantAlumnos: this.newAssignature.cantAlumnos
+                    sigla:   this.newAssignature.sigla,
+                    num_students: this.newAssignature.num_students,
+                    num_paralelos: this.newAssignature.num_paralelos
                 })  
         }).catch((error) => {  
             this.$log.debug(error);  
-                this.error = "Failed to add student"  
-                });  
-        // Hide the modal manually
-        this.$nextTick(() => {
-            this.dialog = false;
-        })
+            this.error = "Failed to add";  
+        });  
+        this.dialog = false;
         },
-},
+    },
+    computed:{
+    }
   }
-  export default Form;
+  export default FormCreate;
 </script>

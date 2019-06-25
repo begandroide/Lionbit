@@ -43,6 +43,7 @@
 								<template v-slot:items="props">
 									<td class="hidden-id">{{props.item.id}}</td>
 									<td class="text-left text-xs-left">{{props.item.name}}</td>
+									<td class="text-left text-xs-left">{{props.item.last_name}}</td>
 									<td class="text-xs-left">{{ props.item.rol_usm }}</td>
 									<td class="text-left ">
 										<v-icon
@@ -103,6 +104,7 @@ import Actions from "../Common/Actions";
 		},
 		props: {
 			activeUser: Object,
+			
 		},
 		watch: {
 		},
@@ -118,10 +120,16 @@ import Actions from "../Common/Actions";
 						sortable: true
 					},
 					{
-						text: 'Nombre del estudiante',
+						text: 'Nombres',
 						align: 'left',
 						sortable: true,
 						value: 'name'
+					},
+					{
+						text: 'Apellidos',
+						align: 'left',
+						sortable: true,
+						value: 'last_name'
 					},
 					{ 	text: 'Rol USM',
 						align: 'left',
@@ -146,20 +154,17 @@ import Actions from "../Common/Actions";
         },
         mounted() {
                 api.getAllStudents()  
-                        .then(response => {  
-                        this.$log.debug("Data loaded: ", response.data.content); 
-                        this.students = response.data.content;
-                        this.$log.debug("students : ", this.students); 
-                        
-                        })  
-                        .catch(error => {  
-                        this.$log.debug(error)  
-                        this.error = "Failed to load students"  
-                        })  
-                        .finally(() => this.loading = false)  
-                // this.newStudent = {
-                //         nombre: null,
-                // };
+									.then(response => {  
+									this.$log.debug("Data loaded: ", response.data.content); 
+									this.students = response.data.content;
+									this.$log.debug("students : ", this.students); 
+									
+									})  
+									.catch(error => {  
+									this.$log.debug(error)  
+									this.error = "Failed to load students"  
+									})  
+									.finally(() => this.loading = false)
         },
         methods: {
 				deleteStudent(id) {
@@ -176,16 +181,6 @@ import Actions from "../Common/Actions";
 						})
 						.finally(() => this.loading = false) 
 				},
-				selectRow(id){
-					console.log(id);
-            // if(this.selected_rows.indexOf(row) !== -1){
-            //     let index = this.selected_rows.indexOf(row);
-            //     this.selected_rows.splice(index, 1);
-
-            //     return;
-            // }
-
-        }
 		},
   }
 

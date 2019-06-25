@@ -11,6 +11,7 @@ public class Teacher {
 	@GeneratedValue
 	private Long id;
 	private String name;
+	private String last_name;
 	private String rut;
     
 
@@ -18,9 +19,10 @@ public class Teacher {
 	}
 	
 
-	public Teacher(Long id, String name, String rut) {
+	public Teacher(Long id, String name, String last_name, String rut) {
 		this.id = id;
 		this.name = name;
+		this.last_name = last_name;
 		this.rut = rut;
 	}
 
@@ -55,6 +57,20 @@ public class Teacher {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	/**
+	 * @return the last_name
+	 */
+	public String getLast_name() {
+		return last_name;
+	}
+
+	/**
+	 * @param last_name the last name to set
+	 */
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
 	}
 
 	/**

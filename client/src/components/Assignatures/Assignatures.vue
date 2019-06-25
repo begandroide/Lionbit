@@ -16,11 +16,11 @@
 
 							<div class="col-md-4 col-sm-4">
 								<div align="right">
-									<Form :assignatures="assignatures" />
+									<FormCreate :assignatures="assignatures"/>
 								</div >
 							</div>
 
-							<Actions />
+							<Actions :selected="selected"/>
 						</v-layout>
 					</v-container>
 					<!-- contenido asignaturas -->
@@ -31,7 +31,7 @@
 							<v-text-field
 								v-model="search"
 								append-icon="search"
-								label="Search"
+								label="Buscar"
 								single-line
 								hide-details
 							></v-text-field>
@@ -43,24 +43,13 @@
 								:aria-sort="true"
 							>
 								<template v-slot:items="props" >
-									<td class="hidden-id">{{props.item.id}}</td>
-									<td class="text-left text-xs-left">{{props.item.name}}</td>
-									<td class="text-xs-left">{{ props.item.sigla }}</td>
-									<td class="text-left ">
-										<v-icon
-											small
-											class="mr-2"
-											@click="editItem(props.item)"
-										>
-											edit
-										</v-icon>
-										<v-icon
-											small
-											@click="deleteStudent(props.item.id)"
-										>
-											delete
-										</v-icon>
-										</td>
+									<tr  @click="showAlert(props.item)">
+										<td class="hidden-id">{{props.item.id}}</td>
+										<td class="text-left text-xs-left">{{props.item.name}}</td>
+										<td class="text-xs-left">{{ props.item.sigla }}</td>
+										<td class="text-left text-xs-left">{{props.item.num_students}}</td>
+										<td class="text-left text-xs-left">{{props.item.num_paralelos}}</td>
+									</tr>
 								</template>
 								<template v-slot:no-results>
 									<v-alert :value="true" color="error" icon="warning">
@@ -82,13 +71,13 @@
 <script>
 
 import api from '../../Api';
-import Form from "./Form";
-import Actions from "../Common/Actions";
+import FormCreate from "./FormCreate";
+import Actions from "./Actions";
 // app Vue instance
   const Assignatures = {
 		name: 'Assignatures',
 		components:{
-			Form,
+			FormCreate,
 			Actions
 		},
         metaInfo: {
@@ -99,86 +88,84 @@ import Actions from "../Common/Actions";
 			activeUser: Object,
 		},
 		watch: {
-		},
+			},
         data: function(){
-                return{
-					search: '',
-					dialog: false,
-					headers: [
-					{
-						text: 'Id',
-						value: 'id',
-						class: 'hidden-id',
-						sortable: true
-					},
-					{
-						text: 'Nombre de asignatura',
-						align: 'left',
-						sortable: true,
-						value: 'name'
-					},
-					{ 	text: 'Sigla USM',
-						align: 'left',
-						sortable: true,
-						value: 'sigla_usm'
-					},
-					{ 	text: 'Cantidad alumnos',
-						align: 'left',
-						sortable: true,
-						value: 'cant_alumnos'
-					},
-					{
-						text: 'Acciones',
-						value: 'acciones'
-					}],
-					loading: false,
-					assignatures: [],
-					message: null,
-                };
+			return{
+				selected: null,
+				search: '',
+				headers: [
+				{
+					text: 'Id',
+					value: 'id',
+					class: 'hidden-id',
+					sortable: true
+				},
+				{
+					text: 'Nombre de asignatura',
+					align: 'left',
+					sortable: true,
+					value: 'name'
+				},
+				{ 	text: 'Sigla USM',
+					align: 'left',
+					sortable: true,
+					value: 'sigla_usm'
+				},
+				{ 	text: 'Cantidad alumnos',
+					align: 'left',
+					sortable: true,
+					value: 'num_students'
+				},
+				{	text: 'Cantidad paralelos',
+					align: 'left',
+					sortable: true,
+					value: 'num_paralelos'
+				},
+				],
+				loading: false,
+				assignatures: [],
+				message: null,
+			};
         },
         created: function () {
         },
         mounted() {
-                api.getAllAssignatures()  
-                        .then(response => {  
-                        this.$log.debug("Data loaded: ", response.data.content); 
-                        this.assignatures = response.data.content;
-                        this.$log.debug("assignatures : ", this.assignatures); 
-                        
-                        })  
-                        .catch(error => {  
-                        this.$log.debug(error)  
-                        this.error = "Failed to load students"  
-                        })  
-                        .finally(() => this.loading = false)  
-                // this.newStudent = {
-                //         nombre: null,
-                // };
+			api.getAllAssignatures()  
+				.then(response => {  
+				this.$log.debug("Data loaded: ", response.data.content); 
+				this.assignatures = response.data.content;
+				this.$log.debug("assignatures : ", this.assignatures); 
+				
+				})  
+				.catch(error => {  
+				this.$log.debug(error)  
+				this.error = "Failed to load students"  
+				})  
+				.finally(() => this.loading = false)  
         },
         methods: {
-			deleteStudent(id) {
-				this.loading = true;
-				api.removeForId(id)
-					.then((response) => {
-						this.$log.debug(response);
-						let index = this.assignatures.findIndex(x => x.id == id);
-						this.$delete(this.assignatures,index);
-						})
-					.catch((err) => {
-						this.$log.debug(err); 
-						this.loading = false;
-					})
-					.finally(() => this.loading = false) 
+			showAlert(a){
+				if (event.target.classList.contains('btn__content')) return;
+				if(this.selected === a ){
+					this.selected = null;
+					event.target.parentElement.classList.remove('selected-row-special');
+				}else{
+					event.target.parentElement.classList.add('selected-row-special');
+					this.selected = a;
+				}
 			},
 		},
   }
 
-        export  default Assignatures
+        export  default Assignatures;
 </script>
 
 <style>
   [v-cloak] { display: none; }
 	.hidden-id{
 		display: none;
+	}
+	.selected-row-special{
+		background-color: #dbdbdb;
 	}
 </style>
