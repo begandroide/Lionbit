@@ -1,10 +1,13 @@
 package cl.lionbit.sga.entities;
 
+import io.swagger.annotations.ApiModel;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name="role_privileges")
+@ApiModel
 public class Privilege implements Serializable {
 
     @Id

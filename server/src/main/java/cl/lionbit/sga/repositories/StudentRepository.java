@@ -15,7 +15,7 @@ public interface StudentRepository extends CrudRepository<Student, Long>{
     // CrudRepository (Revisar su utilización)
     // Page <Student> findAll(Pageable pageable)
 
-    // Page<Student> findByNameContainingIgnoreCase(String firstName, Pageable pageable);
+    Page<Student> findByFirstNameContainingIgnoreCase(String firstName, Pageable pageable);
 
     List<Student> findAll();
 

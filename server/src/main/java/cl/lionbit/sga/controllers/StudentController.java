@@ -27,9 +27,12 @@ import org.springframework.web.bind.annotation.RestController;
 import cl.lionbit.sga.entities.Student;
 import cl.lionbit.sga.services.StudentService;
 
+import static cl.lionbit.sga.constans.Paths.STUDENTS;
+import static cl.lionbit.sga.constans.Paths.VERSION;
+
 @RestController
-@Api(value="Student Management System", description="Operations pertaining to student in SGA")
-@RequestMapping("/students")
+@Api(value="Student Management System " + VERSION)
+@RequestMapping(STUDENTS)
 public class StudentController {
 	private static Logger logger = LoggerFactory.getLogger(StudentController.class);
 
@@ -40,16 +43,16 @@ public class StudentController {
 
 	}
 
-	/*@GetMapping
+	@GetMapping
 	public @ResponseBody Page<Student> home(Pageable pageable, @RequestParam(defaultValue = "4") String filter ) {
 
 		logger.info("Controller Find Page");
 
 		return this.service.findPaginated(filter, pageable);
 
-	}*/
+	}
 
-	@ApiOperation(value = "View a list of available students", response = List.class)
+	@ApiOperation(value = "View a list of available students.", response = List.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully retrieved list"),
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
@@ -64,7 +67,7 @@ public class StudentController {
 
 	@ApiOperation(value = "Get an student by Id", response = Student.class)
 	@ApiResponses(value = {
-			@ApiResponse(code = 302, message = "Successfully retrieved an student"),
+			@ApiResponse(code = 302, message = "Successfully retrieved an student."),
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 500, message = "The resource you were trying to reach is not found")
 	})

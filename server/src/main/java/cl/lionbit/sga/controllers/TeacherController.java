@@ -27,9 +27,12 @@ import org.springframework.web.bind.annotation.RestController;
 import cl.lionbit.sga.entities.Teacher;
 import cl.lionbit.sga.services.TeacherService;
 
+import static cl.lionbit.sga.constans.Paths.TEACHERS;
+import static cl.lionbit.sga.constans.Paths.VERSION;
+
 @RestController
-@Api(value="Teacher Management System", description="Operations pertaining to teacher in SGA")
-@RequestMapping("/teachers")
+@Api(value="Teacher Management System " + VERSION)
+@RequestMapping(TEACHERS)
 public class TeacherController {
 
 	private static Logger logger = LoggerFactory.getLogger(TeacherController.class);

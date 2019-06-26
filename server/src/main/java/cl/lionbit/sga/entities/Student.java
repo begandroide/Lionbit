@@ -28,7 +28,6 @@ public class Student{
 	@NotEmpty
 	@Column(length = 20, unique = true, updatable = false)
 	private String rol_usm;
-    
 
 	public Student() {
 	}
@@ -45,18 +44,12 @@ public class Student{
 		return "Student[id=" + studentID + ", firstName=" + firstName + lastName + "]";
 	}
 
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
+	public Long getStudentID() {
 		return studentID;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.studentID = id;
+	public void setStudentID(Long studentID) {
+		this.studentID = studentID;
 	}
 
 	/**

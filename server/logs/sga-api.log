@@ -1,0 +1,1181 @@
+2019-06-26 16:16:18.702  INFO 2550 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 2550 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 16:16:18.704  INFO 2550 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 16:16:18.737  INFO 2550 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-06-26 16:16:18.737  INFO 2550 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-06-26 16:16:19.710  INFO 2550 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 16:16:19.765  INFO 2550 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47ms. Found 2 repository interfaces.
+2019-06-26 16:16:20.102  INFO 2550 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$bc0faced] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 16:16:20.422  INFO 2550 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 16:16:20.442  INFO 2550 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 16:16:20.443  INFO 2550 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 16:16:20.520  INFO 2550 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 16:16:20.520  INFO 2550 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1783 ms
+2019-06-26 16:16:20.957  INFO 2550 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-26 16:16:21.063  INFO 2550 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-26 16:16:21.117  INFO 2550 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 16:16:21.186  INFO 2550 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-26 16:16:21.187  INFO 2550 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-26 16:16:21.388  INFO 2550 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-26 16:16:21.503  INFO 2550 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 16:16:22.051 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:16:22.068 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:16:22.071 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:16:22.073 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:16:22.075 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:16:22.077 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:16:22.079 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:16:22.081 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:16:22.083 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:16:22.085 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:16:22.090 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 16:16:22.094 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 16:16:22.098 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 16:16:22.101 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 16:16:22.103 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 16:16:22.107 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 16:16:22.111 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 16:16:22.114 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 16:16:22.119 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 16:16:22.124 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 16:16:22.127 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 16:16:22.131 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 16:16:22.135 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 16:16:22.138 DEBUG 2550 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 16:16:22.142  INFO 2550 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@dfc7bec'
+2019-06-26 16:16:22.145  INFO 2550 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:16:22.184  INFO 2550 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 16:16:22.600  WARN 2550 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 16:16:22.694  INFO 2550 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 16:16:22.754  INFO 2550 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 16:16:22.870  INFO 2550 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:16:23.105  INFO 2550 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 16:16:23.116  INFO 2550 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 16:16:23.144  INFO 2550 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 16:16:23.253  INFO 2550 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 16:16:23.256  INFO 2550 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 16:16:23.258  INFO 2550 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 16:16:23.260  INFO 2550 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 16:16:23.266  INFO 2550 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 16:16:23.267  INFO 2550 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 16:16:23.308  INFO 2550 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 16:16:23.312  INFO 2550 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 4.886 seconds (JVM running for 10.448)
+2019-06-26 16:16:54.929  INFO 2550 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-26 16:16:54.930  INFO 2550 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-26 16:16:54.939  INFO 2550 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2019-06-26 16:17:56.598  INFO 2550 --- [Thread-8] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:17:56.601  INFO 2550 --- [Thread-8] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:17:56.601  INFO 2550 --- [Thread-8] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-06-26 16:17:56.604 DEBUG 2550 --- [Thread-8] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:17:56.609 DEBUG 2550 --- [Thread-8] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:17:56.613 DEBUG 2550 --- [Thread-8] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:17:56.619 DEBUG 2550 --- [Thread-8] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:17:56.621 DEBUG 2550 --- [Thread-8] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:17:56.627 DEBUG 2550 --- [Thread-8] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:17:56.629 DEBUG 2550 --- [Thread-8] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:17:56.631 DEBUG 2550 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:17:56.633 DEBUG 2550 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:17:56.635 DEBUG 2550 --- [Thread-8] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:17:56.648  INFO 2550 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-06-26 16:17:56.658  INFO 2550 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-06-26 16:20:44.172  INFO 2714 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 2714 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 16:20:44.175  INFO 2714 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 16:20:44.218  INFO 2714 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-06-26 16:20:44.218  INFO 2714 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-06-26 16:20:45.247  INFO 2714 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 16:20:45.299  INFO 2714 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44ms. Found 2 repository interfaces.
+2019-06-26 16:20:45.649  INFO 2714 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$7b69afdc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 16:20:46.004  INFO 2714 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 16:20:46.030  INFO 2714 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 16:20:46.030  INFO 2714 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 16:20:46.118  INFO 2714 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 16:20:46.118  INFO 2714 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1900 ms
+2019-06-26 16:20:46.601  INFO 2714 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-26 16:20:46.722  INFO 2714 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-26 16:20:46.779  INFO 2714 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 16:20:46.869  INFO 2714 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-26 16:20:46.871  INFO 2714 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-26 16:20:47.029  INFO 2714 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-26 16:20:47.168  INFO 2714 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 16:20:47.880 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:20:47.904 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:20:47.911 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:20:47.913 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:20:47.916 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:20:47.918 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:20:47.920 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:20:47.922 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:20:47.925 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:20:47.928 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:20:47.934 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 16:20:47.942 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 16:20:47.948 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 16:20:47.954 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 16:20:47.956 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 16:20:47.960 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 16:20:47.965 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 16:20:47.970 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 16:20:47.976 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 16:20:47.982 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 16:20:47.986 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 16:20:47.989 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 16:20:47.993 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 16:20:47.997 DEBUG 2714 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 16:20:48.001  INFO 2714 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@5c9c6633'
+2019-06-26 16:20:48.004  INFO 2714 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:20:48.045  INFO 2714 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 16:20:48.540  WARN 2714 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 16:20:48.650  INFO 2714 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 16:20:48.720  INFO 2714 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 16:20:48.915  INFO 2714 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:20:49.231  INFO 2714 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 16:20:49.298  INFO 2714 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 16:20:49.332  INFO 2714 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 16:20:49.495  INFO 2714 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 16:20:49.498  INFO 2714 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 16:20:49.499  INFO 2714 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 16:20:49.502  INFO 2714 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 16:20:49.508  INFO 2714 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 16:20:49.510  INFO 2714 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 16:20:49.560  INFO 2714 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 16:20:49.565  INFO 2714 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 5.7 seconds (JVM running for 11.315)
+2019-06-26 16:22:03.212  INFO 2714 --- [Thread-8] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:22:03.222  INFO 2714 --- [Thread-8] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:22:03.223  INFO 2714 --- [Thread-8] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-06-26 16:22:03.224 DEBUG 2714 --- [Thread-8] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:22:03.232 DEBUG 2714 --- [Thread-8] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:22:03.235 DEBUG 2714 --- [Thread-8] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:22:03.239 DEBUG 2714 --- [Thread-8] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:22:03.242 DEBUG 2714 --- [Thread-8] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:22:03.244 DEBUG 2714 --- [Thread-8] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:22:03.247 DEBUG 2714 --- [Thread-8] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:22:03.249 DEBUG 2714 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:22:03.251 DEBUG 2714 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:22:03.253 DEBUG 2714 --- [Thread-8] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:22:03.259  INFO 2714 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-06-26 16:22:03.267  INFO 2714 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-06-26 16:22:11.657  INFO 2720 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 2720 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 16:22:11.659  INFO 2720 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 16:22:11.696  INFO 2720 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-06-26 16:22:11.696  INFO 2720 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-06-26 16:22:12.640  INFO 2720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 16:22:12.692  INFO 2720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44ms. Found 2 repository interfaces.
+2019-06-26 16:22:13.018  INFO 2720 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$56f9f3ee] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 16:22:13.328  INFO 2720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 16:22:13.351  INFO 2720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 16:22:13.352  INFO 2720 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 16:22:13.440  INFO 2720 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 16:22:13.440  INFO 2720 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1744 ms
+2019-06-26 16:22:13.825  INFO 2720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-26 16:22:13.904  INFO 2720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-26 16:22:13.938  INFO 2720 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 16:22:13.967  INFO 2720 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-26 16:22:13.968  INFO 2720 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-26 16:22:14.097  INFO 2720 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-26 16:22:14.175  INFO 2720 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 16:22:14.659 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:22:14.674 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:22:14.677 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:22:14.679 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:22:14.681 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:22:14.682 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:22:14.685 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:22:14.688 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:22:14.692 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:22:14.695 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:22:14.703 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 16:22:14.707 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 16:22:14.711 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 16:22:14.715 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 16:22:14.717 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 16:22:14.721 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 16:22:14.728 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 16:22:14.732 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 16:22:14.737 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 16:22:14.741 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 16:22:14.745 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 16:22:14.749 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 16:22:14.753 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 16:22:14.757 DEBUG 2720 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 16:22:14.762  INFO 2720 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@635a02c'
+2019-06-26 16:22:14.764  INFO 2720 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:22:14.797  INFO 2720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 16:22:15.189  WARN 2720 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 16:22:15.281  INFO 2720 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 16:22:15.343  INFO 2720 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 16:22:15.461  INFO 2720 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:22:15.664  INFO 2720 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 16:22:15.677  INFO 2720 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 16:22:15.706  INFO 2720 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 16:22:15.828  INFO 2720 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 16:22:15.832  INFO 2720 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 16:22:15.834  INFO 2720 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 16:22:15.837  INFO 2720 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 16:22:15.844  INFO 2720 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 16:22:15.845  INFO 2720 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 16:22:15.892  INFO 2720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 16:22:15.896  INFO 2720 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 4.507 seconds (JVM running for 10.117)
+2019-06-26 16:25:49.154  INFO 2720 --- [Thread-8] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:25:49.160  INFO 2720 --- [Thread-8] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:25:49.162  INFO 2720 --- [Thread-8] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-06-26 16:25:49.165 DEBUG 2720 --- [Thread-8] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:25:49.174 DEBUG 2720 --- [Thread-8] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:25:49.176 DEBUG 2720 --- [Thread-8] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:25:49.178 DEBUG 2720 --- [Thread-8] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:25:49.180 DEBUG 2720 --- [Thread-8] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:25:49.182 DEBUG 2720 --- [Thread-8] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:25:49.184 DEBUG 2720 --- [Thread-8] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:25:49.186 DEBUG 2720 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:25:49.189 DEBUG 2720 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:25:49.191 DEBUG 2720 --- [Thread-8] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:25:49.203  INFO 2720 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-06-26 16:25:49.218  INFO 2720 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-06-26 16:25:57.477  INFO 2732 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 2732 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 16:25:57.479  INFO 2732 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 16:25:57.513  INFO 2732 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-06-26 16:25:57.513  INFO 2732 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-06-26 16:25:58.441  INFO 2732 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 16:25:58.490  INFO 2732 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42ms. Found 2 repository interfaces.
+2019-06-26 16:25:58.797  INFO 2732 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$85794dc4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 16:25:59.098  INFO 2732 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 16:25:59.118  INFO 2732 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 16:25:59.119  INFO 2732 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 16:25:59.193  INFO 2732 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 16:25:59.194  INFO 2732 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1681 ms
+2019-06-26 16:25:59.582  INFO 2732 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-26 16:25:59.663  INFO 2732 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-26 16:25:59.698  INFO 2732 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 16:25:59.728  INFO 2732 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-26 16:25:59.729  INFO 2732 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-26 16:25:59.852  INFO 2732 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-26 16:25:59.928  INFO 2732 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 16:26:00.420 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:26:00.435 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:26:00.438 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:26:00.440 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:26:00.442 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:26:00.444 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:26:00.446 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:26:00.448 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:26:00.450 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:26:00.451 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:26:00.456 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 16:26:00.460 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 16:26:00.464 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 16:26:00.467 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 16:26:00.469 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 16:26:00.472 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 16:26:00.475 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 16:26:00.479 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 16:26:00.482 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 16:26:00.486 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 16:26:00.490 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 16:26:00.493 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 16:26:00.497 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 16:26:00.500 DEBUG 2732 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 16:26:00.509  INFO 2732 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@6db5ef5a'
+2019-06-26 16:26:00.512  INFO 2732 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:26:00.549  INFO 2732 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 16:26:00.944  WARN 2732 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 16:26:01.059  INFO 2732 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 16:26:01.128  INFO 2732 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 16:26:01.251  INFO 2732 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:26:01.472  INFO 2732 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 16:26:01.484  INFO 2732 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 16:26:01.512  INFO 2732 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 16:26:01.642  INFO 2732 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 16:26:01.647  INFO 2732 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 16:26:01.648  INFO 2732 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 16:26:01.650  INFO 2732 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 16:26:01.656  INFO 2732 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 16:26:01.657  INFO 2732 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 16:26:01.731  INFO 2732 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 16:26:01.740  INFO 2732 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 4.523 seconds (JVM running for 10.106)
+2019-06-26 16:26:11.408  INFO 2732 --- [Thread-8] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:26:11.412  INFO 2732 --- [Thread-8] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:26:11.413  INFO 2732 --- [Thread-8] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-06-26 16:26:11.414 DEBUG 2732 --- [Thread-8] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:26:11.422 DEBUG 2732 --- [Thread-8] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:26:11.427 DEBUG 2732 --- [Thread-8] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:26:11.430 DEBUG 2732 --- [Thread-8] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:26:11.432 DEBUG 2732 --- [Thread-8] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:26:11.434 DEBUG 2732 --- [Thread-8] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:26:11.437 DEBUG 2732 --- [Thread-8] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:26:11.439 DEBUG 2732 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:26:11.441 DEBUG 2732 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:26:11.444 DEBUG 2732 --- [Thread-8] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:26:11.450  INFO 2732 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-06-26 16:26:11.459  INFO 2732 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-06-26 16:26:19.558  INFO 2737 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 2737 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 16:26:19.560  INFO 2737 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 16:26:19.590  INFO 2737 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-06-26 16:26:19.590  INFO 2737 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-06-26 16:26:20.492  INFO 2737 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 16:26:20.546  INFO 2737 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46ms. Found 2 repository interfaces.
+2019-06-26 16:26:20.867  INFO 2737 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9149e60f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 16:26:21.161  INFO 2737 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 16:26:21.180  INFO 2737 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 16:26:21.181  INFO 2737 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 16:26:21.253  INFO 2737 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 16:26:21.254  INFO 2737 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1664 ms
+2019-06-26 16:26:21.642  INFO 2737 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-26 16:26:21.725  INFO 2737 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-26 16:26:21.765  INFO 2737 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 16:26:21.797  INFO 2737 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-26 16:26:21.798  INFO 2737 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-26 16:26:21.908  INFO 2737 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-26 16:26:21.996  INFO 2737 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 16:26:22.400 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:26:22.416 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:26:22.419 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:26:22.421 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:26:22.423 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:26:22.425 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:26:22.427 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:26:22.428 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:26:22.430 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:26:22.432 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:26:22.437 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 16:26:22.441 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 16:26:22.444 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 16:26:22.447 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 16:26:22.449 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 16:26:22.453 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 16:26:22.456 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 16:26:22.459 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 16:26:22.462 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 16:26:22.466 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 16:26:22.469 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 16:26:22.472 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 16:26:22.476 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 16:26:22.480 DEBUG 2737 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 16:26:22.484  INFO 2737 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@538ff3d7'
+2019-06-26 16:26:22.486  INFO 2737 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:26:22.519  INFO 2737 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 16:26:22.870  WARN 2737 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 16:26:22.958  INFO 2737 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 16:26:23.014  INFO 2737 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 16:26:23.122  INFO 2737 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:26:23.326  INFO 2737 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 16:26:23.340  INFO 2737 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 16:26:23.369  INFO 2737 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 16:26:23.478  INFO 2737 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 16:26:23.481  INFO 2737 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 16:26:23.482  INFO 2737 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 16:26:23.484  INFO 2737 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 16:26:23.490  INFO 2737 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 16:26:23.492  INFO 2737 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 16:26:23.536  INFO 2737 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 16:26:23.540  INFO 2737 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 4.241 seconds (JVM running for 9.799)
+2019-06-26 16:26:27.574  INFO 2737 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-26 16:26:27.574  INFO 2737 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-26 16:26:27.583  INFO 2737 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2019-06-26 16:28:04.995  INFO 2737 --- [Thread-8] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:28:04.999  INFO 2737 --- [Thread-8] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:28:05.000  INFO 2737 --- [Thread-8] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-06-26 16:28:05.001 DEBUG 2737 --- [Thread-8] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:28:05.006 DEBUG 2737 --- [Thread-8] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:28:05.009 DEBUG 2737 --- [Thread-8] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:28:05.013 DEBUG 2737 --- [Thread-8] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:28:05.016 DEBUG 2737 --- [Thread-8] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:28:05.019 DEBUG 2737 --- [Thread-8] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:28:05.022 DEBUG 2737 --- [Thread-8] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:28:05.024 DEBUG 2737 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:28:05.027 DEBUG 2737 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:28:05.030 DEBUG 2737 --- [Thread-8] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:28:05.054  INFO 2737 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-06-26 16:28:05.067  INFO 2737 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-06-26 16:36:21.790  INFO 2785 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 2785 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 16:36:21.792  INFO 2785 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 16:36:21.825  INFO 2785 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-06-26 16:36:21.825  INFO 2785 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-06-26 16:36:22.825  INFO 2785 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 16:36:22.885  INFO 2785 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50ms. Found 2 repository interfaces.
+2019-06-26 16:36:23.211  INFO 2785 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a75d9d9f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 16:36:23.540  INFO 2785 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 16:36:23.562  INFO 2785 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 16:36:23.562  INFO 2785 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 16:36:23.638  INFO 2785 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 16:36:23.638  INFO 2785 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1812 ms
+2019-06-26 16:36:24.052  INFO 2785 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-26 16:36:24.168  INFO 2785 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-26 16:36:24.210  INFO 2785 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 16:36:24.240  INFO 2785 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-26 16:36:24.241  INFO 2785 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-26 16:36:24.384  INFO 2785 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-26 16:36:24.464  INFO 2785 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 16:36:24.949 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:36:24.969 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:36:24.972 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:36:24.979 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:36:24.982 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:36:24.984 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:36:24.987 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:36:24.989 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:36:24.991 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:36:24.993 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:36:24.998 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 16:36:25.002 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 16:36:25.007 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 16:36:25.010 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 16:36:25.012 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 16:36:25.015 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 16:36:25.019 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 16:36:25.022 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 16:36:25.025 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 16:36:25.029 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 16:36:25.032 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 16:36:25.035 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 16:36:25.039 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 16:36:25.042 DEBUG 2785 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 16:36:25.046  INFO 2785 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@6913f92c'
+2019-06-26 16:36:25.049  INFO 2785 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:36:25.088  INFO 2785 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 16:36:25.517  WARN 2785 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 16:36:25.619  INFO 2785 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 16:36:25.685  INFO 2785 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 16:36:25.803  INFO 2785 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:36:26.038  INFO 2785 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 16:36:26.051  INFO 2785 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 16:36:26.088  INFO 2785 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 16:36:26.214  INFO 2785 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 16:36:26.218  INFO 2785 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 16:36:26.219  INFO 2785 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 16:36:26.221  INFO 2785 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 16:36:26.227  INFO 2785 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 16:36:26.229  INFO 2785 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 16:36:26.275  INFO 2785 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 16:36:26.279  INFO 2785 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 4.763 seconds (JVM running for 10.296)
+2019-06-26 16:36:31.094  INFO 2785 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-26 16:36:31.094  INFO 2785 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-26 16:36:31.105  INFO 2785 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2019-06-26 16:38:46.434  INFO 2785 --- [Thread-8] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:38:46.437  INFO 2785 --- [Thread-8] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:38:46.438  INFO 2785 --- [Thread-8] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-06-26 16:38:46.438 DEBUG 2785 --- [Thread-8] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:38:46.443 DEBUG 2785 --- [Thread-8] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:38:46.445 DEBUG 2785 --- [Thread-8] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:38:46.448 DEBUG 2785 --- [Thread-8] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:38:46.451 DEBUG 2785 --- [Thread-8] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:38:46.454 DEBUG 2785 --- [Thread-8] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:38:46.458 DEBUG 2785 --- [Thread-8] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:38:46.464 DEBUG 2785 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:38:46.469 DEBUG 2785 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:38:46.472 DEBUG 2785 --- [Thread-8] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:38:46.478  INFO 2785 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-06-26 16:38:46.493  INFO 2785 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-06-26 16:38:54.737  INFO 2793 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 2793 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 16:38:54.740  INFO 2793 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 16:38:54.774  INFO 2793 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-06-26 16:38:54.774  INFO 2793 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-06-26 16:38:55.697  INFO 2793 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 16:38:55.751  INFO 2793 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47ms. Found 2 repository interfaces.
+2019-06-26 16:38:56.081  INFO 2793 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c145f30a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 16:38:56.383  INFO 2793 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 16:38:56.403  INFO 2793 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 16:38:56.404  INFO 2793 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 16:38:56.474  INFO 2793 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 16:38:56.474  INFO 2793 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1700 ms
+2019-06-26 16:38:56.860  INFO 2793 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-26 16:38:56.966  INFO 2793 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-26 16:38:57.008  INFO 2793 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 16:38:57.039  INFO 2793 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-26 16:38:57.040  INFO 2793 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-26 16:38:57.172  INFO 2793 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-26 16:38:57.253  INFO 2793 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 16:38:57.729 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:38:57.748 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:38:57.751 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:38:57.753 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:38:57.755 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:38:57.757 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:38:57.760 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:38:57.762 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:38:57.764 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:38:57.765 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:38:57.770 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 16:38:57.774 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 16:38:57.778 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 16:38:57.781 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 16:38:57.783 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 16:38:57.787 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 16:38:57.790 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 16:38:57.794 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 16:38:57.797 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 16:38:57.800 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 16:38:57.804 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 16:38:57.807 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 16:38:57.811 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 16:38:57.814 DEBUG 2793 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 16:38:57.818  INFO 2793 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@321d4fb9'
+2019-06-26 16:38:57.821  INFO 2793 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:38:57.854  INFO 2793 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 16:38:58.238  WARN 2793 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 16:38:58.330  INFO 2793 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 16:38:58.389  INFO 2793 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 16:38:58.505  INFO 2793 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:38:58.725  INFO 2793 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 16:38:58.737  INFO 2793 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 16:38:58.765  INFO 2793 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 16:38:58.874  INFO 2793 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 16:38:58.877  INFO 2793 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 16:38:58.878  INFO 2793 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 16:38:58.880  INFO 2793 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 16:38:58.886  INFO 2793 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 16:38:58.888  INFO 2793 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 16:38:58.928  INFO 2793 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 16:38:58.933  INFO 2793 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 4.465 seconds (JVM running for 9.999)
+2019-06-26 16:39:02.258  INFO 2793 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-26 16:39:02.259  INFO 2793 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-26 16:39:02.267  INFO 2793 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2019-06-26 16:46:12.245  INFO 2793 --- [Thread-8] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:46:12.251  INFO 2793 --- [Thread-8] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:46:12.252  INFO 2793 --- [Thread-8] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-06-26 16:46:12.254 DEBUG 2793 --- [Thread-8] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:46:12.261 DEBUG 2793 --- [Thread-8] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:46:12.264 DEBUG 2793 --- [Thread-8] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:46:12.266 DEBUG 2793 --- [Thread-8] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:46:12.268 DEBUG 2793 --- [Thread-8] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:46:12.271 DEBUG 2793 --- [Thread-8] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:46:12.274 DEBUG 2793 --- [Thread-8] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:46:12.279 DEBUG 2793 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:46:12.283 DEBUG 2793 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:46:12.287 DEBUG 2793 --- [Thread-8] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:46:12.296  INFO 2793 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-06-26 16:46:12.306  INFO 2793 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-06-26 16:46:20.901  INFO 2829 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 2829 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 16:46:20.903  INFO 2829 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 16:46:20.937  INFO 2829 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-06-26 16:46:20.937  INFO 2829 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-06-26 16:46:21.833  INFO 2829 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 16:46:21.883  INFO 2829 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43ms. Found 2 repository interfaces.
+2019-06-26 16:46:22.188  INFO 2829 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9eaa888d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 16:46:22.479  INFO 2829 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 16:46:22.501  INFO 2829 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 16:46:22.501  INFO 2829 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 16:46:22.575  INFO 2829 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 16:46:22.575  INFO 2829 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1638 ms
+2019-06-26 16:46:22.966  INFO 2829 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-26 16:46:23.066  INFO 2829 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-26 16:46:23.105  INFO 2829 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 16:46:23.140  INFO 2829 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-26 16:46:23.141  INFO 2829 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-26 16:46:23.258  INFO 2829 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-26 16:46:23.340  INFO 2829 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 16:46:23.866 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:46:23.885 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:46:23.889 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:46:23.891 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:46:23.893 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:46:23.896 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:46:23.898 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:46:23.900 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:46:23.902 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:46:23.904 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:46:23.909 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 16:46:23.913 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 16:46:23.917 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 16:46:23.920 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 16:46:23.922 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 16:46:23.925 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 16:46:23.930 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 16:46:23.934 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, age integer, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 16:46:23.940 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 16:46:23.945 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 16:46:23.948 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 16:46:23.953 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 16:46:23.956 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 16:46:23.960 DEBUG 2829 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 16:46:23.964  INFO 2829 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@6ccb0e3e'
+2019-06-26 16:46:23.967  INFO 2829 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:46:24.002  INFO 2829 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 16:46:24.519  WARN 2829 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 16:46:24.646  INFO 2829 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 16:46:24.720  INFO 2829 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 16:46:24.861  INFO 2829 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:46:25.107  INFO 2829 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 16:46:25.120  INFO 2829 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 16:46:25.148  INFO 2829 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 16:46:25.268  INFO 2829 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 16:46:25.272  INFO 2829 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 16:46:25.274  INFO 2829 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 16:46:25.275  INFO 2829 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 16:46:25.282  INFO 2829 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 16:46:25.284  INFO 2829 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 16:46:25.329  INFO 2829 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 16:46:25.333  INFO 2829 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 4.732 seconds (JVM running for 10.308)
+2019-06-26 16:46:46.484  INFO 2829 --- [http-nio-8088-exec-6] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-26 16:46:46.485  INFO 2829 --- [http-nio-8088-exec-6] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-26 16:46:46.495  INFO 2829 --- [http-nio-8088-exec-6] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2019-06-26 16:47:23.014  INFO 2829 --- [Thread-8] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:47:23.018  INFO 2829 --- [Thread-8] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:47:23.020  INFO 2829 --- [Thread-8] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-06-26 16:47:23.022 DEBUG 2829 --- [Thread-8] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:47:23.027 DEBUG 2829 --- [Thread-8] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:47:23.031 DEBUG 2829 --- [Thread-8] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:47:23.039 DEBUG 2829 --- [Thread-8] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:47:23.044 DEBUG 2829 --- [Thread-8] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:47:23.048 DEBUG 2829 --- [Thread-8] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:47:23.051 DEBUG 2829 --- [Thread-8] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:47:23.054 DEBUG 2829 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:47:23.059 DEBUG 2829 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:47:23.063 DEBUG 2829 --- [Thread-8] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:47:23.077  INFO 2829 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-06-26 16:47:23.088  INFO 2829 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-06-26 16:47:31.146  INFO 2844 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 2844 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 16:47:31.148  INFO 2844 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 16:47:31.178  INFO 2844 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-06-26 16:47:31.178  INFO 2844 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-06-26 16:47:32.080  INFO 2844 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 16:47:32.135  INFO 2844 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48ms. Found 2 repository interfaces.
+2019-06-26 16:47:32.450  INFO 2844 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b8da0aaa] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 16:47:32.754  INFO 2844 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 16:47:32.775  INFO 2844 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 16:47:32.775  INFO 2844 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 16:47:32.852  INFO 2844 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 16:47:32.852  INFO 2844 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1674 ms
+2019-06-26 16:47:33.252  INFO 2844 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-26 16:47:33.361  INFO 2844 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-26 16:47:33.396  INFO 2844 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 16:47:33.426  INFO 2844 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-26 16:47:33.427  INFO 2844 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-26 16:47:33.554  INFO 2844 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-26 16:47:33.629  INFO 2844 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 16:47:34.098 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:47:34.115 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:47:34.118 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:47:34.120 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:47:34.123 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:47:34.125 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:47:34.127 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:47:34.129 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:47:34.130 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:47:34.132 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:47:34.137 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 16:47:34.140 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 16:47:34.143 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 16:47:34.147 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 16:47:34.149 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 16:47:34.152 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 16:47:34.155 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 16:47:34.159 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 16:47:34.162 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 16:47:34.165 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 16:47:34.169 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 16:47:34.172 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 16:47:34.176 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 16:47:34.179 DEBUG 2844 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 16:47:34.183  INFO 2844 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@5b40e2bb'
+2019-06-26 16:47:34.186  INFO 2844 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:47:34.219  INFO 2844 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 16:47:34.604  WARN 2844 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 16:47:34.691  INFO 2844 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 16:47:34.748  INFO 2844 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 16:47:34.858  INFO 2844 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:47:35.093  INFO 2844 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 16:47:35.104  INFO 2844 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 16:47:35.132  INFO 2844 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 16:47:35.246  INFO 2844 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 16:47:35.250  INFO 2844 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 16:47:35.251  INFO 2844 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 16:47:35.253  INFO 2844 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 16:47:35.259  INFO 2844 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 16:47:35.261  INFO 2844 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 16:47:35.306  INFO 2844 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 16:47:35.314  INFO 2844 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 4.424 seconds (JVM running for 9.979)
+2019-06-26 16:47:39.464  INFO 2844 --- [http-nio-8088-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-26 16:47:39.465  INFO 2844 --- [http-nio-8088-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-26 16:47:39.473  INFO 2844 --- [http-nio-8088-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2019-06-26 16:54:01.496  INFO 2844 --- [Thread-8] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:54:01.498  INFO 2844 --- [Thread-8] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:54:01.498  INFO 2844 --- [Thread-8] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-06-26 16:54:01.499 DEBUG 2844 --- [Thread-8] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:54:01.506 DEBUG 2844 --- [Thread-8] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:54:01.508 DEBUG 2844 --- [Thread-8] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:54:01.510 DEBUG 2844 --- [Thread-8] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:54:01.513 DEBUG 2844 --- [Thread-8] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:54:01.515 DEBUG 2844 --- [Thread-8] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:54:01.518 DEBUG 2844 --- [Thread-8] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:54:01.520 DEBUG 2844 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:54:01.522 DEBUG 2844 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:54:01.524 DEBUG 2844 --- [Thread-8] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:54:01.530  INFO 2844 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-06-26 16:54:01.538  INFO 2844 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-06-26 16:54:10.201  INFO 2853 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 2853 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 16:54:10.203  INFO 2853 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 16:54:10.237  INFO 2853 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-06-26 16:54:10.237  INFO 2853 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-06-26 16:54:11.205  INFO 2853 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 16:54:11.261  INFO 2853 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45ms. Found 2 repository interfaces.
+2019-06-26 16:54:11.629  INFO 2853 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d8c1b8f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 16:54:11.934  INFO 2853 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 16:54:11.956  INFO 2853 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 16:54:11.956  INFO 2853 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 16:54:12.034  INFO 2853 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 16:54:12.034  INFO 2853 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1797 ms
+2019-06-26 16:54:12.436  INFO 2853 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-26 16:54:12.533  INFO 2853 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-26 16:54:12.584  INFO 2853 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 16:54:12.619  INFO 2853 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-26 16:54:12.619  INFO 2853 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-26 16:54:12.732  INFO 2853 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-26 16:54:12.819  INFO 2853 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 16:54:13.313 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:54:13.332 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:54:13.334 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:54:13.337 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:54:13.338 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:54:13.340 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:54:13.343 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:54:13.345 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:54:13.347 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:54:13.349 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:54:13.354 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 16:54:13.359 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 16:54:13.363 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 16:54:13.366 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 16:54:13.368 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 16:54:13.372 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 16:54:13.376 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 16:54:13.380 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 16:54:13.383 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 16:54:13.387 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 16:54:13.390 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 16:54:13.394 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 16:54:13.398 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 16:54:13.402 DEBUG 2853 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 16:54:13.408  INFO 2853 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@60509813'
+2019-06-26 16:54:13.413  INFO 2853 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:54:13.457  INFO 2853 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 16:54:13.884  WARN 2853 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 16:54:13.981  INFO 2853 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 16:54:14.036  INFO 2853 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 16:54:14.152  INFO 2853 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:54:14.412  INFO 2853 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 16:54:14.423  INFO 2853 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 16:54:14.454  INFO 2853 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 16:54:14.576  INFO 2853 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 16:54:14.580  INFO 2853 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 16:54:14.581  INFO 2853 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 16:54:14.583  INFO 2853 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 16:54:14.589  INFO 2853 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 16:54:14.591  INFO 2853 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 16:54:14.633  INFO 2853 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 16:54:14.637  INFO 2853 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 4.758 seconds (JVM running for 10.282)
+2019-06-26 16:55:08.264  INFO 2853 --- [Thread-8] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:55:08.270  INFO 2853 --- [Thread-8] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:55:08.271  INFO 2853 --- [Thread-8] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-06-26 16:55:08.273 DEBUG 2853 --- [Thread-8] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:55:08.277 DEBUG 2853 --- [Thread-8] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:55:08.279 DEBUG 2853 --- [Thread-8] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:55:08.281 DEBUG 2853 --- [Thread-8] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:55:08.284 DEBUG 2853 --- [Thread-8] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:55:08.286 DEBUG 2853 --- [Thread-8] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:55:08.288 DEBUG 2853 --- [Thread-8] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:55:08.290 DEBUG 2853 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:55:08.292 DEBUG 2853 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:55:08.293 DEBUG 2853 --- [Thread-8] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:55:08.301  INFO 2853 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-06-26 16:55:08.311  INFO 2853 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-06-26 16:55:15.822  INFO 2868 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 2868 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 16:55:15.824  INFO 2868 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 16:55:15.856  INFO 2868 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-06-26 16:55:15.856  INFO 2868 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-06-26 16:55:16.771  INFO 2868 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 16:55:16.819  INFO 2868 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41ms. Found 2 repository interfaces.
+2019-06-26 16:55:17.134  INFO 2868 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$e1d24d04] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 16:55:17.425  INFO 2868 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 16:55:17.447  INFO 2868 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 16:55:17.448  INFO 2868 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 16:55:17.518  INFO 2868 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 16:55:17.518  INFO 2868 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1662 ms
+2019-06-26 16:55:17.911  INFO 2868 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-26 16:55:18.002  INFO 2868 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-26 16:55:18.045  INFO 2868 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 16:55:18.079  INFO 2868 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-26 16:55:18.080  INFO 2868 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-26 16:55:18.198  INFO 2868 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-26 16:55:18.298  INFO 2868 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 16:55:18.821 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:55:18.841 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:55:18.844 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:55:18.847 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:55:18.849 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:55:18.852 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:55:18.854 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:55:18.856 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:55:18.858 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:55:18.860 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:55:18.865 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 16:55:18.869 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 16:55:18.872 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 16:55:18.876 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 16:55:18.878 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 16:55:18.881 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 16:55:18.885 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 16:55:18.889 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 16:55:18.892 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 16:55:18.896 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 16:55:18.899 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 16:55:18.903 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 16:55:18.909 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 16:55:18.912 DEBUG 2868 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 16:55:18.916  INFO 2868 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@3050dcef'
+2019-06-26 16:55:18.919  INFO 2868 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:55:18.959  INFO 2868 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 16:55:19.349  WARN 2868 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 16:55:19.445  INFO 2868 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 16:55:19.506  INFO 2868 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 16:55:19.625  INFO 2868 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:55:19.850  INFO 2868 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 16:55:19.862  INFO 2868 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 16:55:19.890  INFO 2868 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 16:55:20.013  INFO 2868 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 16:55:20.016  INFO 2868 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 16:55:20.018  INFO 2868 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 16:55:20.020  INFO 2868 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 16:55:20.026  INFO 2868 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 16:55:20.028  INFO 2868 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 16:55:20.074  INFO 2868 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 16:55:20.079  INFO 2868 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 4.541 seconds (JVM running for 10.08)
+2019-06-26 16:55:41.036  INFO 2868 --- [Thread-8] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-26 16:55:41.039  INFO 2868 --- [Thread-8] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 16:55:41.039  INFO 2868 --- [Thread-8] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-06-26 16:55:41.039 DEBUG 2868 --- [Thread-8] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 16:55:41.043 DEBUG 2868 --- [Thread-8] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 16:55:41.046 DEBUG 2868 --- [Thread-8] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 16:55:41.048 DEBUG 2868 --- [Thread-8] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 16:55:41.050 DEBUG 2868 --- [Thread-8] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 16:55:41.052 DEBUG 2868 --- [Thread-8] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 16:55:41.054 DEBUG 2868 --- [Thread-8] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 16:55:41.056 DEBUG 2868 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 16:55:41.057 DEBUG 2868 --- [Thread-8] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 16:55:41.059 DEBUG 2868 --- [Thread-8] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 16:55:41.064  INFO 2868 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-06-26 16:55:41.072  INFO 2868 --- [Thread-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-06-26 17:00:07.222  INFO 2931 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 2931 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 17:00:07.225  INFO 2931 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 17:00:07.256  INFO 2931 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-06-26 17:00:07.256  INFO 2931 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-06-26 17:00:08.214  INFO 2931 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 17:00:08.265  INFO 2931 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44ms. Found 2 repository interfaces.
+2019-06-26 17:00:08.569  INFO 2931 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$8c39c65f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 17:00:08.867  INFO 2931 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 17:00:08.891  INFO 2931 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 17:00:08.892  INFO 2931 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 17:00:08.968  INFO 2931 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 17:00:08.968  INFO 2931 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1712 ms
+2019-06-26 17:00:09.349  INFO 2931 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-26 17:00:09.458  INFO 2931 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-26 17:00:09.498  INFO 2931 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 17:00:09.527  INFO 2931 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-26 17:00:09.528  INFO 2931 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-26 17:00:09.674  INFO 2931 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-26 17:00:09.759  INFO 2931 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 17:00:10.226 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 17:00:10.250 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 17:00:10.254 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 17:00:10.256 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 17:00:10.259 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 17:00:10.261 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 17:00:10.263 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 17:00:10.265 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 17:00:10.268 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 17:00:10.270 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 17:00:10.276 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 17:00:10.280 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 17:00:10.283 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 17:00:10.286 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 17:00:10.288 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 17:00:10.291 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 17:00:10.295 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 17:00:10.298 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 17:00:10.302 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 17:00:10.305 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 17:00:10.309 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 17:00:10.312 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 17:00:10.316 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 17:00:10.319 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 17:00:10.324  INFO 2931 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@5e6195a3'
+2019-06-26 17:00:10.326  INFO 2931 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 17:00:10.361  INFO 2931 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 17:00:10.769  WARN 2931 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 17:00:10.874  INFO 2931 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 17:00:10.938  INFO 2931 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 17:00:11.056  INFO 2931 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 17:00:11.292  INFO 2931 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 17:00:11.303  INFO 2931 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 17:00:11.329  INFO 2931 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 17:00:11.452  INFO 2931 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 17:00:11.455  INFO 2931 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 17:00:11.457  INFO 2931 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 17:00:11.459  INFO 2931 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 17:00:11.465  INFO 2931 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 17:00:11.466  INFO 2931 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 17:00:11.509  INFO 2931 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 17:00:11.515  INFO 2931 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 4.559 seconds (JVM running for 10.161)
+2019-06-26 17:00:37.208  INFO 2931 --- [http-nio-8088-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-26 17:00:37.209  INFO 2931 --- [http-nio-8088-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-26 17:00:37.220  INFO 2931 --- [http-nio-8088-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2019-06-26 17:01:03.366 DEBUG 2931 --- [http-nio-8088-exec-8] org.hibernate.SQL                        : select student0_.studentid as studenti1_5_0_, student0_.first_name as first_na2_5_0_, student0_.last_name as last_nam3_5_0_, student0_.rol_usm as rol_usm4_5_0_ from students student0_ where student0_.studentid=?
+2019-06-26 17:01:03.393 DEBUG 2931 --- [http-nio-8088-exec-8] org.hibernate.SQL                        : insert into students (first_name, last_name, rol_usm) values (?, ?, ?)
+2019-06-26 17:01:22.579  WARN 2931 --- [http-nio-8088-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "{id}"]
+2019-06-26 17:03:09.266 DEBUG 2931 --- [http-nio-8088-exec-3] org.hibernate.SQL                        : select student0_.studentid as studenti1_5_0_, student0_.first_name as first_na2_5_0_, student0_.last_name as last_nam3_5_0_, student0_.rol_usm as rol_usm4_5_0_ from students student0_ where student0_.studentid=?
+2019-06-26 17:03:58.581  INFO 2931 --- [Thread-4] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-26 17:03:58.586  INFO 2931 --- [Thread-4] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 17:03:58.587  INFO 2931 --- [Thread-4] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-06-26 17:03:58.588 DEBUG 2931 --- [Thread-4] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 17:03:58.594 DEBUG 2931 --- [Thread-4] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 17:03:58.598 DEBUG 2931 --- [Thread-4] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 17:03:58.601 DEBUG 2931 --- [Thread-4] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 17:03:58.605 DEBUG 2931 --- [Thread-4] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 17:03:58.608 DEBUG 2931 --- [Thread-4] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 17:03:58.611 DEBUG 2931 --- [Thread-4] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 17:03:58.613 DEBUG 2931 --- [Thread-4] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 17:03:58.616 DEBUG 2931 --- [Thread-4] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 17:03:58.618 DEBUG 2931 --- [Thread-4] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 17:03:58.626  INFO 2931 --- [Thread-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-06-26 17:03:58.638  INFO 2931 --- [Thread-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-06-26 17:04:03.868  INFO 2931 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 2931 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 17:04:03.868  INFO 2931 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 17:04:04.268  INFO 2931 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 17:04:04.275  INFO 2931 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7ms. Found 2 repository interfaces.
+2019-06-26 17:04:04.326  INFO 2931 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$8c39c65f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 17:04:04.397  INFO 2931 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 17:04:04.399  INFO 2931 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 17:04:04.399  INFO 2931 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 17:04:04.411  INFO 2931 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 17:04:04.411  INFO 2931 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 541 ms
+2019-06-26 17:04:04.615  INFO 2931 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-06-26 17:04:04.624  INFO 2931 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-06-26 17:04:04.630  INFO 2931 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 17:04:04.636  INFO 2931 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 17:04:04.722 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 17:04:04.726 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 17:04:04.729 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 17:04:04.731 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 17:04:04.733 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 17:04:04.736 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 17:04:04.738 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 17:04:04.741 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 17:04:04.743 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 17:04:04.745 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 17:04:04.748 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 17:04:04.753 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 17:04:04.756 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 17:04:04.760 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 17:04:04.762 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 17:04:04.767 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 17:04:04.770 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 17:04:04.773 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 17:04:04.778 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 17:04:04.781 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 17:04:04.784 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 17:04:04.788 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 17:04:04.791 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 17:04:04.795 DEBUG 2931 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 17:04:04.799  INFO 2931 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@5e6195a3'
+2019-06-26 17:04:04.799  INFO 2931 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 17:04:04.813  INFO 2931 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 17:04:04.938  WARN 2931 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 17:04:04.986  INFO 2931 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 17:04:05.016  INFO 2931 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 17:04:05.062  INFO 2931 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 17:04:05.156  INFO 2931 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 17:04:05.157  INFO 2931 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 17:04:05.165  INFO 2931 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 17:04:05.197  INFO 2931 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 17:04:05.199  INFO 2931 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 17:04:05.201  INFO 2931 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 17:04:05.202  INFO 2931 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 17:04:05.207  INFO 2931 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 17:04:05.208  INFO 2931 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 17:04:05.217  INFO 2931 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 17:04:05.217  INFO 2931 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 6.382 seconds (JVM running for 243.865)
+2019-06-26 17:04:05.221  INFO 2931 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-26 17:04:32.238  INFO 2931 --- [Thread-14] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-26 17:04:32.240  INFO 2931 --- [Thread-14] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 17:04:32.240  INFO 2931 --- [Thread-14] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-06-26 17:04:32.240 DEBUG 2931 --- [Thread-14] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 17:04:32.246 DEBUG 2931 --- [Thread-14] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 17:04:32.253 DEBUG 2931 --- [Thread-14] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 17:04:32.258 DEBUG 2931 --- [Thread-14] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 17:04:32.263 DEBUG 2931 --- [Thread-14] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 17:04:32.266 DEBUG 2931 --- [Thread-14] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 17:04:32.268 DEBUG 2931 --- [Thread-14] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 17:04:32.270 DEBUG 2931 --- [Thread-14] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 17:04:32.272 DEBUG 2931 --- [Thread-14] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 17:04:32.274 DEBUG 2931 --- [Thread-14] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 17:04:32.276  INFO 2931 --- [Thread-14] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2019-06-26 17:04:32.282  INFO 2931 --- [Thread-14] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2019-06-26 17:05:50.408  INFO 3467 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 3467 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 17:05:50.411  INFO 3467 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 17:05:50.455  INFO 3467 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-06-26 17:05:50.455  INFO 3467 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-06-26 17:05:51.372  INFO 3467 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 17:05:51.436  INFO 3467 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 55ms. Found 2 repository interfaces.
+2019-06-26 17:05:51.812  INFO 3467 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$832ab838] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 17:05:52.176  INFO 3467 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 17:05:52.206  INFO 3467 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 17:05:52.207  INFO 3467 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 17:05:52.314  INFO 3467 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 17:05:52.314  INFO 3467 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1858 ms
+2019-06-26 17:05:52.739  INFO 3467 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-26 17:05:52.881  INFO 3467 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-26 17:05:52.927  INFO 3467 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 17:05:52.974  INFO 3467 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.9.Final}
+2019-06-26 17:05:52.975  INFO 3467 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-06-26 17:05:53.129  INFO 3467 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-06-26 17:05:53.255  INFO 3467 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 17:05:53.835 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 17:05:53.860 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 17:05:53.865 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 17:05:53.868 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 17:05:53.871 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 17:05:53.874 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 17:05:53.877 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 17:05:53.879 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 17:05:53.881 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 17:05:53.884 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 17:05:53.891 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 17:05:53.896 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 17:05:53.902 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 17:05:53.907 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 17:05:53.910 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 17:05:53.914 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 17:05:53.919 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 17:05:53.923 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 17:05:53.928 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 17:05:53.932 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 17:05:53.937 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 17:05:53.941 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 17:05:53.945 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 17:05:53.948 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 17:05:53.954  INFO 3467 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@75383ff9'
+2019-06-26 17:05:53.957  INFO 3467 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 17:05:53.978  INFO 3467 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 17:05:54.431  WARN 3467 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 17:05:54.539  INFO 3467 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 17:05:54.609  INFO 3467 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 17:05:54.732  INFO 3467 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 17:05:54.973  INFO 3467 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 17:05:54.992  INFO 3467 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 17:05:55.025  INFO 3467 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 17:05:55.151  INFO 3467 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 17:05:55.156  INFO 3467 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 17:05:55.158  INFO 3467 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 17:05:55.160  INFO 3467 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 17:05:55.167  INFO 3467 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 17:05:55.171  INFO 3467 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 17:05:55.219  INFO 3467 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 17:05:55.222  INFO 3467 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 10.199 seconds (JVM running for 10.58)
+2019-06-26 17:06:06.040  INFO 3467 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-26 17:06:06.042  INFO 3467 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-26 17:06:06.055  INFO 3467 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2019-06-26 17:06:28.870 DEBUG 3467 --- [http-nio-8088-exec-9] org.hibernate.SQL                        : select student0_.studentid as studenti1_5_0_, student0_.first_name as first_na2_5_0_, student0_.last_name as last_nam3_5_0_, student0_.rol_usm as rol_usm4_5_0_ from students student0_ where student0_.studentid=?
+2019-06-26 17:06:28.906 DEBUG 3467 --- [http-nio-8088-exec-9] org.hibernate.SQL                        : insert into students (first_name, last_name, rol_usm) values (?, ?, ?)
+2019-06-26 17:06:41.035 DEBUG 3467 --- [http-nio-8088-exec-2] org.hibernate.SQL                        : select student0_.studentid as studenti1_5_0_, student0_.first_name as first_na2_5_0_, student0_.last_name as last_nam3_5_0_, student0_.rol_usm as rol_usm4_5_0_ from students student0_ where student0_.studentid=?
+2019-06-26 17:07:11.269  INFO 3467 --- [Thread-4] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-26 17:07:11.273  INFO 3467 --- [Thread-4] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 17:07:11.274  INFO 3467 --- [Thread-4] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2019-06-26 17:07:11.275 DEBUG 3467 --- [Thread-4] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 17:07:11.280 DEBUG 3467 --- [Thread-4] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 17:07:11.283 DEBUG 3467 --- [Thread-4] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 17:07:11.296 DEBUG 3467 --- [Thread-4] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 17:07:11.300 DEBUG 3467 --- [Thread-4] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 17:07:11.303 DEBUG 3467 --- [Thread-4] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 17:07:11.306 DEBUG 3467 --- [Thread-4] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 17:07:11.309 DEBUG 3467 --- [Thread-4] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 17:07:11.320 DEBUG 3467 --- [Thread-4] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 17:07:11.324 DEBUG 3467 --- [Thread-4] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 17:07:11.331  INFO 3467 --- [Thread-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-06-26 17:07:11.340  INFO 3467 --- [Thread-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-06-26 17:07:16.486  INFO 3467 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Starting SgaApplication on Francisco-MacBook-Pro.local with PID 3467 (started by havok in /Users/havok/Documents/USM/2019 1 - SEM/Ingenieria de software/Project.nosync/Lionbit/server)
+2019-06-26 17:07:16.486  INFO 3467 --- [restartedMain] cl.lionbit.sga.SgaApplication            : No active profile set, falling back to default profiles: default
+2019-06-26 17:07:16.890  INFO 3467 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 17:07:16.901  INFO 3467 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11ms. Found 2 repository interfaces.
+2019-06-26 17:07:16.972  INFO 3467 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$832ab838] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 17:07:17.041  INFO 3467 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2019-06-26 17:07:17.045  INFO 3467 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 17:07:17.046  INFO 3467 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-06-26 17:07:17.058  INFO 3467 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 17:07:17.058  INFO 3467 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 570 ms
+2019-06-26 17:07:17.242  INFO 3467 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2019-06-26 17:07:17.257  INFO 3467 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2019-06-26 17:07:17.264  INFO 3467 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-06-26 17:07:17.273  INFO 3467 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-06-26 17:07:17.400 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists courses
+2019-06-26 17:07:17.405 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists evaluations_course
+2019-06-26 17:07:17.409 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists hibernate_sequence
+2019-06-26 17:07:17.411 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists role_privileges
+2019-06-26 17:07:17.416 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists roles_users
+2019-06-26 17:07:17.422 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists schedule_courses
+2019-06-26 17:07:17.431 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists students
+2019-06-26 17:07:17.436 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teacher_has_courses
+2019-06-26 17:07:17.439 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists teachers
+2019-06-26 17:07:17.443 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : drop table if exists users
+2019-06-26 17:07:17.446 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table courses (courseid integer not null auto_increment, code_usm varchar(6), create_at date, description_course varchar(200), name_course varchar(20), number_credits integer, primary key (courseid)) engine=MyISAM
+2019-06-26 17:07:17.460 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table evaluations_course (evaluationid integer not null auto_increment, create_at date, date date, duration_eval time, name varchar(40), primary key (evaluationid)) engine=MyISAM
+2019-06-26 17:07:17.464 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table hibernate_sequence (next_val bigint) engine=MyISAM
+2019-06-26 17:07:17.469 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : insert into hibernate_sequence values ( 1 )
+2019-06-26 17:07:17.472 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table role_privileges (privilegeid bigint not null, name_privilege varchar(255), primary key (privilegeid)) engine=MyISAM
+2019-06-26 17:07:17.476 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table roles_users (rolid integer not null auto_increment, rol_name varchar(255), primary key (rolid)) engine=MyISAM
+2019-06-26 17:07:17.481 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table schedule_courses (scheduleid bigint not null auto_increment, block varchar(255), classroom varchar(255), primary key (scheduleid)) engine=MyISAM
+2019-06-26 17:07:17.489 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table students (studentid bigint not null auto_increment, first_name varchar(40), last_name varchar(40), rol_usm varchar(20), primary key (studentid)) engine=MyISAM
+2019-06-26 17:07:17.494 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table teacher_has_courses (courseid bigint not null auto_increment, semester_taught varchar(255), primary key (courseid)) engine=MyISAM
+2019-06-26 17:07:17.499 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table teachers (id bigint not null auto_increment, lastname varchar(40), name varchar(40), rut varchar(20), primary key (id)) engine=MyISAM
+2019-06-26 17:07:17.504 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : create table users (userid bigint not null auto_increment, activated bit, create_at date, email varchar(255), first_name varchar(40), last_name varchar(40), office varchar(10), phone_number varchar(9), primary key (userid)) engine=MyISAM
+2019-06-26 17:07:17.511 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : alter table courses add constraint UK_4yqiffha7ew5bmkkrmx1hfpsn unique (code_usm)
+2019-06-26 17:07:17.516 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : alter table students add constraint UK_b3bme5ymemb5tx2lgu91btf7b unique (rol_usm)
+2019-06-26 17:07:17.522 DEBUG 3467 --- [restartedMain] org.hibernate.SQL                        : alter table teachers add constraint UK_gmrohqnux6jnb6s0i9iqyw58s unique (rut)
+2019-06-26 17:07:17.527  INFO 3467 --- [restartedMain] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@75383ff9'
+2019-06-26 17:07:17.527  INFO 3467 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-06-26 17:07:17.538  INFO 3467 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-06-26 17:07:17.688  WARN 3467 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-06-26 17:07:17.737  INFO 3467 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-26 17:07:17.776  INFO 3467 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 17:07:17.829  INFO 3467 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 17:07:17.959  INFO 3467 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 17:07:17.960  INFO 3467 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 17:07:17.969  INFO 3467 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 17:07:18.012  INFO 3467 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: allUsingGET_1
+2019-06-26 17:07:18.016  INFO 3467 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2019-06-26 17:07:18.018  INFO 3467 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2019-06-26 17:07:18.021  INFO 3467 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: findByIdUsingGET_1
+2019-06-26 17:07:18.033  INFO 3467 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: homeUsingGET_1
+2019-06-26 17:07:18.035  INFO 3467 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2019-06-26 17:07:18.044  INFO 3467 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2019-06-26 17:07:18.045  INFO 3467 --- [restartedMain] cl.lionbit.sga.SgaApplication            : Started SgaApplication in 6.587 seconds (JVM running for 93.403)
+2019-06-26 17:07:18.050  INFO 3467 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-06-26 17:07:39.451  INFO 3467 --- [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-26 17:07:39.452  INFO 3467 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-26 17:07:39.457  INFO 3467 --- [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
