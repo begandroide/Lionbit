@@ -1,0 +1,10 @@
+server:
+  port: 8087
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_service
+    username: bgautier
+    password: Benjamin0210
