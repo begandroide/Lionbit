@@ -4,10 +4,10 @@
             <div class="col-lg-8 col-sm-12">
                 <div align="left">
                     <div class="btn-group">
-                        <v-btn color=info round=true :disabled="(selected == null)">
+                        <v-btn color="info" round :disabled="(selected == null)">
                             <i class="fa fa-eye"></i> Detalles
                         </v-btn>
-                        <FormEdit :newAssignature="selected" />
+                        <FormEdit :newStudent="selected" />
                         <FormDelete :objeto="selected" />
                     </div>
                 </div>

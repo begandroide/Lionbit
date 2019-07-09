@@ -16,9 +16,11 @@
 
 							<div class="col-md-4 col-sm-4">
 								<div align="right">
-									<Form :students="students" />
+									<FormCreate :students="students" />
 								</div >
 							</div>
+
+							<Actions :selected="selected"/>
 						</v-layout>
 					</v-container>
 					<!-- contenido estudiantes -->
@@ -41,33 +43,12 @@
 								:aria-sort="true"
 							>
 								<template v-slot:items="props">
-									<td class="hidden-id">{{props.item.id}}</td>
-									<td class="text-left text-xs-left">{{props.item.name}}</td>
-									<td class="text-left text-xs-left">{{props.item.last_name}}</td>
-									<td class="text-xs-left">{{ props.item.rol_usm }}</td>
-									<td class="text-left ">
-										<v-icon
-											small
-											color="primary"
-											class="mr-2"
-										>fa fa-eye
-										</v-icon>
-										<v-icon
-											small
-											color="success"
-											class="mr-2"
-											@click="editItem(props.item)"
-										>
-											edit
-										</v-icon>
-										<v-icon
-											small
-											color="red"
-											@click="deleteStudent(props.item.id)"
-										>
-											delete
-										</v-icon>
-										</td>
+									<tr  @click="showAlert(props.item)">
+										<td class="hidden-id">{{props.item.id}}</td>
+										<td class="text-left text-xs-left">{{props.item.name}}</td>
+										<td class="text-left text-xs-left">{{props.item.last_name}}</td>
+										<td class="text-xs-left">{{ props.item.rol_usm }}</td>
+									</tr>
 								</template>
 								<template v-slot:no-results>
 									<v-alert :value="true" color="error" icon="warning">
@@ -89,13 +70,13 @@
 <script>
 
 import api from '../../Api';
-import Form from "./Form";
-import Actions from "../Common/Actions";
+import FormCreate from "./FormCreate";
+import Actions from "./Actions";
 // app Vue instance
   const Students = {
 		name: 'Students',
 		components:{
-			Form,
+			FormCreate,
 			Actions
 		},
         metaInfo: {
@@ -110,6 +91,7 @@ import Actions from "../Common/Actions";
 		},
         data: function(){
                 return{
+					selected: null,
 					search: '',
 					dialog: false,
 					headers: [
@@ -135,10 +117,6 @@ import Actions from "../Common/Actions";
 						align: 'left',
 						sortable: true,
 						value: 'rol_usm'
-					},
-					{
-						text: 'Acciones',
-						value: 'acciones'
 					}],
 					loading: false,
 					students: [],
@@ -167,20 +145,16 @@ import Actions from "../Common/Actions";
 									.finally(() => this.loading = false)
         },
         methods: {
-				deleteStudent(id) {
-					this.loading = true;
-					api.removeForId(id)
-						.then((response) => {
-							this.$log.debug(response);
-							let index = this.students.findIndex(x => x.id == id);
-							this.$delete(this.students,index);
-							})
-						.catch((err) => {
-							this.$log.debug(err); 
-							this.loading = false;
-						})
-						.finally(() => this.loading = false) 
-				},
+			showAlert(a){
+				if (event.target.classList.contains('btn__content')) return;
+				if(this.selected === a ){
+					this.selected = null;
+					event.target.parentElement.classList.remove('selected-row-special');
+				}else{
+					event.target.parentElement.classList.add('selected-row-special');
+					this.selected = a;
+				}
+			},
 		},
   }
 
@@ -191,5 +165,8 @@ import Actions from "../Common/Actions";
   [v-cloak] { display: none; }
 	.hidden-id{
 		display: none;
+	}
+	.selected-row-special{
+		background-color: #dbdbdb;
 	}
 </style>

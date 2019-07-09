@@ -4,7 +4,7 @@
         <v-navigation-drawer 
 			app 
 			v-model="drawer" 
-			class="orange lighten-0" 
+			class="yellow darken-3" 
 			disable-resize-watcher
 			>
 			<v-list>

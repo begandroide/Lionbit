@@ -2,7 +2,7 @@
   <v-layout>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="error" round=true :disabled="(objeto == null)"  v-on="on">
+        <v-btn color="error" round :disabled="(objeto == null)"  v-on="on">
             <i class="fa fa-trash"></i> Eliminar
         </v-btn>
       </template>
@@ -25,7 +25,7 @@
           <v-btn
             color="error"
             flat
-            @click="deleteAssignature(objeto.id)"
+            @click="deleteStudent(objeto.id)"
           >
             Eliminar
           </v-btn>
@@ -43,9 +43,6 @@
 </template>
 
 <style>
-.help{
-  border-radius: 0px 3px 3px 0;
-}
 </style>
 
 <script>
@@ -55,7 +52,7 @@ import api from '../../Api';
         name: 'FormDelete',
         props:{
             objeto: Object,
-            assignatures: []
+            students: []
         },
         data () {
           return {
@@ -63,23 +60,22 @@ import api from '../../Api';
           }
         },
         methods:{
-          deleteAssignature(id) {
-            this.loading = true;
-            api.removeAssignatureForId(id)
-              .then((response) => {
-                this.$log.debug(response);  
-                let index = this.assignatures.findIndex(x => x.id == id);
-                this.$delete(this.assignatures,index);
-              })
-              .catch((err) => {
-                this.$log.debug(err); 
-                this.loading = false;
-              })
-              .finally(() => {
-                this.loading = false;
-                this.dialog = false;
-                }) 
-            }
+          
+				deleteStudent(id) {
+					this.loading = true;
+					api.removeForId(id)
+						.then((response) => {
+							this.$log.debug(response);
+							let index = this.students.findIndex(x => x.id == id);
+							this.$delete(this.students,index);
+							})
+						.catch((err) => {
+							this.$log.debug(err); 
+							this.loading = false;
+						})
+						.finally(() => this.loading = false) 
+        },
+        
         }
 
     };

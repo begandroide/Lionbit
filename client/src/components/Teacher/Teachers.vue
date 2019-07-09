@@ -16,10 +16,11 @@
 
 							<div class="col-md-4 col-sm-4">
 								<div align="right">
-									<Form :teachers="teachers" />
+									<FormCreate :teachers="teachers" />
 								</div >
 							</div>
 
+							<Actions :selected="selected"/>
 						</v-layout>
 					</v-container>
 					<!-- contenido estudiantes -->
@@ -44,43 +45,12 @@
 								:aria-sort="true"
 							>
 								<template v-slot:items="props" >
-									<td class="hidden-id">{{props.item.id}}</td>
-									<td class="text-left">{{props.item.name}}</td>
-									<td class="text-left">{{props.item.last_name}}</td>
-									<td class="text-xs-left">{{ props.item.rut }}</td>
-									<td class="text-left ">
-										<v-tooltip bottom>
-											<template v-slot:activator="{ on }">
-												<v-icon
-													v-on="on"
-													small
-													class="mr-2"
-													@click="createUserTeacher(props.item.id)"
-												>
-													fa-user-plus
-												</v-icon>
-											</template>
-											<span>Crear usuario para este profesor</span>
-										</v-tooltip>
-										
-										<v-icon
-											small
-											color="primary"
-											class="mr-2"
-										>fa fa-eye
-										</v-icon>
-										<v-icon
-											small
-											color="success"
-											class="mr-2"
-											@click="editItem(props.item)"
-										>
-											edit
-										</v-icon>
-									
-										<ActionDialog :objeto="props.item" :teachers="teachers"/>
-									
-									</td>	
+									<tr @click="showAlert(props.item)">
+										<td class="hidden-id">{{props.item.id}}</td>
+										<td class="text-left">{{props.item.name}}</td>
+										<td class="text-left">{{props.item.last_name}}</td>
+										<td class="text-xs-left">{{ props.item.rut }}</td>	
+									</tr>
 								</template>
 
 								<template v-slot:no-results>
@@ -102,16 +72,14 @@
 
 <script>
 import api from '../../Api';
-import Form from './Form';
-import ActionDialog from '../Common/ActionDialog';
-import Actions from '../Common/Actions';
+import FormCreate from './FormCreate';
+import Actions from './Actions';
 
 // app Vue instance
   const Teachers = {
 	name: 'Teachers',
 	components:{
-		Form,
-		ActionDialog,
+		FormCreate,
 		Actions
 	},
 	metaInfo: {
@@ -123,6 +91,7 @@ import Actions from '../Common/Actions';
     },
 	data: function(){
 		return{
+			selected: null,
 			teachers: [],
 			delimiters: ['${ ', ' }'],
 			loading: false,
@@ -156,11 +125,6 @@ import Actions from '../Common/Actions';
 				align: 'left',
 				sortable: true,
 				value: 'rut'
-			},
-			{
-				text: 'Acciones',
-				align: 'left',
-				value: 'acciones'
 			}],
 		};
 	},
@@ -181,6 +145,16 @@ import Actions from '../Common/Actions';
 			.finally(() => this.loading = false)  
         },
         methods: {
+			showAlert(a){
+				if (event.target.classList.contains('btn__content')) return;
+				if(this.selected === a ){
+					this.selected = null;
+					event.target.parentElement.classList.remove('selected-row-special');
+				}else{
+					event.target.parentElement.classList.add('selected-row-special');
+					this.selected = a;
+				}
+			},
         },
   }
 
@@ -192,4 +166,7 @@ import Actions from '../Common/Actions';
   .hidden-id{
 	  display: none;
   }
+	.selected-row-special{
+		background-color: #dbdbdb;
+	}
 </style>
