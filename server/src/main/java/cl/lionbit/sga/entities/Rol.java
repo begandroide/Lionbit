@@ -1,5 +1,6 @@
 package cl.lionbit.sga.entities;
 
+import cl.lionbit.sga.constans.Roles;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -17,7 +18,8 @@ public class Rol implements Serializable {
     private Integer rolID;
 
     @Column(name="rol_name")
-    private String rolName;
+    @Enumerated(EnumType.STRING)
+    private Roles rolName;
 
     public Integer getRolID() {
         return rolID;
@@ -27,11 +29,11 @@ public class Rol implements Serializable {
         this.rolID = rolID;
     }
 
-    public String getRolName() {
+    public Roles getRolName() {
         return rolName;
     }
 
-    public void setRolName(String rolName) {
+    public void setRolName(Roles rolName) {
         this.rolName = rolName;
     }
 

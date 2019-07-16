@@ -52,7 +52,7 @@ public class StudentController {
 
 	}
 
-	@ApiOperation(value = "View a list of available students.", response = List.class)
+	@ApiOperation(value = "View a list of available students", response = List.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully retrieved list"),
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
@@ -66,15 +66,15 @@ public class StudentController {
 	}
 
 	@ApiOperation(value = "Get an student by Id", response = Student.class)
+	@ApiImplicitParam(name = "student ID", value = "Student id from which student object will retrieve",
+			required = true, dataType = "Long", paramType="path")
 	@ApiResponses(value = {
 			@ApiResponse(code = 302, message = "Successfully retrieved an student."),
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 500, message = "The resource you were trying to reach is not found")
 	})
 	@GetMapping("/{id}")
-	public ResponseEntity<Student>  findById(
-			@ApiParam(name = "student ID", value = "Student id from which student object will retrieve", required = true)
-			@PathVariable(value = "id") Long id) {
+	public ResponseEntity<Student>  findById(@PathVariable(value = "id") Long id) {
 
 		Student savedStudent = this.service.findOne(id);
 		return new ResponseEntity<>(savedStudent, HttpStatus.FOUND);

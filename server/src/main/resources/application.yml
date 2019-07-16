@@ -3,7 +3,7 @@ server:
 spring:
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
   datasource:
     url: jdbc:mysql://localhost:3306/siga?serverTimezone=America/Santiago&useSSL=false
     username: servoclay@gmail.com

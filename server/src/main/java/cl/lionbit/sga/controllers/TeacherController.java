@@ -67,15 +67,15 @@ public class TeacherController {
 	}
 
 
-	@ApiOperation(value = "Get an student by Id", response = Teacher.class)
+	@ApiOperation(value = "Get an teacher by Id", response = Teacher.class)
 	@ApiResponses(value = {
-			@ApiResponse(code = 302, message = "Successfully retrieved an student"),
+			@ApiResponse(code = 302, message = "Successfully retrieved an teacher"),
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 500, message = "The resource you were trying to reach is not found")
 	})
 	@GetMapping("/{id}")
 	public ResponseEntity<Teacher>  findById(
-			@ApiParam(name = "Teacher ID", value = "Student id from which student object will retrieve", required = true)
+			@ApiParam(name = "Teacher ID", value = "Teacher id from which teacher object will retrieve", required = true)
 			@PathVariable(value = "id") Long id) {
 
 		Teacher savedBeer = this.service.findOne(id);
@@ -103,7 +103,7 @@ public class TeacherController {
 	@ApiOperation(value = "Delete an teacher")
 	@DeleteMapping("/{id}")
 	public @ResponseBody String delete(
-			@ApiParam(value = "Student id for delete", required = true) @PathVariable(value = "id") Long id) {
+			@ApiParam(value = "teacher id for delete", required = true) @PathVariable(value = "id") Long id) {
 		return this.service.delete(id);
 	}
 

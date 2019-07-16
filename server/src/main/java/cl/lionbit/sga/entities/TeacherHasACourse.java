@@ -1,11 +1,13 @@
 package cl.lionbit.sga.entities;
 
+import cl.lionbit.sga.constans.Semester;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.Date;
 
 
 @Entity
@@ -20,7 +22,16 @@ public class TeacherHasACourse implements Serializable {
 
     @NotEmpty
     @Column(name="semester_taught")
-    private String semesterTaught;
+    @Enumerated(EnumType.STRING)
+    private Semester semesterTaught;
+
+    @Transient
+    @Temporal(TemporalType.DATE)
+    private Date year;
+
+    @Column(name="create_at")
+    @Temporal(TemporalType.DATE)
+    private Date createAt;
 
     public Long getCourseID() {
         return courseID;
@@ -30,12 +41,28 @@ public class TeacherHasACourse implements Serializable {
         this.courseID = courseID;
     }
 
-    public String getSemesterTaught() {
+    public Semester getSemesterTaught() {
         return semesterTaught;
     }
 
-    public void setSemesterTaught(String semesterTaught) {
+    public void setSemesterTaught(Semester semesterTaught) {
         this.semesterTaught = semesterTaught;
+    }
+
+    public Date getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
+    }
+
+    public Date getYear() {
+        return year;
+    }
+
+    public void setYear(Date year) {
+        this.year = year;
     }
 
     private static final long serialVersionUID = 1L;
