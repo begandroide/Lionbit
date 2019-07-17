@@ -8,6 +8,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
@@ -30,11 +31,17 @@ public class User implements Serializable {
     @Email
     private String email;
 
+    @NotEmpty
+    private String password;
+
     @Column(name="phone_number", length = 9)
     private String phoneNumber;
 
     @Column(length = 10)
     private String office;
+
+    @OneToMany
+    private Set<Role> roles;
 
     @Column(name="create_at")
     @Temporal(TemporalType.DATE)
@@ -75,6 +82,10 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -98,6 +109,10 @@ public class User implements Serializable {
     public void setActivated(Boolean activated) {
         this.activated = activated;
     }
+
+    public Set<Role> getRoles() { return roles; }
+
+    public void setRoles(Set<Role> roles) { this.roles = roles; }
 
     public Date getCreateAt() {
         return createAt;

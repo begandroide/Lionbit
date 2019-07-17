@@ -1,5 +1,9 @@
 package cl.lionbit.sga;
 
+import cl.lionbit.sga.constans.Roles;
+import cl.lionbit.sga.entities.Role;
+import cl.lionbit.sga.repositories.RoleRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -33,6 +37,28 @@ public class SgaApplication {
         FilterRegistrationBean bean = new FilterRegistrationBean<>(new CorsFilter(source));
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);  
         return bean;  
-    }  
+    }
+
+    @Bean
+    CommandLineRunner init(RoleRepository roleRepository) {
+
+        return args -> {
+
+            Role adminRole = roleRepository.findByRole(Roles.ADMIN);
+            if (adminRole == null) {
+                Role newAdminRole = new Role();
+                newAdminRole.setRole(Roles.ADMIN);
+                roleRepository.save(newAdminRole);
+            }
+
+            Role userRole = roleRepository.findByRole(Roles.TEACHER);
+            if (userRole == null) {
+                Role newUserRole = new Role();
+                newUserRole.setRole(Roles.TEACHER);
+                roleRepository.save(newUserRole);
+            }
+        };
+
+    }
 
 }
