@@ -1,9 +1,19 @@
 # Lionbit ISW
-Para iniciar el proyecto, ingresar el siguiente comando: 
 
+## Como correr el proyecto
+
+En la carpeta server:
 ```bash
-python manage.py runserver
+mvn spring-boot:run
 ```
+## Microservicio para aplicación SGA
+
+En la carpeta client:
+```
+npm install
+npm run serve
+```
+
 ## Microservicio para aplicación SGA
 
 ### Entidades
