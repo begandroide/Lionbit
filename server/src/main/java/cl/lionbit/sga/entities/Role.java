@@ -17,8 +17,8 @@ public class Role implements Serializable {
     @ApiModelProperty(notes = "Is the primary key, the database auto generate this ID")
     private Integer rolID;
 
-    @Enumerated(EnumType.STRING)
-    private Roles role;
+    //@Enumerated(EnumType.STRING)
+    private String role;
 
     public Integer getRolID() {
         return rolID;
@@ -28,11 +28,11 @@ public class Role implements Serializable {
         this.rolID = rolID;
     }
 
-    public Roles getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Roles rolName) {
+    public void setRole(String rolName) {
         this.role = rolName;
     }
 

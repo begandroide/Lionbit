@@ -15,7 +15,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 
 @Service
@@ -37,7 +36,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     public void saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActivated(true);
-        Role userRole = roleRepository.findByRole(Roles.ADMIN);
+        user.setCreateAt(new Date());
+        Role userRole = roleRepository.findByRole(Roles.ADMIN.toString());
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
         userRepository.save(user);
     }
@@ -57,7 +57,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {
         Set<GrantedAuthority> roles = new HashSet<>();
         userRoles.forEach((role) -> {
-            roles.add(new SimpleGrantedAuthority(role.getRole().toString()));
+            roles.add(new SimpleGrantedAuthority(role.getRole()));
         });
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>(roles);

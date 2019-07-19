@@ -47,7 +47,6 @@ public class User implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date createAt;
 
-    @NotEmpty
     private Boolean activated;
 
     public Long getUserID() {

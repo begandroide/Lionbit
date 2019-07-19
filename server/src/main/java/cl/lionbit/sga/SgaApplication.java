@@ -44,17 +44,17 @@ public class SgaApplication {
 
         return args -> {
 
-            Role adminRole = roleRepository.findByRole(Roles.ADMIN);
+            Role adminRole = roleRepository.findByRole(Roles.ADMIN.toString());
             if (adminRole == null) {
                 Role newAdminRole = new Role();
-                newAdminRole.setRole(Roles.ADMIN);
+                newAdminRole.setRole(Roles.ADMIN.toString());
                 roleRepository.save(newAdminRole);
             }
 
-            Role userRole = roleRepository.findByRole(Roles.TEACHER);
+            Role userRole = roleRepository.findByRole(Roles.TEACHER.toString());
             if (userRole == null) {
                 Role newUserRole = new Role();
-                newUserRole.setRole(Roles.TEACHER);
+                newUserRole.setRole(Roles.TEACHER.toString());
                 roleRepository.save(newUserRole);
             }
         };

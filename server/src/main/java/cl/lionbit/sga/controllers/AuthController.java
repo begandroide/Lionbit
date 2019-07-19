@@ -5,6 +5,7 @@ import cl.lionbit.sga.entities.User;
 import cl.lionbit.sga.repositories.UserRepository;
 import cl.lionbit.sga.services.CustomUserDetailsService;
 
+import static cl.lionbit.sga.constans.Paths.AUTH;
 import static org.springframework.http.ResponseEntity.ok;
 
 import java.util.HashMap;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping(AUTH)
 public class AuthController {
 
     private AuthenticationManager authenticationManager;
