@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import cl.lionbit.sga.models.Assignature;
+import cl.lionbit.sga.entities.Assignature;
 
 @Repository
 public interface AssignatureRepository extends CrudRepository<Assignature, Long>{

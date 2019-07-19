@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import cl.lionbit.sga.models.Assignature;
+import cl.lionbit.sga.entities.Assignature;
 import cl.lionbit.sga.services.AssignatureService;
 
 @RestController

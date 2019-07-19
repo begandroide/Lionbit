@@ -1,4 +1,4 @@
-package cl.lionbit.sga.models;
+package cl.lionbit.sga.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
