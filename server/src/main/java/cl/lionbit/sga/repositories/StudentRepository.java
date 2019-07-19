@@ -7,12 +7,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import cl.lionbit.sga.models.Student;
+import cl.lionbit.sga.entities.Student;
 
 @Repository
 public interface StudentRepository extends CrudRepository<Student, Long>{
-    Page<Student> findByNameContainingIgnoreCase(String name, Pageable pageable);
+    //PagingAndSortingRepository<Student, Long> posee los métodos para realizar la paginación y hereda los métodos de
+    // CrudRepository (Revisar su utilización)
+    // Page <Student> findAll(Pageable pageable)
+
+    Page<Student> findByFirstNameContainingIgnoreCase(String firstName, Pageable pageable);
 
     List<Student> findAll();
+
+
     
 }

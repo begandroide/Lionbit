@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import cl.lionbit.sga.models.Student;
+import cl.lionbit.sga.entities.Student;
 import cl.lionbit.sga.repositories.StudentRepository;
 
 @Service
@@ -27,7 +27,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Page<Student> findPaginated(String filter, Pageable pageable) {
-		return this.repository.findByNameContainingIgnoreCase(filter, pageable);
+		return this.repository.findByFirstNameContainingIgnoreCase(filter, pageable);
 	}
 
 	@Override
@@ -44,7 +44,8 @@ public class StudentServiceImpl implements StudentService {
 	public Student update(Long id, Student student) {
 		Student toUpdate = this.repository.findById(id).get();
 
-		toUpdate.setName(student.getName());
+		toUpdate.setLastName(student.getLastName());
+		toUpdate.setFirstName(student.getFirstName());
 		toUpdate.setRol_usm(student.getRol_usm());
 		return this.repository.save(toUpdate);
     }

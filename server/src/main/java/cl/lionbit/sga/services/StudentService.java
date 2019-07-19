@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import cl.lionbit.sga.models.Student;
+import cl.lionbit.sga.entities.Student;
 
 public interface StudentService {
 	List<Student> findAll();
@@ -14,9 +14,9 @@ public interface StudentService {
 
 	Student findOne(Long id);
 
-	Student create(Student course);
+	Student create(Student student);
 
-	Student update(Long id, Student course);
+	Student update(Long id, Student student);
 
 	String delete(Long id);
 }

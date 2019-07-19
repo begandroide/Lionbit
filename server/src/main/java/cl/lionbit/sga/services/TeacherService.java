@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import cl.lionbit.sga.models.Teacher;;
+import cl.lionbit.sga.entities.Teacher;;
 
 public interface TeacherService {
 	List<Teacher> findAll();
