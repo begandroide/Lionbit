@@ -1,5 +1,6 @@
 package cl.lionbit.sga.config;
 
+import cl.lionbit.sga.constans.Roles;
 import cl.lionbit.sga.error.CustomAccessDeniedHandler;
 import cl.lionbit.sga.security.AuthenticationSuccessHandler;
 import cl.lionbit.sga.security.RestAuthenticationEntryPoint;
@@ -33,10 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 // @ComponentScan("cl.lionbit.sga.security")
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
 
     /*@Autowired
     private CustomAccessDeniedHandler accessDeniedHandler;
@@ -48,6 +46,21 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationSuccessHandler SuccessHandler;
 
     private SimpleUrlAuthenticationFailureHandler FailureHandler = new SimpleUrlAuthenticationFailureHandler();*/
+
+    @Autowired
+    JwtTokenProvider jwtTokenProvider;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        UserDetailsService userDetailsService = mongoUserDetails();
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+
+    }
+
+    @Bean
+    public PasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Bean
     @Override
@@ -62,7 +75,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public UserDetailsService UserDetails() {
+    public UserDetailsService mongoUserDetails() {
         return new CustomUserDetailsService();
     }
 
@@ -73,20 +86,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/webjars/**","/swagger-ui.html", "/v2/api-docs");
     }
 
-    @Autowired
-    JwtTokenProvider jwtTokenProvider;
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        UserDetailsService userDetailsService = UserDetails();
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-
-    }
-
-    public SpringSecurityConfig() {
+    /*public SpringSecurityConfig() {
         super();
         SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
-    }
+    }*/
 
     /*@Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -129,7 +133,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/auth/login").permitAll()
                 .antMatchers("/api/auth/register").permitAll()
                 .antMatchers("/api/students/**").authenticated()
-                .antMatchers("/api/teachers/**").hasAuthority("ADMIN")
+                .antMatchers("/api/teachers/**").hasAuthority(Roles.ADMIN.toString())
                 .anyRequest().authenticated().
                 and().csrf().disable().exceptionHandling()
                 .authenticationEntryPoint(unauthorizedEntryPoint()).and()

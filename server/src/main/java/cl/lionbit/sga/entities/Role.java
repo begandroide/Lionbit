@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="roles_users")
+@Table(name="roles")
 @ApiModel(description = "This a role management table")
 public class Role implements Serializable {
 
