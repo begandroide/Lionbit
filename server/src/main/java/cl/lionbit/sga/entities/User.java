@@ -40,7 +40,7 @@ public class User implements Serializable {
     @Column(length = 10)
     private String office;
 
-    @OneToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     @Column(name="create_at")
