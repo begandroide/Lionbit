@@ -79,13 +79,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return new CustomUserDetailsService();
     }
 
-    @Override
+    /*@Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**",
-                "/static/**", "/css/**", "/js/**", "/images/**",
-                "/webjars/**","/swagger-ui.html", "/v2/api-docs");
-    }
-
+        web.ignoring().antMatchers("/v2/api-docs",
+                "/configuration/ui",
+                "/swagger-resources",
+                "/configuration/security",
+                "/swagger-ui.html",
+                "/webjars/**","/resources/**");
+    }*/
 
     /*public SpringSecurityConfig() {
         super();
@@ -128,11 +130,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().disable().csrf().disable().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-                //.antMatchers("/v2/api-docs").permitAll()
-                //.antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/**",
+                        "/swagger-ui.html", "/webjars/**")
+                .permitAll()
                 .antMatchers("/api/auth/login").permitAll()
                 .antMatchers("/api/auth/register").permitAll()
                 .antMatchers("/api/students/**").authenticated()
+                .antMatchers("/api/assignatures/**").authenticated()
                 .antMatchers("/api/teachers/**").hasAuthority(Roles.ADMIN.toString())
                 .anyRequest().authenticated().
                 and().csrf().disable().exceptionHandling()

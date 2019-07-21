@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,11 @@ import cl.lionbit.sga.entities.Assignature;
 import cl.lionbit.sga.services.AssignatureService;
 
 import static cl.lionbit.sga.constans.Paths.ASSIGNATURES;
+import static cl.lionbit.sga.constans.Paths.VERSION;
 
 @RestController
 @RequestMapping(ASSIGNATURES)
+@Api(value="Assignature management System " + VERSION)
 public class AssignatureController {
 	private static Logger logger = LoggerFactory.getLogger(AssignatureController.class);
 
