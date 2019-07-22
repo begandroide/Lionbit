@@ -44,9 +44,9 @@
 							>
 								<template v-slot:items="props">
 									<tr  @click="showAlert(props.item)">
-										<td class="hidden-id">{{props.item.id}}</td>
-										<td class="text-left text-xs-left">{{props.item.name}}</td>
-										<td class="text-left text-xs-left">{{props.item.last_name}}</td>
+										<td class="hidden-id">{{props.item.studentID}}</td>
+										<td class="text-left text-xs-left">{{props.item.firstName}}</td>
+										<td class="text-left text-xs-left">{{props.item.lastName}}</td>
 										<td class="text-xs-left">{{ props.item.rol_usm }}</td>
 									</tr>
 								</template>
@@ -133,8 +133,8 @@ import Actions from "./Actions";
         mounted() {
                 api.getAllStudents()  
 									.then(response => {  
-									this.$log.debug("Data loaded: ", response.data.content); 
-									this.students = response.data.content;
+									this.$log.debug("Data loaded: ", response.data); 
+									this.students = response.data;
 									this.$log.debug("students : ", this.students); 
 									
 									})  

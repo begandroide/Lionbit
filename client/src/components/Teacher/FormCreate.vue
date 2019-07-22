@@ -22,8 +22,8 @@
                 <v-flex xs12 sm6 md6>
                     <v-text-field label="Apellidos*"
                         id="last-name-input"
-						v-model="newTeacher.last_name"
-						:state="newTeacher.last_name" hint="example of helper text only on focus"></v-text-field>
+						v-model="newTeacher.lastName"
+						:state="newTeacher.lastName" hint="example of helper text only on focus"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md6>
                     <v-text-field 
@@ -62,7 +62,7 @@ import Teachers from './Teachers'
       newTeacher: {
         id: 0,
         name: '',
-        last_name: '',
+        lastName: '',
         rut: '',
         },
     }),
@@ -73,12 +73,12 @@ import Teachers from './Teachers'
             // if (!this.checkFormValidity()) {
             // return
             this.$log.debug("New item created:", this.newTeacher) 
-            api.createNewTeacher(this.newTeacher, false).then( (response) => {  
+            api.createNewTeacher(this.newTeacher).then( (response) => {  
             this.$log.debug("New item created:", response);  
                     this.teachers.push({  
                     id: response.data.id,  
                     name: this.newTeacher.name,  
-                    last_name: this.newTeacher.last_name,
+                    lastName: this.newTeacher.lastName,
                     rut:   this.newTeacher.rut 
                     })  
             }).catch((error) => {  

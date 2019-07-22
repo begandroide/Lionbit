@@ -95,7 +95,7 @@ import MenuProfile from './MenuProfile.vue'
   
   async created () {  
         await this.refreshActiveUser()  
-        this.claims = await this.$auth.getUser()
+        this.claims = await localStorage.token
   },  
   
   watch: {  
@@ -106,7 +106,7 @@ import MenuProfile from './MenuProfile.vue'
    render (h) { return h(this.ViewComponent) },
   methods: {  
     async refreshActiveUser () {  
-      this.activeUser = await this.$auth.getUser()  
+      this.activeUser = await await localStorage.token  
       this.$log.debug('activeUser',this.activeUser)  
     },  
   

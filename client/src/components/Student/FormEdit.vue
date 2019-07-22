@@ -17,15 +17,15 @@
                 <v-flex xs12 sm6 md6>
                     <v-text-field label="Nombres*"
                         id="name-input"
-                        v-model="newStudent.name"
-                        :state="newStudent.name" required>
+                        v-model="newStudent.firstName"
+                        :state="newStudent.firstName" required>
                     </v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md6>
                     <v-text-field label="Apellidos*"
                         id="last-name-input"
-						v-model="newStudent.last_name"
-						:state="newStudent.last_name" hint="example of helper text only on focus"></v-text-field>
+						v-model="newStudent.lastName"
+						:state="newStudent.lastName" hint="example of helper text only on focus"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md6>
                     <v-text-field 
@@ -40,8 +40,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" type="submit" flat>Save</v-btn>
+          <v-btn color="blue darken-1" flat @click="dialog = false">Cerrar</v-btn>
+          <v-btn color="blue darken-1" type="submit" flat>Guardar</v-btn>
         </v-card-actions>
             </form>
       </v-card>
@@ -70,18 +70,18 @@ import Students from './Students'
             then( (response) => {  
               console.log(this.$root);
               this.students.push({  
-                  id: response.data.id,  
-                  name: this.newStudent.name,  
-                  last_name: this.newStudent.last_name,
+                  id: response.data.studentID,  
+                  name: this.newStudent.firstName,  
+                  last_name: this.newStudent.lastName,
                   rol_usm:   this.newStudent.rol_usm
               })  
           }).catch((error) => {  
             this.$log.debug(error);  
               this.error = "Failed to add student"  
           }).finally( () => { 
-            this.newStudent.id = 0;
-            this.newStudent.name = "";
-            this.newStudent.last_name = "";
+            this.newStudent.studentID = 0;
+            this.newStudent.firstName = "";
+            this.newStudent.lastName = "";
             this.newStudent.rol_usm = "";
           });  
         // Hide the modal manually

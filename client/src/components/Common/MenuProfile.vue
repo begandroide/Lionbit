@@ -59,7 +59,7 @@
         hints: true
     };},
      async created() {
-        this.activeUser = await this.$auth.getUser();
+        this.activeUser = await localStorage.token;
       },
       methods:{
       async handleLogout () {  

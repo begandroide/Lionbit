@@ -14,6 +14,14 @@
     </v-card>
   </v-footer>
 </template>
+<style>
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+</style>
 
 <script>
 

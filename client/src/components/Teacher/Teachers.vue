@@ -48,7 +48,7 @@
 									<tr @click="showAlert(props.item)">
 										<td class="hidden-id">{{props.item.id}}</td>
 										<td class="text-left">{{props.item.name}}</td>
-										<td class="text-left">{{props.item.last_name}}</td>
+										<td class="text-left">{{props.item.lastName}}</td>
 										<td class="text-xs-left">{{ props.item.rut }}</td>	
 									</tr>
 								</template>
@@ -97,8 +97,8 @@ import Actions from './Actions';
 			loading: false,
 			message: null,
 			newTeacher: {
-					name: null,
-					last_name: null,
+					firstName: null,
+					lastName: null,
 					rut: null
 			},
 			search: '',
@@ -113,13 +113,13 @@ import Actions from './Actions';
 				text: 'Nombres',
 				align: 'left',
 				sortable: true,
-				value: 'name'
+				value: 'firstName'
 			},
 			{
 				text: 'Apellidos',
 				align: 'left',
 				sortable: true,
-				value: 'last_name'
+				value: 'lastName'
 			},
 			{ 	text: 'Rut',
 				align: 'left',

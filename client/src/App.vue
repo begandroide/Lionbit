@@ -1,24 +1,18 @@
 <template>
   <v-app>
-    <Navbar />
     <v-content>
       <router-view />  
     </v-content>
-    <Footer />
   </v-app>
 </template>
 
 
 <script>  
-import Footer from './components/Common/Footer.vue'
-import Navbar from './components/Common/Navbar.vue'
 
   // app Vue instance  
   const App = {
     name: 'App',  
     components: {
-      Navbar,
-      Footer,
     },
     // app initial state  
     data: () => {  
@@ -26,6 +20,14 @@ import Navbar from './components/Common/Navbar.vue'
         currentRoute: window.location.pathname,
       }  
     },
+    methods:
+    {
+      updated () {
+        if (!localStorage.token && this.$route.path !== '/') {
+          this.$router.push('/?redirect=' + this.$route.path)
+        }
+      }
+    }
 
 }  
   
