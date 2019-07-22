@@ -134,7 +134,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/swagger-ui.html", "/webjars/**")
                 .permitAll()
                 .antMatchers("/api/auth/login").permitAll()
-                .antMatchers("/api/auth/register").permitAll()
+                .antMatchers("/api/users/register").permitAll()
                 .antMatchers("/api/students/**").authenticated()
                 .antMatchers("/api/assignatures/**").authenticated()
                 .antMatchers("/api/teachers/**").hasAuthority(Roles.ADMIN.toString())
