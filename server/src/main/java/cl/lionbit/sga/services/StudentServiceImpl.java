@@ -1,6 +1,7 @@
 package cl.lionbit.sga.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,12 +23,12 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<Student> findAll() {
-		return (List<Student>) this.repository.findAll();
+		return this.repository.findAll();
 	}
 
 	@Override
 	public Page<Student> findPaginated(String filter, Pageable pageable) {
-		return this.repository.findByFirstNameContainingIgnoreCase(filter, pageable);
+		return this.repository.findByFirstNameOrLastNameContainingIgnoreCase(filter, pageable);
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package cl.lionbit.sga.services;
 
-import cl.lionbit.sga.constans.Roles;
 import cl.lionbit.sga.entities.Role;
 import cl.lionbit.sga.entities.User;
 import cl.lionbit.sga.repositories.RoleRepository;
@@ -45,6 +44,34 @@ public class CustomUserDetailsService implements UserDetailsService {
         user.setRoles(roles);
         userRepository.save(user);
     }
+
+    public User update(Long id, User user){
+        User toUpdate = userRepository.findById(id).get();
+
+        toUpdate.setLastName(user.getLastName());
+        toUpdate.setFirstName(user.getFirstName());
+        toUpdate.setRoles(user.getRoles());
+        toUpdate.setEmail(user.getEmail());
+        toUpdate.setOffice(user.getOffice());
+        toUpdate.setPhoneNumber(user.getPhoneNumber());
+
+        if (user.getPassword() != null){
+            toUpdate.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        } else {
+            toUpdate.setPassword(user.getPassword());
+        }
+
+        return userRepository.save(toUpdate);
+    }
+
+    public String delete(Long id){
+        userRepository.deleteById(id);
+        return "Deleted user with id" + id;
+    }
+
+    public List<User> findAll(){
+        return userRepository.findAll();
+    };
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

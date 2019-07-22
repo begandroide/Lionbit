@@ -67,8 +67,8 @@ public class Swagger2Config {
 
     private ApiInfo apiEndPointsInfo() {
 
-        return new ApiInfoBuilder().title("Sga REST API")
-                .contact(new Contact("Francisco Reyes", "", "francisco.reyesg.14@sansano.usm.cl"))
+        return new ApiInfoBuilder().title("Sga API REST")
+                .contact(new Contact("Team LionBit", "", "francisco.reyesg.14@sansano.usm.cl"))
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .version(VERSION + "-SNAPSHOT")

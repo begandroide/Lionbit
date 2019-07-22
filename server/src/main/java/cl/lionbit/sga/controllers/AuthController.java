@@ -1,9 +1,7 @@
 package cl.lionbit.sga.controllers;
 
 import cl.lionbit.sga.config.JwtTokenProvider;
-import cl.lionbit.sga.entities.User;
 import cl.lionbit.sga.repositories.UserRepository;
-import cl.lionbit.sga.services.CustomUserDetailsService;
 
 import static cl.lionbit.sga.constans.Paths.AUTH;
 import static cl.lionbit.sga.constans.Paths.VERSION;
@@ -38,9 +36,6 @@ public class AuthController {
     @Autowired
     UserRepository users;
 
-    @Autowired
-    private CustomUserDetailsService userService;
-
     @SuppressWarnings("rawtypes")
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody AuthBody data) {
@@ -56,18 +51,4 @@ public class AuthController {
             throw new BadCredentialsException("Invalid email/password supplied");
         }
     }
-
-    @SuppressWarnings("rawtypes")
-    @PostMapping("/register")
-    public ResponseEntity register(@RequestBody User user) {
-        User userExists = userService.findUserByEmail(user.getEmail());
-        if (userExists != null) {
-            throw new BadCredentialsException("User with username: " + user.getEmail() + " already exists");
-        }
-        userService.saveUser(user);
-        Map<Object, Object> model = new HashMap<>();
-        model.put("message", "User registered successfully");
-        return ok(model);
-    }
-
 }
