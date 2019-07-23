@@ -48,6 +48,8 @@
 </template>
 
 <script>
+import {TokenService} from "../../services/storage.service"
+
   const MenuProfile = {
     name: 'MenuProfile',
     data: function() {
@@ -63,8 +65,8 @@
       },
       methods:{
       async handleLogout () {  
-        await this.$auth.logout()  
-        this.$router.go('/')  
+        TokenService.removeToken();  
+        this.$router.go('/login')  
       }  
       }
   }

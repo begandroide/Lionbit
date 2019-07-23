@@ -2,11 +2,13 @@
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Añadir nuevo profesor</v-btn>
+		<v-btn color="gray" round :disabled="(newTeacher == null)" v-on="on">
+			<i class="fa fa-edit"></i> Editar
+		</v-btn>
       </template>
-      <v-card>
+      <v-card v-if="newTeacher != null">
         <v-card-title>
-          <span class="headline">Nuevo profesor</span>
+          <span class="headline">Editar profesor</span>
         </v-card-title>
             <form ref="form" @submit.prevent="handleSubmit">
         <v-card-text>
@@ -49,22 +51,15 @@
 
 <script>
 import api from '../../Api';
-import Teachers from './Teachers'
-  const Form =  {
+  const FormCreate =  {
       component:{
-        Teachers,
       },
       props:{
-          teachers: Array
+		  teachers: Array,
+			newTeacher: Object, 
       },
     data: () => ({
       dialog: false,
-      newTeacher: {
-        id: 0,
-        name: '',
-        lastname: '',
-        rut: '',
-        },
     }),
     methods:{
       handleSubmit() {
@@ -72,15 +67,14 @@ import Teachers from './Teachers'
             // Exit when the form isn't valid
             // if (!this.checkFormValidity()) {
             // return
-            this.$log.debug("New item created:", this.newTeacher) 
-            api.createNewTeacher(this.newTeacher).then( (response) => {  
-            this.$log.debug("New item created:", response);  
-                    this.teachers.push({  
-                    id: response.data.id,  
-                    name: this.newTeacher.name,  
-                    lastname: this.newTeacher.lastname,
-                    rut:   this.newTeacher.rut 
-                    })  
+        api.updateTeacherForId(this.newTeacher, false).then( (response) => {  
+                console.log(this.$root);
+                this.teachers.update({  
+                  id: response.data.id,  
+                  name: this.newTeacher.name,  
+                  lastname:   this.newTeacher.lastname,
+                  rut: this.newTeacher.rut,
+                })  
             }).catch((error) => {  
             this.$log.debug(error);  
                     this.error = "Failed to add teacher"  
@@ -90,7 +84,7 @@ import Teachers from './Teachers'
               this.dialog = false;
             })
     },
-},
+    },
   }
-  export default Form;
+  export default FormCreate;
 </script>

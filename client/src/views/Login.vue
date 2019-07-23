@@ -106,6 +106,8 @@ $authentication-4-inner-max-width:300px;
 
 import api from '../Api';
 import axios from "axios";
+import Vue from "vue";
+import { TokenService } from '../services/storage.service' 
 
 export default {
   name: 'Login',
@@ -133,13 +135,11 @@ export default {
       this.loginFailed()
       return
     }
+    TokenService.saveToken(req.data.token);
+    if (TokenService.getToken() !== null) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${TokenService.getToken()}`;
+    }
 
-    localStorage.token = req.data.token
-
-    axios.defaults.headers = {  
-            'X-Requested-With': 'XMLHttpRequest',
-            Authorization: `Bearer ${localStorage.token}`  
-      },  
     this.error = false
 
     this.$router.replace(this.$route.query.redirect || '/')

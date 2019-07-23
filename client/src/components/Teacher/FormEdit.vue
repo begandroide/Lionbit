@@ -24,8 +24,8 @@
                 <v-flex xs12 sm6 md6>
                     <v-text-field label="Apellidos*"
                         id="last-name-input"
-						v-model="newTeacher.last_name"
-						:state="newTeacher.last_name" hint="example of helper text only on focus"></v-text-field>
+						v-model="newTeacher.lastname"
+						:state="newTeacher.lastname" hint="example of helper text only on focus"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md6>
                     <v-text-field 
@@ -69,12 +69,12 @@ import Teachers from './Teachers'
             // Exit when the form isn't valid
             // if (!this.checkFormValidity()) {
             // return
-        api.updateTeacherForId(this.newTeacher.id,this.newTeacher, false).then( (response) => {  
+        api.updateTeacherForId(this.newTeacher, false).then( (response) => {  
                 console.log(this.$root);
                 this.teachers.update({  
                   id: response.data.id,  
                   name: this.newTeacher.name,  
-                  last_name:   this.newTeacher.last_name,
+                  lastname:   this.newTeacher.lastname,
                   rut: this.newTeacher.rut,
                 })  
             }).catch((error) => {  

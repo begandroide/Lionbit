@@ -52,37 +52,27 @@
 <script>
 import api from '../../Api';
 import Students from './Students'
-  const FormCreate =  {
+  const FormEdit =  {
       component:{
         Students,
       },
       props:{
-		  students: Array,
-			newStudent: Object, 
+			  newStudent: Object, 
       },
     data: () => ({
       dialog: false,
     }),
     methods:{
       CreateStudent() {
-        if(this.newStudent.last_name != null){
+        if(this.newStudent.lastName != null){
           api.updateStudentForId(this.newStudent).
             then( (response) => {  
-              console.log(this.$root);
-              this.students.push({  
-                  id: response.data.studentID,  
-                  name: this.newStudent.firstName,  
-                  last_name: this.newStudent.lastName,
-                  rol_usm:   this.newStudent.rol_usm
-              })  
+              this.newStudent.studentID = response.data.studentID    
           }).catch((error) => {  
             this.$log.debug(error);  
               this.error = "Failed to add student"  
           }).finally( () => { 
-            this.newStudent.studentID = 0;
-            this.newStudent.firstName = "";
-            this.newStudent.lastName = "";
-            this.newStudent.rol_usm = "";
+            this.$log.debug("Creado satisfactoriamente")
           });  
         // Hide the modal manually
         this.$nextTick(() => {
@@ -93,5 +83,5 @@ import Students from './Students'
       },
     },
   }
-  export default FormCreate;
+  export default FormEdit;
 </script>

@@ -85,7 +85,6 @@ import Actions from "./Actions";
 		},
 		props: {
 			activeUser: Object,
-			
 		},
 		watch: {
 		},

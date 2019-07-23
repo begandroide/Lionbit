@@ -9,14 +9,14 @@
 							<div class="col-md-8 col-sm-8">
 								<h3 class="card-title">
 									<i class="fa fa-chalkboard-teacher"></i>
-									Profesores
+									Usuarios
 								</h3>
-								<p class="text-muted card-subtitle"> Listado de profesores registrados en el sistema. </p>
+								<p class="text-muted card-subtitle"> Listado de usuarios registrados en el sistema. </p>
 							</div>
 
 							<div class="col-md-4 col-sm-4">
 								<div align="right">
-									<FormCreate :teachers="teachers" />
+									<FormCreate :users="users" />
 								</div >
 							</div>
 
@@ -39,17 +39,17 @@
 							<v-flex >
 							<v-data-table
 								:headers="headers"
-								:items="teachers"
+								:items="users"
 								class="elevation-1"
 								:search="search"
 								:aria-sort="true"
 							>
 								<template v-slot:items="props" >
 									<tr @click="showAlert(props.item)">
-										<td class="hidden-id">{{props.item.id}}</td>
-										<td class="text-left">{{props.item.name}}</td>
-										<td class="text-left">{{props.item.lastname}}</td>
-										<td class="text-xs-left">{{ props.item.rut }}</td>	
+										<td class="hidden-id">{{props.item.userID}}</td>
+										<td class="text-left">{{props.item.firstName}}</td>
+										<td class="text-left">{{props.item.lastName}}</td>
+										<td class="text-xs-left">{{ props.item.email }}</td>	
 									</tr>
 								</template>
 
@@ -76,14 +76,14 @@ import FormCreate from './FormCreate';
 import Actions from './Actions';
 
 // app Vue instance
-  const Teachers = {
-	name: 'Teachers',
+  const Users = {
+	name: 'users',
 	components:{
 		FormCreate,
 		Actions
 	},
 	metaInfo: {
-		title: 'Profesores',
+		title: 'Usuarios',
 		titleTemplate: '%s | Siga web App'
 	},
     props: {
@@ -92,14 +92,26 @@ import Actions from './Actions';
 	data: function(){
 		return{
 			selected: null,
-			teachers: [],
+			users: [],
 			delimiters: ['${ ', ' }'],
 			loading: false,
 			message: null,
-			newTeacher: {
-					firstName: null,
-					lastname: null,
-					rut: null
+			newUser: {
+                activated: true,
+                createAt: "",
+                email: "",
+                firstName: "",
+                lastName: "",
+                office: "",
+                password: "",
+                phoneNumber: "",
+                roles: [
+                    {
+                    rolID: 1,
+                    role: "ADMIN"
+                    }
+                ],
+                userID: 0
 			},
 			search: '',
 			dialog: false,
@@ -119,23 +131,23 @@ import Actions from './Actions';
 				text: 'Apellidos',
 				align: 'left',
 				sortable: true,
-				value: 'lastname'
+				value: 'lastName'
 			},
-			{ 	text: 'Rut',
+			{ 	text: 'Email',
 				align: 'left',
 				sortable: true,
-				value: 'rut'
+				value: 'email'
 			}],
 		};
 	},
 	created: function () {
 	},
 	mounted() {
-		api.getAllTeachers()  
+		api.getAllUsers()  
 			.then(response => {  
-				this.$log.debug("Data loaded: ", response.data.content); 
-				this.teachers = response.data.content;
-				this.$log.debug("teachers : ", this.teachers); 
+				this.$log.debug("Data loaded: ", response.data); 
+				this.users = response.data;
+				this.$log.debug("teachers : ", this.users); 
                         
 			})  
 			.catch(error => {  
@@ -158,7 +170,7 @@ import Actions from './Actions';
         },
   }
 
-        export  default Teachers
+        export  default Users
 </script>
 
 <style>

@@ -3,10 +3,13 @@ import Student from './components/Student/Students.vue'
 import StudentProfile from './components/Student/StudentProfile.vue'
 import Teacher from './components/Teacher/Teachers.vue'
 import Assignatures from './components/Assignatures/Assignatures.vue'
+import Users from './components/Administration/Users.vue'
 import LayoutBlank from './views/LayoutBlank.vue'
 import Layout from './views/Layout.vue'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
+
+import { TokenService } from './services/storage.service'
 
 // Vue.use(Auth, {
 //   issuer: 'https://dev-780385.okta.com/oauth2/default',
@@ -30,7 +33,7 @@ let router = new Router({
           name: 'Login',
           component: () => import('./views/Login.vue'),
           meta: {
-            requiresAuth: false,
+            auth: false,
           },
         }
       ],
@@ -43,7 +46,7 @@ let router = new Router({
           path:'',
           component: () => import('./views/Home.vue'),
           meta: {
-            requiresAuth: true,
+            auth: true,
           },
         },
         {
@@ -51,7 +54,7 @@ let router = new Router({
           component: Student,
           name: 'students',
           meta: {
-            requiresAuth: true,
+            auth: true,
           },
         },
         {
@@ -59,7 +62,7 @@ let router = new Router({
           component: Teacher,
           name: 'teachers',
           meta: {
-            requiresAuth: true
+            auth: true
           },
         },
         {
@@ -67,15 +70,15 @@ let router = new Router({
           component: Assignatures,
           name: 'assignatures',
           meta: {
-            requiresAuth: true
+            auth: true
           },
         },
         {
           path: '/Admin',
-          component: Assignatures,
-          name: 'assignatures',
+          component: Users,
+          name: 'users',
           meta: {
-            requiresAuth: true
+            auth: true
           },
         },
         {
@@ -84,7 +87,7 @@ let router = new Router({
           component: StudentProfile,
           name: 'studentProfile',
           meta: {
-            requiresAuth: true
+            auth: true
           },
         },
       ],
@@ -93,9 +96,9 @@ let router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  if(to.path != '/login') {
-    /// totalmente parche, podriamos usar una llamada a la api para verificar el token
-      if(localStorage.getItem('token') !== null) { 
+  var tok = TokenService.getToken();
+  if(to.path != '/login' || tok !== null) {
+      if(tok !== null) { 
           console.log('There is a token, resume. (' + to.path + ')');
           next();
       } else {
@@ -106,7 +109,6 @@ router.beforeEach((to, from, next) => {
     console.log('You\'re on the login page');
     next(); // This is where it should have been
   }
-  // next(); - This is in the wrong place
 });
 
 export default router;

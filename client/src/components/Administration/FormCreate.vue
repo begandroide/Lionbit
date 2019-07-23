@@ -2,11 +2,11 @@
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Añadir nuevo profesor</v-btn>
+        <v-btn color="primary" dark v-on="on">Añadir nuevo usuario</v-btn>
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">Nuevo profesor</span>
+          <span class="headline">Nuevo usuario</span>
         </v-card-title>
             <form ref="form" @submit.prevent="handleSubmit">
         <v-card-text>
@@ -15,22 +15,41 @@
                 <v-flex xs12 sm6 md6>
                     <v-text-field label="Nombres*"
                         id="name-input"
-                        v-model="newTeacher.name"
-                        :state="newTeacher.name" required>
+                        v-model="newUser.firstName"
+                        :state="newUser.firstName" required>
                     </v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md6>
                     <v-text-field label="Apellidos*"
                         id="last-name-input"
-						v-model="newTeacher.lastname"
-						:state="newTeacher.lastname" hint="example of helper text only on focus"></v-text-field>
+						v-model="newUser.lastName"
+						:state="newUser.lastName" hint="example of helper text only on focus"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md6>
+                    <v-text-field label="Oficina*"
+                        id="oficina-input"
+						v-model="newUser.office"
+						:state="newUser.office" hint="example of helper text only on focus"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md6>
+                    <v-text-field label="Número teléfono*"
+                        id="phoneNumber-input"
+						v-model="newUser.phoneNumber"
+						:state="newUser.phoneNumber" hint="example of helper text only on focus"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md6>
                     <v-text-field 
-                        label="Rut*" 
+                        label="Email*" 
                         id="rut-input"
-						v-model="newTeacher.rut"
-						:state="newTeacher.rut" hint="example of helper text only on focus"></v-text-field>
+						v-model="newUser.email"
+						:state="newUser.email" hint="example of helper text only on focus"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6 md6>
+                    <v-text-field 
+                        label="Contraseña*" 
+                        id="rut-input"
+						v-model="newUser.password"
+						:state="newUser.password" hint="example of helper text only on focus"></v-text-field>
                 </v-flex>
                 </v-layout>
           </v-container>
@@ -49,21 +68,32 @@
 
 <script>
 import api from '../../Api';
-import Teachers from './Teachers'
+import Users from './Users'
   const Form =  {
       component:{
-        Teachers,
+        Users,
       },
       props:{
-          teachers: Array
+          users: Array
       },
     data: () => ({
       dialog: false,
-      newTeacher: {
-        id: 0,
-        name: '',
-        lastname: '',
-        rut: '',
+      newUser: {
+          activated: true,
+          createAt: "",
+          email: "",
+          firstName: "",
+          lastName: "",
+          office: "",
+          password: "",
+          phoneNumber: "",
+          roles: [
+              {
+              rolID: 1,
+              role: "ADMIN"
+              }
+          ],
+          userID: 0
         },
     }),
     methods:{
@@ -72,15 +102,11 @@ import Teachers from './Teachers'
             // Exit when the form isn't valid
             // if (!this.checkFormValidity()) {
             // return
-            this.$log.debug("New item created:", this.newTeacher) 
-            api.createNewTeacher(this.newTeacher).then( (response) => {  
+            this.$log.debug("New item created:", this.newUser) 
+            api.createNewUser(this.newUser).then( (response) => {  
             this.$log.debug("New item created:", response);  
-                    this.teachers.push({  
-                    id: response.data.id,  
-                    name: this.newTeacher.name,  
-                    lastname: this.newTeacher.lastname,
-                    rut:   this.newTeacher.rut 
-                    })  
+                    this.users.push(  
+                    response.data)  
             }).catch((error) => {  
             this.$log.debug(error);  
                     this.error = "Failed to add teacher"  
