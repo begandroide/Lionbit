@@ -1,15 +1,7 @@
+import Vue from "vue"
 import axios from 'axios'
 import { TokenService } from './services/storage.service'
-
-
-import Vue from "vue"
-
-Vue.prototype.$http = axios;
-const token = localStorage.getItem('token');
-if (token) {
-  Vue.prototype.$http.defaults.headers.common['Authorization'] = token
-}
-
+import router from "./router"
 
 const SERVER_URL = 'http://localhost:8089'  
 
@@ -18,10 +10,14 @@ const instance = axios.create({
   timeout: 1000,
 });
 
-const headers={
-    'X-Requested-With': 'XMLHttpRequest',
-    Authorization: `Bearer ${localStorage.token}`  
-}
+instance.interceptors.response.use(null, function (error) {
+  if (error.response.status === 401 && error.response.data.error === 'Unauthorized') {
+    console.log('Failed to login')
+    TokenService.removeToken();
+    router.push('/Login');
+  }
+  return Promise.reject(error)
+})
 
 export default {  
   init(baseURL) {

@@ -85,9 +85,9 @@ public class TeacherController {
 	@ApiOperation(value = "Add an teacher")
 	@PostMapping
 	public ResponseEntity<Teacher> create(
-			@ApiParam(value = "Teacher object", required = true) @Valid @RequestBody Teacher Teacher) {
+			@ApiParam(value = "Teacher object", required = true) @Valid @RequestBody Teacher teacher) {
 
-		Teacher savedTeacher = this.service.create(Teacher);
+		Teacher savedTeacher = this.service.create(teacher);
 		return new ResponseEntity<>(savedTeacher, HttpStatus.CREATED);
 	}
 

@@ -18,8 +18,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueLogger from 'vuejs-logger';
 
 import 'vuetify/dist/vuetify.min.css'
-import Api from './Api';
-import { TokenService } from "./services/storage.service"
 
 const options = {
   isEnabled: true,
@@ -32,9 +30,9 @@ const options = {
 };
 
 // If token exists set header
-if (TokenService.getToken()) {
-  Api.setHeader()
-}
+// if (TokenService.getToken()) {
+//   Api.setHeader()
+// }
 
 Vue.use(VueLogger, options);
 

@@ -2,7 +2,7 @@
   <v-layout >
 	<v-dialog v-model="dialog" persistent max-width="600px">
 	  <template v-slot:activator="{ on }">
-		<v-btn color="gray" round=true :disabled="(newAssignature == null)" v-on="on">
+		<v-btn color="gray" :round=true :disabled="(newAssignature == null)" v-on="on">
 			<i class="fa fa-edit"></i> Editar
 		</v-btn>
 	  </template>

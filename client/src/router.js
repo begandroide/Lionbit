@@ -8,18 +8,22 @@ import LayoutBlank from './views/LayoutBlank.vue'
 import Layout from './views/Layout.vue'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
+import NProgress from 'nprogress';
+
 
 import { TokenService } from './services/storage.service'
 
-// Vue.use(Auth, {
-//   issuer: 'https://dev-780385.okta.com/oauth2/default',
-//   client_id: '0oaiwzvn2i81Jsj3N356',
-//   redirect_uri: 'http://localhost:8080/implicit/callback',
-//   scope: 'openid profile email'
-// });
-
 Vue.use(Router);
-Vue.use(Meta)
+Vue.use(Meta);
+
+const ifAuthenticated = (to, from, next) => {
+  if (TokenService.getToken !== null) {
+    next()
+    return
+  }
+  next('/login')
+}
+
 
 let router = new Router({
   mode: 'history',
@@ -46,7 +50,7 @@ let router = new Router({
           path:'',
           component: () => import('./views/Home.vue'),
           meta: {
-            auth: true,
+            auth: false,
           },
         },
         {
@@ -54,7 +58,7 @@ let router = new Router({
           component: Student,
           name: 'students',
           meta: {
-            auth: true,
+            auth: false,
           },
         },
         {
@@ -62,7 +66,7 @@ let router = new Router({
           component: Teacher,
           name: 'teachers',
           meta: {
-            auth: true
+            auth: false,
           },
         },
         {
@@ -70,7 +74,7 @@ let router = new Router({
           component: Assignatures,
           name: 'assignatures',
           meta: {
-            auth: true
+            auth: false,
           },
         },
         {
@@ -78,7 +82,7 @@ let router = new Router({
           component: Users,
           name: 'users',
           meta: {
-            auth: true
+            auth: false,
           },
         },
         {
@@ -87,7 +91,7 @@ let router = new Router({
           component: StudentProfile,
           name: 'studentProfile',
           meta: {
-            auth: true
+            auth: false,
           },
         },
       ],

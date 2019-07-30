@@ -13,24 +13,28 @@
           <v-container grid-list-md>
                 <v-layout wrap>
                 <v-flex xs12 sm6 md6>
-                    <v-text-field label="Nombres*"
-                        id="name-input"
-                        v-model="newTeacher.name"
-                        :state="newTeacher.name" required>
-                    </v-text-field>
+                  <v-text-field label="Nombres*"
+                      id="name-input"
+                      v-model="newTeacher.name"
+                      :state="newTeacher.name" 
+                      hint="Nombres del profesor"
+                      required>
+                  </v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md6>
                     <v-text-field label="Apellidos*"
                         id="last-name-input"
-						v-model="newTeacher.lastname"
-						:state="newTeacher.lastname" hint="example of helper text only on focus"></v-text-field>
+                        v-model="newTeacher.lastname"
+                        :state="newTeacher.lastname" 
+                        hint="Apellidos del profesor"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md6>
                     <v-text-field 
                         label="Rut*" 
                         id="rut-input"
-						v-model="newTeacher.rut"
-						:state="newTeacher.rut" hint="example of helper text only on focus"></v-text-field>
+						            v-model="newTeacher.rut"
+						            :state="newTeacher.rut" 
+                        hint="Rut del profesor"></v-text-field>
                 </v-flex>
                 </v-layout>
           </v-container>
@@ -38,8 +42,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" type="submit" flat>Save</v-btn>
+          <v-btn color="blue darken-1" flat @click="dialog = false">Cerrar</v-btn>
+          <v-btn color="blue darken-1" type="submit" flat>Guardar</v-btn>
         </v-card-actions>
             </form>
       </v-card>
@@ -50,7 +54,7 @@
 <script>
 import api from '../../Api';
 import Teachers from './Teachers'
-  const Form =  {
+const Form =  {
       component:{
         Teachers,
       },
@@ -68,27 +72,25 @@ import Teachers from './Teachers'
     }),
     methods:{
       handleSubmit() {
-              /// postear un profesor
-            // Exit when the form isn't valid
-            // if (!this.checkFormValidity()) {
-            // return
-            this.$log.debug("New item created:", this.newTeacher) 
-            api.createNewTeacher(this.newTeacher).then( (response) => {  
-            this.$log.debug("New item created:", response);  
-                    this.teachers.push({  
-                    id: response.data.id,  
-                    name: this.newTeacher.name,  
-                    lastname: this.newTeacher.lastname,
-                    rut:   this.newTeacher.rut 
-                    })  
-            }).catch((error) => {  
-            this.$log.debug(error);  
-                    this.error = "Failed to add teacher"  
-                    });  
-            // Hide the modal manually
-            this.$nextTick(() => {
-              this.dialog = false;
-            })
+        // if (!this.checkFormValidity()) {
+        // return
+        this.$log.debug("New item created:", this.newTeacher) 
+        api.createNewTeacher(this.newTeacher).then( (response) => {  
+          this.$log.debug("New item created:", response);  
+          this.teachers.push({  
+            id: response.data.id,  
+            name: this.newTeacher.name,  
+            lastname: this.newTeacher.lastname,
+            rut:   this.newTeacher.rut 
+          });  
+        }).catch((error) => {  
+          this.$log.debug(error);  
+          this.error = "Failed to add teacher"  
+        });  
+        // Hide the modal manually
+        this.$nextTick(() => {
+          this.dialog = false;
+        })
     },
 },
   }

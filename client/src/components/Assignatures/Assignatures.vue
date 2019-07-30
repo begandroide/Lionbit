@@ -49,6 +49,7 @@
 										<td class="text-xs-left">{{ props.item.sigla }}</td>
 										<td class="text-left text-xs-left">{{props.item.num_students}}</td>
 										<td class="text-left text-xs-left">{{props.item.num_paralelos}}</td>
+										<td class="text-left text-xs-left">{{props.item.semestre}}</td>
 									</tr>
 								</template>
 								<template v-slot:no-results>
@@ -121,6 +122,11 @@ import Actions from "./Actions";
 					sortable: true,
 					value: 'num_paralelos'
 				},
+				{	text: 'Semestre',
+					align: 'left',
+					sortable: true,
+					value: 'semestre'
+				},
 				],
 				loading: false,
 				assignatures: [],
@@ -150,6 +156,9 @@ import Actions from "./Actions";
 					this.selected = null;
 					event.target.parentElement.classList.remove('selected-row-special');
 				}else{
+					if(this.selected != null){
+						event.target.parentElement.parentElement.querySelector('.selected-row-special').classList.remove('selected-row-special');
+					}
 					event.target.parentElement.classList.add('selected-row-special');
 					this.selected = a;
 				}

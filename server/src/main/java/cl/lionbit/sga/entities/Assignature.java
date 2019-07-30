@@ -14,18 +14,19 @@ public class Assignature {
 	private String sigla;
     private Integer num_paralelos;
     private Long num_students;
-    
+	private Integer creditos_usm;
 
 	public Assignature() {
 	}
 	
 
-	public Assignature(Long id, String name, String sigla, Integer num_paralelos, Long num_students) {
+	public Assignature(Long id, String name, String sigla, Integer num_paralelos, Long num_students,Integer creditos_usm) {
 		this.id = id;
         this.name = name;
         this.sigla = sigla;
         this.num_paralelos = num_paralelos;
-        this.num_students = num_students;
+		this.num_students = num_students;
+		this.creditos_usm = creditos_usm;
 	}
 
 	@Override
@@ -102,6 +103,19 @@ public class Assignature {
 	public Integer getNum_paralelos() {
 		return num_paralelos;
 	}
+	/**
+	 * @param num_paralelos the number of paralelos of assignature
+	 */
+	public void setCreditos_usm(Integer creditos_usm) {
+		this.creditos_usm = creditos_usm;
+	}
 
+	/**
+	 * @return the number of paralelos of assignature
+	 */
+	public Integer getCreditos_usm() {
+		return creditos_usm;
+	}
+	
 
 }
