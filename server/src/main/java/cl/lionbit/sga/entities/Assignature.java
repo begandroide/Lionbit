@@ -3,6 +3,9 @@ package cl.lionbit.sga.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import java.util.Set;
 
 @Entity
 public class Assignature {
@@ -15,6 +18,10 @@ public class Assignature {
     private Integer num_paralelos;
     private Long num_students;
 	private Integer creditos_usm;
+	
+	@OneToMany
+	@JoinColumn(name="assignature_id")
+	private Set<TeacherHasACourse> courses;
 
 	public Assignature() {
 	}

@@ -8,15 +8,15 @@
 						<v-layout row wrap>
 							<div class="col-md-8 col-sm-8">
 								<h3 class="card-title">
-									<i class="fa fa-chalkboard-teacher"></i>
-									Profesores
+									<i class="fa fa-pen"></i>
+									Asignaturas dictadas
 								</h3>
-								<p class="text-muted card-subtitle"> Listado de profesores registrados en el sistema. </p>
+								<p class="text-muted card-subtitle"> Asignaturas con profesores registrados en el sistema. </p>
 							</div>
 
 							<div class="col-md-4 col-sm-4">
 								<div align="right">
-									<FormCreate :teachers="teachers" />
+									<FormCreate :teacherAssignature="teacherAssignatures" />
 								</div >
 							</div>
 
@@ -39,7 +39,7 @@
 							<v-flex >
 							<v-data-table
 								:headers="headers"
-								:items="teachers"
+								:items="teacherAssignatures"
 								class="elevation-1"
 								:search="search"
 								:aria-sort="true"
@@ -47,9 +47,8 @@
 								<template v-slot:items="props" >
 									<tr @click="showAlert(props.item)">
 										<td class="hidden-id">{{props.item.id}}</td>
-										<td class="text-left">{{props.item.name}}</td>
-										<td class="text-left">{{props.item.lastname}}</td>
-										<td class="text-xs-left">{{ props.item.rut }}</td>	
+										<td class="text-left">{{props.item.assignature.name}}</td>
+										<td class="text-left">{{props.item.teacher.name}}</td>
 									</tr>
 								</template>
 
@@ -76,14 +75,14 @@ import FormCreate from './FormCreate';
 import Actions from './Actions';
 
 // app Vue instance
-  const Teachers = {
-	name: 'Teachers',
+  const TeacherAssignature = {
+	name: 'TeacherAssignature',
 	components:{
 		FormCreate,
 		Actions
 	},
 	metaInfo: {
-		title: 'Profesores',
+		title: 'Asignaturas profesor',
 		titleTemplate: '%s | Siga web App'
 	},
     props: {
@@ -91,15 +90,15 @@ import Actions from './Actions';
     },
 	data: function(){
 		return{
-			selected: null,
-			teachers: [],
 			delimiters: ['${ ', ' }'],
+			selected: null,
+			teacherAssignatures: [],
 			loading: false,
 			message: null,
-			newTeacher: {
-					firstName: null,
-					lastname: null,
-					rut: null
+			newTeacherAssignature: {
+					Teacher_ID: null,
+					Assignature_ID: null,
+					Semestre: null,
 			},
 			search: '',
 			dialog: false,
@@ -110,42 +109,39 @@ import Actions from './Actions';
 				class: 'hidden-id',
 			},
 			{
-				text: 'Nombres',
+				text: 'Asignatura',
+				align: 'left',
+				sortable: true,
+				value: 'name'
+			},
+			{
+				text: 'Profesor',
 				align: 'left',
 				sortable: true,
 				value: 'firstName'
 			},
-			{
-				text: 'Apellidos',
-				align: 'left',
-				sortable: true,
-				value: 'lastname'
-			},
-			{ 	text: 'Rut',
-				align: 'left',
-				sortable: true,
-				value: 'rut'
-			}],
+			],
 		};
 	},
-	mounted: function(){
+	mounted() {
 		},
 	created: function () {
 		api.init();
-		api.getAllTeachers()  
+		api.getAllTeacherAssignatures()
 			.then(response => {  
-				this.$log.debug("Data loaded: ", response.data.content); 
-				this.teachers = response.data.content;
-				this.$log.debug("teachers : ", this.teachers); 
-                        
+			this.$log.debug("Data loaded: ", response.data.content); 
+			this.teacherAssignatures = response.data.content;
+			this.$log.debug("teachers assignatures: ", this.teacherAssignatures); 
+							
 			})  
 			.catch(error => {  
-				this.$log.debug(error)  
-				this.error = "Failed to load teachers"  
-				})  
-			.finally(() => this.loading = false)  
+			this.$log.debug(error)  
+			this.error = "Failed to load teachers assignatures"  
+			})  
+			.finally(() => this.loading = false);  
+        
 	},
-	methods: {
+        methods: {
 			showAlert(a){
 				if (event.target.classList.contains('btn__content')) return;
 				if(this.selected === a ){
@@ -159,7 +155,7 @@ import Actions from './Actions';
         },
   }
 
-        export  default Teachers
+        export  default TeacherAssignature
 </script>
 
 <style>

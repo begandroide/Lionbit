@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-
+import java.util.Set;
 @Entity
 @Table(name="teachers")
 @ApiModel(description = "All details about the Teacher. ")
@@ -28,7 +28,10 @@ public class Teacher implements Serializable {
 	@NotEmpty
 	@Column(name="rut", length = 20, unique = true, updatable = false)
 	private String rut;
-    
+	
+	@OneToMany
+	@JoinColumn(name="teacher_id")
+	private Set<TeacherHasACourse> courses;
 
 	public Teacher() {
 	}

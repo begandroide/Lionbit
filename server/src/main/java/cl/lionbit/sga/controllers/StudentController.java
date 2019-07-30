@@ -45,10 +45,9 @@ public class StudentController {
 	}
 
 	@GetMapping
-	public @ResponseBody Page<Student> home(Pageable pageable, @RequestParam(defaultValue = "4") String filter ) {
+	public @ResponseBody Page<Student> home(Pageable pageable, @RequestParam(defaultValue = "") String filter ) {
 
-		logger.info("Controller Find Page");
-
+		logger.info("Controller students Find Page");
 		return this.service.findPaginated(filter, pageable);
 
 	}

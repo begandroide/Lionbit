@@ -6,6 +6,10 @@ import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -20,7 +24,21 @@ public class TeacherHasACourse implements Serializable {
     @ApiModelProperty(notes = "Is the primary key, the database auto generate this ID")
     private Long courseID;
 
-    @NotEmpty
+    @JoinColumn(name = "teacher_id",  referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = Teacher.class, fetch = FetchType.EAGER)
+    private Teacher teacher;
+
+    @Column(name = "teacher_id")
+    private Long teacherId;
+
+    @JoinColumn(name = "assignature_id",  referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = Assignature.class, fetch = FetchType.EAGER)
+    private Assignature assignature;
+    
+    @Column(name = "assignature_id")
+    private Long assignatureId;
+
+    @NotNull
     @Column(name="semester_taught")
     @Enumerated(EnumType.STRING)
     private Semester semesterTaught;
@@ -45,6 +63,11 @@ public class TeacherHasACourse implements Serializable {
         return semesterTaught;
     }
 
+    public void setSemesterTaught(String semesterTaught) {
+        Semester ns = Semester.valueOf(semesterTaught);
+        this.semesterTaught = ns;
+    }
+    
     public void setSemesterTaught(Semester semesterTaught) {
         this.semesterTaught = semesterTaught;
     }
@@ -63,6 +86,40 @@ public class TeacherHasACourse implements Serializable {
 
     public void setYear(Date year) {
         this.year = year;
+    }
+
+    public void setAssignature(Assignature assignature){
+        this.assignature = assignature;
+    }
+
+    public Assignature getAssignature(){
+        return assignature;
+    }
+    
+
+    public void setAssignatureId(Long assignature){
+        this.assignatureId = assignature;
+    }
+
+    public Long getAssignatureId(){
+        return assignatureId;
+    }
+
+    
+    public void setTeacher(Teacher teacher){
+        this.teacher = teacher;
+    }
+
+    public Teacher getTeacher(){
+        return teacher;
+    }
+
+    public void setTeacherId(Long teacherId){
+        this.teacherId = teacherId;
+    }
+
+    public Long getTeacherId(){
+        return teacherId;
     }
 
     private static final long serialVersionUID = 1L;

@@ -128,12 +128,11 @@ import Actions from "./Actions";
                 };
         },
         created: function () {
-        },
-        mounted() {
+			api.init();
                 api.getAllStudents()  
 									.then(response => {  
 									this.$log.debug("Data loaded: ", response.data); 
-									this.students = response.data;
+									this.students = response.data.content;
 									this.$log.debug("students : ", this.students); 
 									
 									})  
@@ -142,6 +141,8 @@ import Actions from "./Actions";
 									this.error = "Failed to load students"  
 									})  
 									.finally(() => this.loading = false)
+        },
+        mounted() {
         },
         methods: {
 			showAlert(a){

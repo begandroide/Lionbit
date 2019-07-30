@@ -23,12 +23,13 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<Student> findAll() {
-		return this.repository.findAll();
+		return (List<Student>) this.repository.findAll();
 	}
 
 	@Override
 	public Page<Student> findPaginated(String filter, Pageable pageable) {
-		return this.repository.findByFirstNameOrLastNameContainingIgnoreCase(filter, pageable);
+		Page<Student> test = this.repository.findByFirstNameContainingIgnoreCase(filter, pageable);
+		return test;
 	}
 
 	@Override

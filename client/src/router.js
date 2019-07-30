@@ -3,6 +3,7 @@ import Student from './components/Student/Students.vue'
 import StudentProfile from './components/Student/StudentProfile.vue'
 import Teacher from './components/Teacher/Teachers.vue'
 import Assignatures from './components/Assignatures/Assignatures.vue'
+import TeacherAssignature from './components/TeacherAssignature/TeacherAssignature.vue'
 import Users from './components/Administration/Users.vue'
 import LayoutBlank from './views/LayoutBlank.vue'
 import Layout from './views/Layout.vue'
@@ -50,7 +51,7 @@ let router = new Router({
           path:'',
           component: () => import('./views/Home.vue'),
           meta: {
-            auth: false,
+            auth: true,
           },
         },
         {
@@ -58,7 +59,7 @@ let router = new Router({
           component: Student,
           name: 'students',
           meta: {
-            auth: false,
+            auth: true,
           },
         },
         {
@@ -66,7 +67,7 @@ let router = new Router({
           component: Teacher,
           name: 'teachers',
           meta: {
-            auth: false,
+            auth: true,
           },
         },
         {
@@ -74,7 +75,15 @@ let router = new Router({
           component: Assignatures,
           name: 'assignatures',
           meta: {
-            auth: false,
+            auth: true,
+          },
+        },
+        {
+          path: '/TeacherAssignatures',
+          component: TeacherAssignature,
+          name: 'TeacherAssignature',
+          meta: {
+            auth: true,
           },
         },
         {

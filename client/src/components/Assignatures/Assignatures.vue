@@ -134,8 +134,7 @@ import Actions from "./Actions";
 			};
         },
         created: function () {
-        },
-        mounted() {
+			api.init();
 			api.getAllAssignatures()  
 				.then(response => {  
 				this.$log.debug("Data loaded: ", response.data.content); 
@@ -148,6 +147,8 @@ import Actions from "./Actions";
 				this.error = "Failed to load students"  
 				})  
 				.finally(() => this.loading = false)  
+        },
+        mounted() {
         },
         methods: {
 			showAlert(a){

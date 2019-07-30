@@ -58,69 +58,6 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-        <!-- <v-navigation-drawer 
-			v-model="drawer" 
- 			:clipped="true"
-			class="yellow darken-3" 
-			:mini-variant.sync="mini"
-        	permanent
-			mini-variant-width=80
-			app 
-			>
-			<v-list>
-				<template v-for="(item, index) in items">
-
-					<v-list-group no-action
-						v-if="item.child != null" :key="index">
-						<template v-slot:activator>
-							<v-list-tile class="ma-0 pa-0" >
-								<v-list-tile-action >
-									<v-icon color="white">{{ item.icon }}</v-icon>
-								</v-list-tile-action>
-
-								<v-list-tile-content >
-									<b-link :to="item.url" class="font-weight-bolder text-white">
-										{{item.title}}
-									</b-link>
-								</v-list-tile-content>
-							</v-list-tile>
-						</template>
-						<div  v-if="!mini">
-						<v-list-tile v-for="(item2,index2) in item.child"
-									:key="index2" sub-group>
-
-									<v-list-tile-action class="ma-0 pa-0">
-										<v-icon color="white">{{ item2.icon }}</v-icon>
-									</v-list-tile-action>
-
-									<v-list-tile-content class="pa-0 ma-0">
-										<b-link :to="item2.url" class="font-weight-bolder text-white">
-											{{item2.title}}
-										</b-link>
-									</v-list-tile-content>
-
-								</v-list-tile>
-						</div>	
-					</v-list-group>
-
-					<v-list-tile  v-else
-						 :key="index">
-
-						 <v-list-tile-action class="ma-0 pa-0">
-							<v-icon color="white">{{ item.icon }}</v-icon>
-						</v-list-tile-action>
-
-						<v-list-tile-content class="pa-0 ma-0">
-							<b-link :to="item.url" class="font-weight-bolder text-white">
-								{{item.title}}
-							</b-link>
-						</v-list-tile-content>
-
-					</v-list-tile>
-				</template>
-			</v-list>
-       </v-navigation-drawer>
- -->
         <!-- Navbar principal -->
         <v-toolbar fixed :clipped-left="clipped" app color="blue darken-3" dark>
 			<v-toolbar-side-icon class="md-and-up" @click="mini = !mini"></v-toolbar-side-icon>
@@ -185,7 +122,10 @@ import router from "../../router"
 										to: '/Teachers'  	},
 										{ 	title: 'Asignaturas',
 										icon: 'fas fa-book',
-										to: '/Assignatures'  	}
+										to: '/Assignatures'  	},
+										{ 	title: 'Asignaturas asignadas',
+										icon: 'fas fa-pen',
+										to: '/TeacherAssignatures'  	}
 										  ]
 								}
                         ],

@@ -27,7 +27,8 @@ public class TeacherServiceImpl implements TeacherService {
 
 	@Override
 	public Page<Teacher> findPaginated(String filter, Pageable pageable) {
-		return this.repository.findByNameContainingIgnoreCase(filter, pageable);
+		Page<Teacher> test = this.repository.findByNameContainingIgnoreCase(filter, pageable);
+		return test;
 	}
 
 	@Override

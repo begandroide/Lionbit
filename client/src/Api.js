@@ -3,16 +3,29 @@ import axios from 'axios'
 import { TokenService } from './services/storage.service'
 import router from "./router"
 
-const SERVER_URL = 'http://localhost:8089'  
+const SERVER_URL = 'http://localhost:8089';  
 
 const instance = axios.create({  
   baseURL: SERVER_URL,  
-  timeout: 1000,
+  timeout: 10000,
+});
+
+
+instance.interceptors.request.use(function(config) {
+  const token = TokenService.getToken();
+
+  if ( token != null ) {
+    instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  }
+
+  return config;
+}, function(err) {
+  return Promise.reject(err);
 });
 
 instance.interceptors.response.use(null, function (error) {
-  if (error.response.status === 401 && error.response.data.error === 'Unauthorized') {
-    console.log('Failed to login')
+  if (error.response.status === 500) {
+    console.log('JWT expired');
     TokenService.removeToken();
     router.push('/Login');
   }
@@ -20,22 +33,27 @@ instance.interceptors.response.use(null, function (error) {
 })
 
 export default {  
-  init(baseURL) {
-    axios.defaults.baseURL = baseURL;
+  init() {
+    instance.defaults.baseURL = SERVER_URL;
+    this.setHeader();
   },
   setHeader() {
-      axios.defaults.headers.common["Authorization"] = `Bearer ${TokenService.getToken()}`
+      instance.defaults.headers.common["Authorization"] = `Bearer ${TokenService.getToken()}`
   },
 
   removeHeader() {
-      axios.defaults.headers.common = {}
+      instance.defaults.headers.common = {}
   },
   async execute(method, resource, data, config) {  
-    let accessToken = localStorage.token
+    let accessToken = TokenService.getToken();
     return instance({  
       method:method,  
       url: resource,  
       data,
+      headers: {  
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`  
+      },
       ...config  
     })  
   },  
@@ -49,12 +67,13 @@ export default {
     }]  
   }),
   createNewUser: (User) => instance.post('api/users/register',{ User}),
+
   //Students
   createNewStudent: (Student) => instance.post('api/students', Student),  
-  getAllStudents: () => instance.get('api/students/all',{ useCredentails: true }, {  
+  getAllStudents: () => instance.get('api/students/',{useCredentails: true}, {  
     transformResponse: [function (data) {  
       console.log(data);
-      return data? JSON.parse(data)._embedded.students : data;  
+      return data? JSON.parse(data)._embedded.students: data;  
     }]  
   }),    
   updateStudentForId: (Student) => instance.put('api/students/'+Student.studentID, {firstName: Student.firstName, lastName: Student.lastName, rol_usm: Student.rol_usm }),   
@@ -64,7 +83,7 @@ export default {
   //Teachers  
   createNewTeacher: (Teacher) => instance.post('api/teachers/', Teacher ),
     
-  getAllTeachers: () => instance.get('api/teachers/',{ useCredentails: true }, {  
+  getAllTeachers: () => instance.get('api/teachers/',{useCredentails: true}, {  
     transformResponse: [function (data) {  
       return data? JSON.parse(data)._embedded.teachers : data;  
     }]  
@@ -84,5 +103,14 @@ export default {
         Assignature),   
   removeAssignatureForId: (id) => instance.delete('api/assignatures/'+id),
   //-/Students
+  createNewTeacherAssignature: (TeacherAssignature) => instance.post('api/teacherassignatures/', TeacherAssignature),  
+  getAllTeacherAssignatures: () => instance.get('api/teacherassignatures', { useCredentails: true }, {  
+    transformResponse: [function (data) {  
+      return data? JSON.parse(data)._embedded.teacherassignatures : data;  
+    }]  
+  }),    
+  updateTeacherAssignatureForId: (id,TeacherAssignature) => instance.put('api/teacherassignatures/'+id, 
+        Assignature),   
+  removeTeacherAssignatureForId: (id) => instance.delete('api/teacherassignatures/'+id),
   
 }
