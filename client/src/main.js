@@ -17,7 +17,18 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import VueLogger from 'vuejs-logger';
 
-import 'vuetify/dist/vuetify.min.css'
+import 'vuetify/dist/vuetify.min.css';
+import NProgress from 'vue-nprogress';
+
+const optionsNpro = {
+  latencyThreshold: 800, // Number of ms before progressbar starts showing, default: 100,
+  router: true, // Show progressbar when navigating routes, default: true
+  http: false, // Show progressbar when doing Vue.http, default: true
+};
+
+Vue.use(NProgress,optionsNpro)
+
+const nprogress = new NProgress({parent: ".v-content__wrap"});
 
 const options = {
   isEnabled: true,
@@ -40,6 +51,7 @@ Vue.use(VueLogger, options);
 new Vue({
   el: '#app',
   router,
+  nprogress,
   template: '<App/>',
   components: { App }
 });

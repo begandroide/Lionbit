@@ -70,7 +70,7 @@
 <script>
 
 import api from '../../Api';
-import FormCreate from "./FormCreate";
+import FormCreate from "./FormCreateStudent";
 import Actions from "./Actions";
 // app Vue instance
   const Students = {

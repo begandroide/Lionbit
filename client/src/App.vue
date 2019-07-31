@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <v-content>
-      <Nprogress />
       <router-view />  
     </v-content>
   </v-app>
@@ -9,14 +8,9 @@
 
 
 <script>  
-import Nprogress from "./views/Nprogress";
-
   // app Vue instance  
   const App = {
-    name: 'App',  
-    components: {
-      Nprogress,
-    },
+    name: 'App', 
     // app initial state  
     data: () => {  
       return {  

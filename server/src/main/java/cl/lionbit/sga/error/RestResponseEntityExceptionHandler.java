@@ -1,6 +1,8 @@
 package cl.lionbit.sga.error;
 
 
+import java.util.Date;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
@@ -10,12 +12,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@ControllerAdvice
+import cl.lionbit.sga.exceptions.ErrorDetails;
+
+@RestControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     public RestResponseEntityExceptionHandler() {
@@ -28,8 +32,9 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler({ DataIntegrityViolationException.class })
     public ResponseEntity<Object> handleBadRequest(final DataIntegrityViolationException ex, final WebRequest request) {
-        final String bodyOfResponse = "This should be application specific";
-        return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+        //final String bodyOfResponse = ex.getCause().getCause().toString();
+        ErrorDetails error = new ErrorDetails(new Date(), ex.getMostSpecificCause().toString(), ex.getCause());
+        return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.FOUND, request);
     }
 
     @Override

@@ -10,25 +10,22 @@ import LayoutBlank from './views/LayoutBlank.vue'
 import Layout from './views/Layout.vue'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
-import NProgress from 'nprogress';
+
+import NProgress from 'vue-nprogress'
 
 
 import { TokenService } from './services/storage.service'
 
 Vue.use(Router);
 Vue.use(Meta);
-
-const ifAuthenticated = (to, from, next) => {
-  if (TokenService.getToken !== null) {
-    next()
-    return
-  }
-  next('/login')
-}
+// Vue.use(NProgress);
 
 
 let router = new Router({
   mode: 'history',
+  // component:{
+  //   NProgress
+  // },
   routes: [
     {
       path: '/login',
@@ -53,6 +50,7 @@ let router = new Router({
           component: () => import('./views/Home.vue'),
           meta: {
             auth: true,
+            showProgressBar: true
           },
         },
         {
@@ -61,6 +59,7 @@ let router = new Router({
           name: 'students',
           meta: {
             auth: true,
+            showProgressBar: true
           },
         },
         {
@@ -119,7 +118,9 @@ let router = new Router({
 
 router.beforeEach((to, from, next) => {
   var tok = TokenService.getToken();
+
   if(to.path != '/login' || tok !== null) {
+      NProgress.start();
       if(tok !== null) { 
           console.log('There is a token, resume. (' + to.path + ')');
           next();
@@ -131,6 +132,10 @@ router.beforeEach((to, from, next) => {
     console.log('You\'re on the login page');
     next(); // This is where it should have been
   }
+});
+
+router.afterEach(() => {
+  NProgress.done;
 });
 
 export default router;

@@ -29,8 +29,9 @@
                     <v-text-field 
                         label="Rol Usm*" 
                         id="rol-input"
-						v-model="newStudent.rol_usm"
-						:state="newStudent.rol_usm" hint="example of helper text only on focus"></v-text-field>
+                        @change="checkError"
+                        v-model="newStudent.rol_usm"
+                        :error-messages="errorMessage" hint="example of helper text only on focus"></v-text-field>
                 </v-flex>
                 </v-layout>
           </v-container>
@@ -38,7 +39,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Cerrar</v-btn>
+          <v-btn color="blue darken-1" flat @click="closeDialog">Cerrar</v-btn>
           <v-btn color="blue darken-1" type="submit" flat>Guardar</v-btn>
         </v-card-actions>
             </form>
@@ -58,6 +59,8 @@ import Students from './Students'
           students: Array
       },
     data: () => ({
+      errorMessage: "",
+      error: false,
       dialog: false,
       newStudent: {
         id: 0,
@@ -67,6 +70,13 @@ import Students from './Students'
         },
     }),
     methods:{
+      checkError: function(value) {
+        if(value === "" ){
+          this.errorMessage = "";
+          this.error = false; 
+        }
+      },
+
       CreateStudent() {
         if(this.newStudent.lastName != null){
           api.createNewStudent(this.newStudent).
@@ -80,20 +90,39 @@ import Students from './Students'
               })  
           }).catch((error) => {  
             this.$log.debug(error);  
-              this.error = "Failed to add student"  
+              this.error = "Failed to add student";
+              if(error.response.data.message.includes("Duplicate")){
+                this.error = true;
+              }
+               
           }).finally( () => { 
-            this.newStudent.id = 0;
-            this.newStudent.firstName = "";
-            this.newStudent.lastName = "";
-            this.newStudent.rol_usm = "";
-          });  
-        // Hide the modal manually
-        this.$nextTick(() => {
-          this.dialog = false;
-        });
-
+            if(this.error){
+              this.errorMessage = "Rol existente";
+            } else{
+              this.cleanNewStudent();
+              // Hide the modal manually
+              this.$nextTick(() => {
+                this.dialog = false;
+              });
+            }
+          }); 
         }
       },
+      closeDialog() {
+        this.dialog = false;
+        this.cleanErrors();
+        this.cleanNewStudent();
+      },
+      cleanNewStudent(){
+        this.newStudent.id = 0;
+        this.newStudent.firstName = null;
+        this.newStudent.lastName = null;
+        this.newStudent.rol_usm = null;
+      },
+      cleanErrors(){
+        this.errorMessage = "";
+        this.error = false;
+      }
     },
   }
   export default FormCreate;
