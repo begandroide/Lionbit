@@ -114,6 +114,9 @@ import router from "../../router"
 									icon: 'fab fa-keycdn',
 									child: 
 									[ 	
+										{title: 'Semestres',
+										icon: 'fa fa-calendar',
+										to: '/Semester'  	},
 										{title: 'Estudiantes',
 										icon: 'fa fa-user-graduate',
 										to: '/Students'  	},

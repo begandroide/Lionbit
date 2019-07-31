@@ -113,4 +113,16 @@ export default {
         Assignature),   
   removeTeacherAssignatureForId: (id) => instance.delete('api/teacherassignatures/'+id),
   
+  //// semester
+
+  createNewSemester: (Semester) => instance.post('api/semester/', Semester),  
+  getAllSemesters: () => instance.get('api/semester/', { useCredentails: true }, {  
+    transformResponse: [function (data) {  
+      return data? JSON.parse(data)._embedded.semesters : data;  
+    }]  
+  }),    
+  updateSemesterForId: (id,Semester) => instance.put('api/semester/'+id, 
+        Semester),   
+  removeSemesterForId: (id) => instance.delete('api/semester/'+id),
+  
 }
