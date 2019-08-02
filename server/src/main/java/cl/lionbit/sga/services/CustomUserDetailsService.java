@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -28,6 +30,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+    
+    public Page<User> findPaginated( String filter,Pageable pageable){
+        return userRepository.findAll(pageable);
     }
 
     public void saveUser(User user) {

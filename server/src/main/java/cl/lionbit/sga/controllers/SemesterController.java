@@ -1,7 +1,7 @@
 package cl.lionbit.sga.controllers;
 
 import java.util.List;
-
+import java.util.Date;
 import javax.validation.Valid;
 
 import io.swagger.annotations.Api;
@@ -68,6 +68,8 @@ public class SemesterController {
 	@PostMapping
 	public ResponseEntity<Semester> create(@Valid @RequestBody Semester assignature) {
 
+		assignature.setActive(true);
+		assignature.setCreateAt(new Date());
 		Semester savedAssignature = this.service.create(assignature);
 
 		return new ResponseEntity<>(savedAssignature, HttpStatus.CREATED);

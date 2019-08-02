@@ -21,6 +21,12 @@ public class Semester implements Serializable {
     @Column(name="year")
     private String yearSemester;
 
+    @Column(name="in_course")
+    private Boolean inCourse;
+    
+    @Column(name="active")
+    private Boolean active;
+
     @Temporal(TemporalType.DATE)
     @Column(name="create_at")
     private Date createAt;
@@ -57,6 +63,21 @@ public class Semester implements Serializable {
         this.createAt = createAt;
     }
 
+    public Boolean getInCourse() {
+        return inCourse;
+    }
+
+    public void setInCourse(Boolean inCourse) {
+        this.inCourse = inCourse;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 
     private static final long serialVersionUID = 1L;
 }

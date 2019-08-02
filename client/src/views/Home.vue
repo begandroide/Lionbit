@@ -1,5 +1,5 @@
 <template>
-<div class="m-5" style=" height:70%;">
+<div class="m-5" style=" height:50%;">
   <div class="mt-2" :key="index" v-for="(item,index) in asignaturasSemestre">
     <b-card-group deck>
       

@@ -27,6 +27,7 @@ instance.interceptors.response.use(null, function (error) {
   if (error.response.status === 500) {
     console.log('JWT expired');
     TokenService.removeToken();
+    
     router.push('/Login');
   }
   return Promise.reject(error)
@@ -60,13 +61,14 @@ export default {
   //login
   login: (email, password) => instance.post('api/auth/login', {email: email, password: password}),
   //admin
-  getAllUsers: () => instance.get('api/users/all', { useCredentails: true }, {  
+  getAllUsers: () => instance.get('api/users', { useCredentails: true }, {  
     transformResponse: [function (data) {  
       console.log(data);
       return data? JSON.parse(data)._embedded.users : data;  
     }]  
   }),
-  createNewUser: (User) => instance.post('api/users/register',{ User}),
+  createNewUser: (User) => instance.post('api/users/register', User ),
+  removeUserForId: (id,User) => instance.delete('api/users/'+id),
 
   //Students
   createNewStudent: (Student) => instance.post('api/students', Student),  
@@ -115,7 +117,7 @@ export default {
   
   //// semester
 
-  createNewSemester: (Semester) => instance.post('api/semester/', Semester),  
+  createNewSemester: (Semester) => instance.post('api/semester', Semester),  
   getAllSemesters: () => instance.get('api/semester/', { useCredentails: true }, {  
     transformResponse: [function (data) {  
       return data? JSON.parse(data)._embedded.semesters : data;  

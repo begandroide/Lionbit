@@ -44,9 +44,24 @@
 							>
 								<template v-slot:items="props" >
 									<tr  @click="showAlert(props.item)">
-										<td class="hidden-id">{{props.item.id}}</td>
+										<td class="hidden-id">{{props.item.semesterID}}</td>
 										<td class="text-left text-xs-left">{{props.item.numberSemester}}</td>
 										<td class="text-xs-left">{{ props.item.yearSemester }}</td>
+										<td class="text-xs-left">
+											 <v-tooltip bottom v-if="!props.item.inCourse">
+												<template v-slot:activator="{ on }">
+													<v-icon v-on="on" color="error">fas fa-circle</v-icon>
+												</template>
+												<span>Curso inactivo</span>
+											</v-tooltip>
+											
+											 <v-tooltip bottom v-else>
+												<template v-slot:activator="{ on }">
+													<v-icon variant="success">fas fa-circle</v-icon>
+												</template>
+												<span>Curso activo</span>
+											</v-tooltip>
+										</td>
 									</tr>
 								</template>
 								<template v-slot:no-results>
@@ -108,6 +123,11 @@ import Actions from "./Actions";
 					align: 'left',
 					sortable: true,
 					value: 'ano'
+				},
+				{ 	text: 'En curso',
+					align: 'left',
+					sortable: true,
+					value: 'onCourse'
 				},
 				],
 				loading: false,

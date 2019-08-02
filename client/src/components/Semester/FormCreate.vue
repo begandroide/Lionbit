@@ -57,21 +57,25 @@ import Semester from './Semester'
       data: () => ({
         dialog: false,
         newSemester: {
-          id: 0,
+          semesterID: 0,
           numberSemester: null,
           yearSemester: null,
+          inCourse: false,
+          active: true
         },
         years:["2018","2019","2020","2021","2022"],
         semester:["1","2","3"]
       }),
     methods:{
         handleSubmit2() {
-            api.createNewSemester(this.newSemester, false).then( (response) => {  
+            api.createNewSemester(this.newSemester).then( (response) => {  
                 console.log(this.$root);
                 this.semesters.push({  
-                    id: response.data.id,  
+                    id: response.data.semesterID,  
                     numberSemester: this.newSemester.numberSemester,  
                     yearSemester:   this.newSemester.yearSemester,
+                    inCourse: this.newSemester.inCourse,
+                    active: this.newSemester.active
                 })  
         }).catch((error) => {  
             this.$log.debug(error);  

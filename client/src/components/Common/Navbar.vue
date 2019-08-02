@@ -128,7 +128,10 @@ import router from "../../router"
 										to: '/Assignatures'  	},
 										{ 	title: 'Asignaturas asignadas',
 										icon: 'fas fa-pen',
-										to: '/TeacherAssignatures'  	}
+										to: '/TeacherAssignatures'  	},
+										{ 	title: 'Usuarios',
+										icon: 'fas fa-user',
+										to: '/Users'  	}
 										  ]
 								}
                         ],

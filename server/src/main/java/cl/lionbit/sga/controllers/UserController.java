@@ -8,6 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -22,8 +26,20 @@ import static org.springframework.http.ResponseEntity.ok;
 @Api(value="User Management" + VERSION)
 @RequestMapping(USERSPATH)
 public class UserController {
+    
+    private static Logger logger = LoggerFactory.getLogger(UserController.class);
+    
     @Autowired
     private CustomUserDetailsService userService;
+
+    @GetMapping
+	public @ResponseBody Page<User> home(Pageable pageable, @RequestParam(defaultValue = "") String filter ) {
+
+		logger.info("Controller Find Page of User");
+
+		return this.userService.findPaginated(filter, pageable);
+
+	}
 
     @SuppressWarnings("rawtypes")
     @PostMapping("/register")
