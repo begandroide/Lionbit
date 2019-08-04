@@ -14,6 +14,8 @@ public interface SemesterService {
 
 	Semester findOne(Long id);
 
+	Semester findActive();
+
 	Semester create(Semester assignature);
 
 	Semester update(Long id, Semester assignature);

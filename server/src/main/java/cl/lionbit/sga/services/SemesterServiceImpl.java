@@ -35,6 +35,11 @@ public class SemesterServiceImpl implements SemesterService {
 	public Semester findOne(Long id) {
 		return this.repository.findById(id).get();
 	}
+	
+	@Override
+	public Semester findActive() {
+		return this.repository.findByActive(true);
+	}
 
 	@Override
 	public Semester create(Semester assignature) {

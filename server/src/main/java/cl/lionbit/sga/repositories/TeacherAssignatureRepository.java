@@ -16,6 +16,6 @@ public interface TeacherAssignatureRepository extends CrudRepository<TeacherHasA
 
     List<TeacherHasACourse> findAll();
 
-    List<TeacherHasACourse> findByTeacherIdAndAssignatureId(Long teacherId,Long assignatureId);
+    List<TeacherHasACourse> findByTeacherIdAndAssignatureSemesterId(Long teacherId,Long assignatureId);
     
 }

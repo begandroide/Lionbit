@@ -46,7 +46,7 @@ public class TeacherAssignatureServiceImpl implements TeacherAssignatureService 
 
 	public Boolean CheckIfExistForTeacherIdAndAssignatureId(Long teacherId, Long assignatureId){
 
-		List<TeacherHasACourse> exists = this.repository.findByTeacherIdAndAssignatureId(teacherId, assignatureId);
+		List<TeacherHasACourse> exists = this.repository.findByTeacherIdAndAssignatureSemesterId(teacherId, assignatureId);
 
 		if(exists.isEmpty()) return false;
 
@@ -58,7 +58,7 @@ public class TeacherAssignatureServiceImpl implements TeacherAssignatureService 
 		TeacherHasACourse toUpdate = this.repository.findById(id).get();
 
         toUpdate.setCreateAt(TeacherHasACourse.getCreateAt());
-        toUpdate.setSemesterTaught(TeacherHasACourse.getSemesterTaught());
+        toUpdate.setAssignatureAndSemester(TeacherHasACourse.getAssignatureAndSemester());
         toUpdate.setYear(TeacherHasACourse.getYear());
 		return this.repository.save(toUpdate);
     }

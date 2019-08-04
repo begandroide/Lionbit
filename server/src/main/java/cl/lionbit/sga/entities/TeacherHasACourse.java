@@ -1,14 +1,10 @@
 package cl.lionbit.sga.entities;
 
-import cl.lionbit.sga.constans.Semester;
+// import cl.lionbit.sga.constans.Semester;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -31,17 +27,15 @@ public class TeacherHasACourse implements Serializable {
     @Column(name = "teacher_id")
     private Long teacherId;
 
-    @JoinColumn(name = "assignature_id",  referencedColumnName = "id", insertable = false, updatable = false)
-    @ManyToOne(targetEntity = Assignature.class, fetch = FetchType.EAGER)
-    private Assignature assignature;
+    @JoinColumn(name = "assignature_semester_id",  referencedColumnName = "Id", insertable = false, updatable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    private AssignatureAndSemester assignatureAndSemester;
     
-    @Column(name = "assignature_id")
-    private Long assignatureId;
+    @Column(name = "assignature_semester_id")
+    private Long assignatureSemesterId;
 
-    @NotNull
-    @Column(name="semester_taught")
-    @Enumerated(EnumType.STRING)
-    private Semester semesterTaught;
+    @Column(name = "paralelo")
+    private Integer numberParalelo;
 
     @Transient
     @Temporal(TemporalType.DATE)
@@ -59,19 +53,22 @@ public class TeacherHasACourse implements Serializable {
         this.courseID = courseID;
     }
 
-    public Semester getSemesterTaught() {
-        return semesterTaught;
+    public AssignatureAndSemester getAssignatureAndSemester() {
+        return assignatureAndSemester;
     }
 
-    public void setSemesterTaught(String semesterTaught) {
-        Semester ns = Semester.valueOf(semesterTaught);
-        this.semesterTaught = ns;
+    public void setAssignatureAndSemester(AssignatureAndSemester assignatureAndSemester){
+        this.assignatureAndSemester = assignatureAndSemester;
+    }
+
+    public Long getAssignatureAndSemesterId(){
+        return this.assignatureSemesterId;
+    }
+
+    public void setAssignatureAndSemesterId(Long id){
+        this.assignatureSemesterId = id;
     }
     
-    public void setSemesterTaught(Semester semesterTaught) {
-        this.semesterTaught = semesterTaught;
-    }
-
     public Date getCreateAt() {
         return createAt;
     }
@@ -87,24 +84,6 @@ public class TeacherHasACourse implements Serializable {
     public void setYear(Date year) {
         this.year = year;
     }
-
-    public void setAssignature(Assignature assignature){
-        this.assignature = assignature;
-    }
-
-    public Assignature getAssignature(){
-        return assignature;
-    }
-    
-
-    public void setAssignatureId(Long assignature){
-        this.assignatureId = assignature;
-    }
-
-    public Long getAssignatureId(){
-        return assignatureId;
-    }
-
     
     public void setTeacher(Teacher teacher){
         this.teacher = teacher;
@@ -120,6 +99,14 @@ public class TeacherHasACourse implements Serializable {
 
     public Long getTeacherId(){
         return teacherId;
+    }
+
+    public void setNumberParalelo(Integer num){
+        this.numberParalelo = num;
+    }
+
+    public Integer getNumberParalelo(){
+        return this.numberParalelo;
     }
 
     private static final long serialVersionUID = 1L;

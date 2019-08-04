@@ -47,7 +47,7 @@
 								<template v-slot:items="props" >
 									<tr @click="showAlert(props.item)">
 										<td class="hidden-id">{{props.item.id}}</td>
-										<td class="text-left">{{props.item.assignature.name}}</td>
+										<td class="text-left">{{props.item.assignatureAndSemester.assignature.name}}</td>
 										<td class="text-left">{{props.item.teacher.name}}</td>
 									</tr>
 								</template>
@@ -95,11 +95,6 @@ import Actions from './Actions';
 			teacherAssignatures: [],
 			loading: false,
 			message: null,
-			newTeacherAssignature: {
-					Teacher_ID: null,
-					Assignature_ID: null,
-					Semestre: null,
-			},
 			search: '',
 			dialog: false,
 			headers: [

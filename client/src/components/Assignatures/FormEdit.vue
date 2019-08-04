@@ -28,28 +28,18 @@
 						:state="newAssignature.sigla" 
 						hint="Siglas descriptivas del curso"></v-text-field>
 				</v-flex>
-				<v-flex xs12 sm6 md6>
-					<v-text-field 
-						type = "number"
-						min = 1
-						label="Cantidad alumnos*" 
-						id="cant-alumnos"
-						v-model="newAssignature.num_students"
-						:state="newAssignature.num_students" 
-						hint="Cantidad de alumnos totales para este curso">
-					</v-text-field>
-				</v-flex>
-				<v-flex xs12 sm6 md6>
-					<v-text-field
-						type = "number" 
-						min = 1
-						label="Cantidad paralelos*" 
-						id="num-paralelos"
-									v-model="newAssignature.num_paralelos"
-									:state="newAssignature.num_paralelos" 
-						hint="Cantidad de paralelos para el curso">
-					</v-text-field>
-				</v-flex>
+                <v-flex xs12 sm6 md6>
+                    <v-text-field 
+                        type = "number"
+                        min = 1
+                        max = 9
+                        label="Créditos*"
+                        id="creditos-input"
+                        v-model="newAssignature.creditos_usm"
+                        :state="newAssignature.creditos_usm" 
+                        hint="Creditos usm"
+                        ></v-text-field>
+                </v-flex>
 				</v-layout>
 		  </v-container>
 		  <small>*indica campos requeridos</small>
@@ -87,8 +77,7 @@ import Assignatures from './Assignatures'
 					id: response.data.id,  
 					name: this.newAssignature.name,  
 					sigla:   this.newAssignature.sigla,
-					num_students: this.newAssignature.num_students,
-					num_paralelos: this.newAssignature.num_paralelos
+					creditos_usm: this.newAssignature.creditos_usm,
 				})  
 		}).catch((error) => {  
 			this.$log.debug(error);  

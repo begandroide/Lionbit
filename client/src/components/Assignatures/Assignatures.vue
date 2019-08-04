@@ -47,9 +47,6 @@
 										<td class="hidden-id">{{props.item.id}}</td>
 										<td class="text-left text-xs-left">{{props.item.name}}</td>
 										<td class="text-xs-left">{{ props.item.sigla }}</td>
-										<td class="text-left text-xs-left">{{props.item.num_students}}</td>
-										<td class="text-left text-xs-left">{{props.item.num_paralelos}}</td>
-										<td class="text-left text-xs-left">{{props.item.semestre}}</td>
 									</tr>
 								</template>
 								<template v-slot:no-results>
@@ -111,21 +108,6 @@ import Actions from "./Actions";
 					align: 'left',
 					sortable: true,
 					value: 'sigla_usm'
-				},
-				{ 	text: 'Cantidad alumnos',
-					align: 'left',
-					sortable: true,
-					value: 'num_students'
-				},
-				{	text: 'Cantidad paralelos',
-					align: 'left',
-					sortable: true,
-					value: 'num_paralelos'
-				},
-				{	text: 'Semestre',
-					align: 'left',
-					sortable: true,
-					value: 'semestre'
 				},
 				],
 				loading: false,

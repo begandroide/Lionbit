@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModel;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="semester")
@@ -13,7 +14,8 @@ public class Semester implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long semesterID;
+    @Column(name = "Id")
+    private Long Id;
 
     @Column(name="number", length = 1)
     private Integer numberSemester;
@@ -31,12 +33,15 @@ public class Semester implements Serializable {
     @Column(name="create_at")
     private Date createAt;
 
-    public Long getSemesterID() {
-        return semesterID;
+    @OneToMany(cascade=CascadeType.REMOVE, mappedBy="semester")
+	public Set<AssignatureAndSemester> courses;
+
+    public Long getId() {
+        return Id;
     }
 
-    public void setSemesterID(Long semesterID) {
-        this.semesterID = semesterID;
+    public void setId(Long semesterID) {
+        this.Id = semesterID;
     }
 
     public Integer getNumberSemester() {

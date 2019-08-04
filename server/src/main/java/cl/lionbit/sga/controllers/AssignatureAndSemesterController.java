@@ -24,27 +24,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import cl.lionbit.sga.entities.TeacherHasACourse;
-import cl.lionbit.sga.services.TeacherAssignatureService;
+import cl.lionbit.sga.entities.Assignature;
+import cl.lionbit.sga.services.AssignatureService;
 
-import static cl.lionbit.sga.constans.Paths.TEACHERASSIGNATURES;
+import static cl.lionbit.sga.constans.Paths.ASSIGNATURES;
 import static cl.lionbit.sga.constans.Paths.VERSION;
 
 @RestController
-@RequestMapping(TEACHERASSIGNATURES)
+@RequestMapping(ASSIGNATURES)
 @Api(value="Assignature management System " + VERSION)
-public class TeacherAssignatureController {
-	private static Logger logger = LoggerFactory.getLogger(TeacherAssignatureController.class);
+public class AssignatureAndSemesterController {
+	private static Logger logger = LoggerFactory.getLogger(AssignatureController.class);
 
+
+	////TODO: CAMBIAR y CREAR
 	@Autowired
-	private TeacherAssignatureService service;
+	private AssignatureService service;
 
-	public TeacherAssignatureController() {
+	public AssignatureAndSemesterController() {
 
 	}
 
 	@GetMapping
-	public @ResponseBody Page<TeacherHasACourse> home(Pageable pageable, @RequestParam(defaultValue = "") String filter ) {
+	public @ResponseBody Page<Assignature> home(Pageable pageable, @RequestParam(defaultValue = "") String filter ) {
 
 		logger.info("Controller Find Page of assignatures");
 
@@ -53,34 +55,29 @@ public class TeacherAssignatureController {
 	}
 
 	@GetMapping("/all")
-	public @ResponseBody List<TeacherHasACourse> all() {
+	public @ResponseBody List<Assignature> all() {
 
 		return this.service.findAll();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<TeacherHasACourse>  findById(@PathVariable(value = "id") Long id) {
-		TeacherHasACourse savedAssignature = this.service.findOne(id);
+	public ResponseEntity<Assignature>  findById(@PathVariable(value = "id") Long id) {
+		Assignature savedAssignature = this.service.findOne(id);
 
 		return new ResponseEntity<>(savedAssignature, HttpStatus.FOUND);
 	}
 
 	@PostMapping
-	public ResponseEntity<TeacherHasACourse> create(@Valid @RequestBody TeacherHasACourse assignature) {
-		//validate
-		Boolean exist = this.service.CheckIfExistForTeacherIdAndAssignatureId(assignature.getTeacherId(),assignature.getAssignatureAndSemesterId());
-		if(!exist){
-			TeacherHasACourse savedAssignature = this.service.create(assignature);
-			return new ResponseEntity<>(savedAssignature, HttpStatus.CREATED);
-		}else{
-			return new ResponseEntity<>(assignature, HttpStatus.NOT_FOUND);
-		}
+	public ResponseEntity<Assignature> create(@Valid @RequestBody Assignature assignature) {
 
+		Assignature savedAssignature = this.service.create(assignature);
+
+		return new ResponseEntity<>(savedAssignature, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<TeacherHasACourse> update(@PathVariable(value = "id") Long id, @RequestBody TeacherHasACourse assignature) {
-		TeacherHasACourse updatedAssignature = this.service.update(id, assignature);
+	public ResponseEntity<Assignature> update(@PathVariable(value = "id") Long id, @RequestBody Assignature assignature) {
+		Assignature updatedAssignature = this.service.update(id, assignature);
 		return new ResponseEntity<>(updatedAssignature, HttpStatus.OK);
 	}
 

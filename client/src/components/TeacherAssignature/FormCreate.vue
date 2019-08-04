@@ -32,6 +32,15 @@
                       required
                     ></v-select>
                   </v-flex>
+                  <v-flex xs12 sm6 d-flex>
+                    <v-select
+                      :items="semesters"
+                      :item-text="(v) => v.yearSemester +'-'+ v.numberSemester"
+                      item-value="semesterID"
+                      v-model="newTeacherAssignature.semesterId"
+                      required
+                    ></v-select>
+                  </v-flex>
                 </v-layout>
           </v-container>
           <small>*indica campos requeridos</small>
@@ -60,13 +69,14 @@ const Form =  {
     data: () => ({
       dialog: false,
       newTeacherAssignature: {
-        id: 0,
-        assignatureId: 0,
+        courseID: 0,
+        assignatureAndSemesterId: 0,
         teacherId: 0,
-        semesterTaught: "FIRST"
+        numberParalelo: 1
       },
       teachers: [],
       assignatures: [],
+      semesters: []
     }),
     mounted(){
       },
@@ -97,6 +107,19 @@ const Form =  {
           this.error = "Failed to load assignatures"  
           })  
         .finally(() => this.loading = false);
+        
+      api.getSemesterActive()  
+        .then(response => {  
+          this.$log.debug("Data loaded: ", response.data); 
+          this.semesters = response.data;
+          this.$log.debug("semestre : ", this.semesters); 
+                          
+        })  
+        .catch(error => {  
+          this.$log.debug(error)  
+          this.error = "Failed to load assignatures"  
+          })  
+        .finally(() => this.loading = false);
     },
     
     methods:{
@@ -110,6 +133,7 @@ const Form =  {
             id: response.data.id,  
             assignature_id: this.newTeacherAssignature.assignature_id,  
             teacher_id: this.newTeacherAssignature.teacher_id,
+            semesterId: this.newTeacherAssignature.semesterId
           });  
         }).catch((error) => {  
           this.$log.debug(error);  

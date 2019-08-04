@@ -15,4 +15,5 @@ public interface SemesterRepository extends CrudRepository<Semester, Long>{
 
     List<Semester> findAll();
     
+    Semester findByActive(Boolean active);
 }

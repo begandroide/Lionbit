@@ -122,6 +122,11 @@ export default {
     transformResponse: [function (data) {  
       return data? JSON.parse(data)._embedded.semesters : data;  
     }]  
+  }),
+  getSemesterActive: () => instance.get('api/semester/all', { useCredentails: true }, {  
+    transformResponse: [function (data) {  
+      return data? JSON.parse(data)._embedded.semesterActive : data;  
+    }]  
   }),    
   updateSemesterForId: (id,Semester) => instance.put('api/semester/'+id, 
         Semester),   

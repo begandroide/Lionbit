@@ -47,8 +47,6 @@ public class AssignatureServiceImpl implements AssignatureService {
 
         toUpdate.setName(assignature.getName());
         toUpdate.setSigla(assignature.getSigla());
-        toUpdate.setNum_paralelos(assignature.getNum_paralelos());
-        toUpdate.setNum_students(assignature.getNum_students());
 		return this.repository.save(toUpdate);
     }
 
