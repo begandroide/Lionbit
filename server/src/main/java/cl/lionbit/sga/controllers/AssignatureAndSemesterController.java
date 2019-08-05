@@ -27,14 +27,13 @@ import org.springframework.web.bind.annotation.RestController;
 import cl.lionbit.sga.entities.Assignature;
 import cl.lionbit.sga.services.AssignatureService;
 
-import static cl.lionbit.sga.constans.Paths.ASSIGNATURES;
-import static cl.lionbit.sga.constans.Paths.VERSION;
+import static cl.lionbit.sga.constans.Paths.*;
 
 @RestController
-@RequestMapping(ASSIGNATURES)
+@RequestMapping(ASSIGNATURE_SEMESTER)
 @Api(value="Assignature management System " + VERSION)
 public class AssignatureAndSemesterController {
-	private static Logger logger = LoggerFactory.getLogger(AssignatureController.class);
+	private static Logger logger = LoggerFactory.getLogger(AssignatureAndSemesterController.class);
 
 
 	////TODO: CAMBIAR y CREAR
