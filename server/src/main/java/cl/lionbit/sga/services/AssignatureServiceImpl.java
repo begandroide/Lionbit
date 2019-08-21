@@ -27,7 +27,7 @@ public class AssignatureServiceImpl implements AssignatureService {
 
 	@Override
 	public Page<Assignature> findPaginated(String filter, Pageable pageable) {
-		Page<Assignature> test = this.repository.findByNameContainingIgnoreCase(filter, pageable);
+		Page<Assignature> test = this.repository.findByNameContainingIgnoreCase(filter, pageable); 
 		return test;
 	}
 

@@ -11,6 +11,9 @@ import cl.lionbit.sga.entities.Semester;
 
 @Repository
 public interface SemesterRepository extends CrudRepository<Semester, Long>{
+    
+    List<Semester> findByNumberSemesterAndYearSemester(Integer numberSemester,String yearSemester);
+
     Page<Semester> findAll( Pageable pageable);
 
     List<Semester> findAll();

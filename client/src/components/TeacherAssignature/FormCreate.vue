@@ -64,7 +64,7 @@ const Form =  {
       component:{
       },
       props:{
-          teacherAssignature: Array
+          teacherAssignatures: Array
       },
     data: () => ({
       dialog: false,
@@ -129,7 +129,7 @@ const Form =  {
         this.$log.debug("New item created:", this. newTeacherAssignature) 
         api.createNewTeacherAssignature(this.newTeacherAssignature).then( (response) => {  
           this.$log.debug("New item created:", response);  
-          this.teachersAssignature.push({  
+          this.teachersAssignatures.push({  
             id: response.data.id,  
             assignature_id: this.newTeacherAssignature.assignature_id,  
             teacher_id: this.newTeacherAssignature.teacher_id,

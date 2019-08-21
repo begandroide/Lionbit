@@ -4,6 +4,7 @@ import StudentProfile from './components/Student/StudentProfile.vue'
 import Teacher from './components/Teacher/Teachers.vue'
 import Assignatures from './components/Assignatures/Assignatures.vue'
 import TeacherAssignature from './components/TeacherAssignature/TeacherAssignature.vue'
+import AssignatureSemester from './components/AssignatureSemester/AssignatureSemester.vue'
 import Semester from './components/Semester/Semester.vue'
 import Users from './components/User/Users.vue'
 import LayoutBlank from './views/LayoutBlank.vue'
@@ -90,6 +91,14 @@ let router = new Router({
           path: '/Semester',
           component: Semester,
           name: 'semester',
+          meta: {
+            auth: true,
+          },
+        },
+        {
+          path: '/AssignatureSemester',
+          component: AssignatureSemester,
+          name: 'AssignatureSemester',
           meta: {
             auth: true,
           },

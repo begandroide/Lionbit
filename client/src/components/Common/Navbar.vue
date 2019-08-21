@@ -109,11 +109,7 @@ import router from "../../router"
 								{ 	title: 'Inicio',
 									icon: 'fa fa-home',
 									to: '/',
-									child: null },
-								{ 	title: 'Administración',
-									icon: 'fab fa-keycdn',
-									child: 
-									[ 	
+									child: null }, 	
 										{title: 'Semestres',
 										icon: 'fa fa-calendar',
 										to: '/Semester'  	},
@@ -125,15 +121,16 @@ import router from "../../router"
 										to: '/Teachers'  	},
 										{ 	title: 'Asignaturas',
 										icon: 'fas fa-book',
-										to: '/Assignatures'  	},
+                    to: '/Assignatures'  	},
+										{ 	title: 'Asignaturas Semestrales',
+										icon: 'fas fa-chalkboard',
+										to: '/AssignatureSemester'  	},
 										{ 	title: 'Asignaturas asignadas',
 										icon: 'fas fa-pen',
 										to: '/TeacherAssignatures'  	},
 										{ 	title: 'Usuarios',
 										icon: 'fas fa-user',
 										to: '/Users'  	}
-										  ]
-								}
                         ],
                         claims: [],
                         currentRoute: window.location.pathname,

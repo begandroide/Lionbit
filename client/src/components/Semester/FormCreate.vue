@@ -25,6 +25,8 @@
                       :items="semester"
                       label="Número de semestre"
                       v-model="newSemester.numberSemester"
+                      @change="checkError"
+                      :error-messages="errorMessage"
                       required
                     ></v-select>
                 </v-flex>
@@ -34,7 +36,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="error darken-1" flat @click="dialog = false">Cerrar</v-btn>
+          <v-btn color="error darken-1" flat @click="closeDialog">Cerrar</v-btn>
           <v-btn color="success darken-1" type="submit" flat>Guardar</v-btn>
         </v-card-actions>
             </form>
@@ -55,6 +57,8 @@ import Semester from './Semester'
         semesters: Array
       },
       data: () => ({
+        errorMessage: "",
+        error: false,
         dialog: false,
         newSemester: {
           semesterID: 0,
@@ -67,6 +71,12 @@ import Semester from './Semester'
         semester:["1","2","3"]
       }),
     methods:{
+      checkError: function(value) {
+        if(value === "" ){
+          this.errorMessage = "";
+          this.error = false; 
+        }
+      },
         handleSubmit2() {
             api.createNewSemester(this.newSemester).then( (response) => {  
                 console.log(this.$root);
@@ -80,9 +90,33 @@ import Semester from './Semester'
         }).catch((error) => {  
             this.$log.debug(error);  
             this.error = "Failed to add";  
-        });  
-        this.dialog = false;
+            if(error.response.data.message.includes("Duplicate")){
+                this.error = true;
+            }
+        }).finally( () => {
+
+          if(this.error){
+            this.errorMessage = "Semestre ya registrado";
+            } else{
+              this.closeDialog();
+            }
+          }
+        );  
         },
+      closeDialog() {
+        this.dialog = false;
+        this.cleanErrors();
+        this.cleanNewSemester();
+      },
+      cleanNewSemester(){
+        this.newSemester.id = 0;
+        this.newSemester.yearSemester = null;
+        this.newSemester.numberSemester = null;
+      },
+      cleanErrors(){
+        this.errorMessage = "";
+        this.error = false;
+      }
     },
     computed:{
     }

@@ -132,4 +132,15 @@ export default {
         Semester),   
   removeSemesterForId: (id) => instance.delete('api/semester/'+id),
   
+  //// AssignatureSemester
+
+  createNewAssignatureSemester: (AssignatureSemester) => instance.post('api/assignaturesemester', AssignatureSemester),  
+  getAllAssignatureSemester: () => instance.get('api/assignaturesemester/all', { useCredentails: true }, {  
+    transformResponse: [function (data) {  
+      return data? JSON.parse(data)._embedded.assignaturesemester : data;  
+    }]  
+  }),
+  updateAssignatureSemesterForId: (id,AssignatureSemester) => instance.put('api/assignaturesemester/'+id, AssignatureSemester),   
+  removeAssignatureSemesterForId: (id) => instance.delete('api/assignaturesemester/'+id),
+  
 }

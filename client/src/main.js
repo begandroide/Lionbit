@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import App from './App'
 import vuetify from 'vuetify'
+import lodash from 'lodash'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import '@fortawesome/fontawesome-free/css/all.css' // Ensure you are using css-loader
 
 Vue.use(BootstrapVue)
+Vue.use(lodash)
+Object.defineProperty(Vue.prototype, '$_', { value: lodash });
+
 Vue.use(vuetify)
 Vue.use( {
   iconfont: 'fa'

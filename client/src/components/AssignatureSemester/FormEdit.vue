@@ -45,11 +45,11 @@
 
 <script>
 import api from '../../Api';
-import Semester from './Semester';
+import AssignatureSemester from './AssignatureSemester';
 
   const FormEdit =  {
 	  components:{
-		Semester,
+		AssignatureSemester,
 	  },
 	  props:{
 		semesters: Array,

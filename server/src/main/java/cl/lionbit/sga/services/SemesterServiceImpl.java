@@ -19,6 +19,15 @@ public class SemesterServiceImpl implements SemesterService {
 	public SemesterServiceImpl() {
 
 	}
+	
+	@Override
+	public Boolean checkIfExist(Semester semester) {
+		List<Semester> others = this.repository.findByNumberSemesterAndYearSemester(semester.getNumberSemester(),semester.getYearSemester());
+		if(others.isEmpty()){
+			return false;
+		}
+		return true;
+	}
 
 	@Override
 	public List<Semester> findAll() {
@@ -50,10 +59,11 @@ public class SemesterServiceImpl implements SemesterService {
 	public Semester update(Long id, Semester assignature) {
 		Semester toUpdate = this.repository.findById(id).get();
 
-        // toUpdate.setName(assignature.getName());
-        // toUpdate.setSigla(assignature.getSigla());
-        // toUpdate.setNum_paralelos(assignature.getNum_paralelos());
-        // toUpdate.setNum_students(assignature.getNum_students());
+		toUpdate.setActive(assignature.getActive());
+		toUpdate.setInCourse(assignature.getInCourse());
+		toUpdate.setNumberSemester(assignature.getNumberSemester());
+		toUpdate.setYearSemester(assignature.getYearSemester());
+		
 		return this.repository.save(toUpdate);
     }
 

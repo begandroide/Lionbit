@@ -3,12 +3,16 @@ package cl.lionbit.sga.entities;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name="semester")
+@Table(name="semester", uniqueConstraints = {@UniqueConstraint(columnNames= {"year", "number"})})
 @ApiModel(description = "Semester and year.")
 public class Semester implements Serializable {
 
@@ -24,6 +28,7 @@ public class Semester implements Serializable {
     private String yearSemester;
 
     @Column(name="in_course")
+    
     private Boolean inCourse;
     
     @Column(name="active")
@@ -34,6 +39,7 @@ public class Semester implements Serializable {
     private Date createAt;
 
     @OneToMany(cascade=CascadeType.REMOVE, mappedBy="semester")
+    @JsonBackReference
 	public Set<AssignatureAndSemester> courses;
 
     public Long getId() {

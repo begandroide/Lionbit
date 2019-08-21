@@ -4,6 +4,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.springframework.lang.Nullable;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -62,8 +68,8 @@ public class AssignatureAndSemester implements Serializable {
         return semester;
     }
 
-    public void setSemester(Semester semesterTaught) {
-        this.semester = semesterTaught;
+    public void setSemester(Semester semester) {
+        this.semester = semester;
     }
 
     public Long getSemesterId(){
@@ -75,21 +81,21 @@ public class AssignatureAndSemester implements Serializable {
     }
 
     
-    // public Assignature getAssignature() {
-    //     return assignature;
-    // }
+    public Assignature getAssignature() {
+        return assignature;
+    }
 
-    // public void setAssignature(Assignature assignature) {
-    //     this.assignature = assignature;
-    // }
+    public void setAssignature(Assignature assignature) {
+        this.assignature = assignature;
+    }
 
-    // public Long getAssignatureId(){
-    //     return this.assignatureId;
-    // }
+    public Long getAssignatureId(){
+        return this.assignatureId;
+    }
 
-    // public void setAssignatureId(Long id){
-    //     this.assignatureId = id;
-    // }
+    public void setAssignatureId(Long id){
+        this.assignatureId = id;
+    }
 
     public Long getId() {
 		return Id;

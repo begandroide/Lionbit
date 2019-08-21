@@ -16,7 +16,7 @@
 
 							<div class="col-md-4 col-sm-4">
 								<div align="right">
-									<FormCreate :teacherAssignature="teacherAssignatures" />
+									<FormCreate :teacherAssignatures="teacherAssignatures" />
 								</div >
 							</div>
 

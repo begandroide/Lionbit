@@ -24,29 +24,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import cl.lionbit.sga.entities.Assignature;
-import cl.lionbit.sga.services.AssignatureService;
+import cl.lionbit.sga.entities.AssignatureAndSemester;
+import cl.lionbit.sga.services.AssignatureAndSemesterService;
 
-import static cl.lionbit.sga.constans.Paths.ASSIGNATURES;
+import static cl.lionbit.sga.constans.Paths.ASSIGNATURESEMESTER;
 import static cl.lionbit.sga.constans.Paths.VERSION;
 
 @RestController
-@RequestMapping(ASSIGNATURES)
+@RequestMapping(ASSIGNATURESEMESTER)
 @Api(value="Assignature management System " + VERSION)
 public class AssignatureAndSemesterController {
 	private static Logger logger = LoggerFactory.getLogger(AssignatureController.class);
 
 
-	////TODO: CAMBIAR y CREAR
 	@Autowired
-	private AssignatureService service;
+	private AssignatureAndSemesterService service;
 
 	public AssignatureAndSemesterController() {
 
 	}
 
 	@GetMapping
-	public @ResponseBody Page<Assignature> home(Pageable pageable, @RequestParam(defaultValue = "") String filter ) {
+	public @ResponseBody Page<AssignatureAndSemester> home(Pageable pageable, @RequestParam(defaultValue = "") String filter ) {
 
 		logger.info("Controller Find Page of assignatures");
 
@@ -55,29 +54,29 @@ public class AssignatureAndSemesterController {
 	}
 
 	@GetMapping("/all")
-	public @ResponseBody List<Assignature> all() {
+	public @ResponseBody List<AssignatureAndSemester> all() {
 
 		return this.service.findAll();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Assignature>  findById(@PathVariable(value = "id") Long id) {
-		Assignature savedAssignature = this.service.findOne(id);
+	public ResponseEntity<AssignatureAndSemester>  findById(@PathVariable(value = "id") Long id) {
+		AssignatureAndSemester savedAssignature = this.service.findOne(id);
 
 		return new ResponseEntity<>(savedAssignature, HttpStatus.FOUND);
 	}
 
 	@PostMapping
-	public ResponseEntity<Assignature> create(@Valid @RequestBody Assignature assignature) {
+	public ResponseEntity<AssignatureAndSemester> create(@Valid @RequestBody AssignatureAndSemester assignature) {
 
-		Assignature savedAssignature = this.service.create(assignature);
+		AssignatureAndSemester savedAssignature = this.service.create(assignature);
 
 		return new ResponseEntity<>(savedAssignature, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Assignature> update(@PathVariable(value = "id") Long id, @RequestBody Assignature assignature) {
-		Assignature updatedAssignature = this.service.update(id, assignature);
+	public ResponseEntity<AssignatureAndSemester> update(@PathVariable(value = "id") Long id, @RequestBody AssignatureAndSemester assignature) {
+		AssignatureAndSemester updatedAssignature = this.service.update(id, assignature);
 		return new ResponseEntity<>(updatedAssignature, HttpStatus.OK);
 	}
 

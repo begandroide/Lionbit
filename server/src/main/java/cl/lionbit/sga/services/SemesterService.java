@@ -8,6 +8,9 @@ import org.springframework.data.domain.Pageable;
 import cl.lionbit.sga.entities.Semester;
 
 public interface SemesterService {
+
+	Boolean checkIfExist(Semester semester);
+
 	List<Semester> findAll();
 
 	Page<Semester> findPaginated(String filter, Pageable pageable);

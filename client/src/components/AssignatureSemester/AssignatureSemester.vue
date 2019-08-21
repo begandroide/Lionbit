@@ -9,18 +9,20 @@
 							<div class="col-md-8 col-sm-8">
 								<h3 class="card-title">
 									<i class="fas fa-book"></i>
-									Semestres
+									Asignaturas por semestre
 								</h3>
-								<p class="text-muted card-subtitle"> Listado de semestres registradas en el sistema. </p>
+								<p class="text-muted card-subtitle"> 
+									Listado de asignaturas por semestre, con su respectiva cantidad de paralelos y alumnos. 
+								</p>
 							</div>
 
 							<div class="col-md-4 col-sm-4">
 								<div align="right">
-									<FormCreate :semesters="semesters"/>
+									<FormCreate :assignatureSemesters="assignatureSemesters"/>
 								</div >
 							</div>
 
-							<Actions :selected="selected" :semesters="semesters"/>
+							<Actions :selected="selected" :assignatureSemesters="assignatureSemesters"/>
 						</v-layout>
 					</v-container>
 					<!-- contenido asignaturas -->
@@ -37,31 +39,19 @@
 							></v-text-field>
 							<v-data-table
 								:headers="headers"
-								:items="semesters"
+								:items="assignatureSemesters"
 								class="elevation-1"
 								:search="search"
 								:aria-sort="true"
 							>
 								<template v-slot:items="props" >
 									<tr  @click="showAlert(props.item)">
-										<td class="hidden-id">{{props.item.semesterID}}</td>
-										<td class="text-left text-xs-left">{{props.item.numberSemester}}</td>
-										<td class="text-xs-left">{{ props.item.yearSemester }}</td>
-										<td class="text-xs-left">
-											 <v-tooltip right v-if="!props.item.inCourse">
-												<template v-slot:activator="{ on }">
-													<v-icon v-on="on" color="error">fas fa-circle</v-icon>
-												</template>
-												<span>Curso inactivo</span>
-											</v-tooltip>
-											
-											 <v-tooltip right v-else>
-												<template v-slot:activator="{ on }">
-													<v-icon v-on="on" color="success">fas fa-circle</v-icon>
-												</template>
-												<span>Curso activo</span>
-											</v-tooltip>
-										</td>
+										<td class="hidden-id">{{props.item.id}}</td>
+										<td class="text-xs-left">{{props.item.assignature.name}}</td>
+										<td class="text-xs-center">{{ props.item.assignature.creditos_usm }}</td>
+										<td class="text-xs-center">{{ props.item.numberParalelos }}</td>
+										<td class="text-xs-center">{{ props.item.numberStudentsByParalelo }}</td>
+										<td class="text-xs-left">{{ props.item.semester | filterSemester }}</td>
 									</tr>
 								</template>
 								<template v-slot:no-results>
@@ -87,8 +77,8 @@ import api from '../../Api';
 import FormCreate from "./FormCreate";
 import Actions from "./Actions";
 // app Vue instance
-  const Semester = {
-		name: 'Semester',
+  const AssignatureSemester = {
+		name: 'AssignatureSemester',
 		components:{
 			FormCreate,
 			Actions
@@ -114,39 +104,50 @@ import Actions from "./Actions";
 					sortable: true
 				},
 				{
-					text: 'Semestre',
+					text: 'Asignatura',
 					align: 'left',
 					sortable: true,
-					value: 'semestre'
+					value: 'asignature'
 				},
-				{ 	text: 'Año',
-					align: 'left',
+				{
+					text: 'Créditos',
+					align: 'right',
 					sortable: true,
-					value: 'ano'
+					value: 'creditos'
 				},
-				{ 	text: 'En curso',
+				{ 	text: 'Paralelos',
+					align: 'center',
+					sortable: true,
+					value: 'paralelos'
+				},
+				{ 	text: 'Numero de estudiantes por paralelo',
+					align: 'center',
+					sortable: true,
+					value: 'studentNumberByParalelo'
+				},
+				{ 	text: 'Semestre',
 					align: 'left',
 					sortable: true,
-					value: 'onCourse'
+					value: 'semester'
 				},
 				],
 				loading: false,
-				semesters: [],
+				assignatureSemesters: [],
 				message: null,
 			};
         },
         created: function () {
 			api.init();
-			api.getAllSemesters()  
+			api.getAllAssignatureSemester()  
 				.then(response => {  
-				this.$log.debug("Data loaded: ", response.data.content); 
-				this.semesters = response.data.content;
-				this.$log.debug("semesters : ", this.semesters); 
+				this.$log.debug("Data loaded: ", response.data); 
+				this.assignatureSemesters = response.data;
+				this.$log.debug("assignatures semesters : ", this.assignatureSemesters); 
 				
 				})  
 				.catch(error => {  
 				this.$log.debug(error)  
-				this.error = "Failed to load students"  
+				this.error = "Failed to load assignatures semester"  
 				})  
 				.finally(() => this.loading = false)  
         },
@@ -167,9 +168,14 @@ import Actions from "./Actions";
 				}
 			},
 		},
+		filters: {
+			filterSemester(semester){
+				return semester.yearSemester +'-'+ semester.numberSemester;
+			}
+		}
   }
 
-        export  default Semester;
+        export  default AssignatureSemester;
 </script>
 
 <style>

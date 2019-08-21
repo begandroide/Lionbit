@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import cl.lionbit.sga.entities.Semester;
@@ -66,13 +67,18 @@ public class SemesterController {
 	}
 
 	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Semester> create(@Valid @RequestBody Semester assignature) {
 
-		assignature.setActive(true);
+		assignature.setActive(false);
 		assignature.setCreateAt(new Date());
 		Semester savedAssignature = this.service.create(assignature);
-
 		return new ResponseEntity<>(savedAssignature, HttpStatus.CREATED);
+		// if(!this.service.checkIfExist(assignature)){
+		// }else{
+		// 	return new ResponseEntity<>(assignature, HttpStatus.FOUND);
+		// }
+
 	}
 
 	@PutMapping("/{id}")
