@@ -34,7 +34,7 @@ import static cl.lionbit.sga.constans.Paths.VERSION;
 @RequestMapping(ASSIGNATURESEMESTER)
 @Api(value="Assignature management System " + VERSION)
 public class AssignatureAndSemesterController {
-	private static Logger logger = LoggerFactory.getLogger(AssignatureController.class);
+	private static Logger logger = LoggerFactory.getLogger(AssignatureAndSemesterController.class);
 
 
 	@Autowired
