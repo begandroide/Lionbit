@@ -5,7 +5,7 @@
       :mini-variant.sync="mini"
       :clipped="clipped"
       v-model="drawer"
-		class="yellow darken-3" 
+		class="yellow darken-3"
 	  permanent
       app
     >
@@ -62,7 +62,7 @@
         <v-toolbar fixed :clipped-left="clipped" app color="blue darken-3" dark>
 			<v-toolbar-side-icon class="md-and-up" @click="mini = !mini"></v-toolbar-side-icon>
 			<v-toolbar-title>{{appTitle}}</v-toolbar-title>
-			
+
 			<v-spacer ></v-spacer>
 			<v-layout row wrap>
 					<b-nav-form class="col-md-10 col-sm-10">
@@ -78,10 +78,10 @@
 							</v-btn>
 					</b-nav-form>
 			</v-layout>
-			
+
 			<v-spacer ></v-spacer>
 			<MenuProfile v-if="activeUser"></MenuProfile>
-				
+
         </v-toolbar>
        </span>
 </template>
@@ -102,14 +102,14 @@ import router from "../../router"
                 return{
 					clipped: true,
 					fixed: false,
-                        appTitle: "SIGA",
+                        appTitle: "SGA",
 						drawer: false,
-						mini: false,
+						mini: true,
                         items: [
 								{ 	title: 'Inicio',
 									icon: 'fa fa-home',
 									to: '/',
-									child: null }, 	
+									child: null },
 										{title: 'Semestres',
 										icon: 'fa fa-calendar',
 										to: '/Semester'  	},
@@ -134,33 +134,33 @@ import router from "../../router"
                         ],
                         claims: [],
                         currentRoute: window.location.pathname,
-                        activeUser: null  
+                        activeUser: null
                 };
         },
-        // app initial state  
-  
-  async created () {  
-        await this.refreshActiveUser()  
+        // app initial state
+
+  async created () {
+        await this.refreshActiveUser()
         this.claims = await localStorage.token
-  },  
-  
-  watch: {  
-    '$route': 'refreshActiveUser'  
-  },  
+  },
+
+  watch: {
+    '$route': 'refreshActiveUser'
+  },
   computed:{
-  },  
+  },
    render (h) { return h(this.ViewComponent) },
-  methods: {  
-    async refreshActiveUser () {  
-      this.activeUser = await await localStorage.token  
-      this.$log.debug('activeUser',this.activeUser)  
-    },  
-  
-    async handleLogout () {  
-      await this.$auth.logout()  
-      await this.refreshActiveUser()  
-      this.$router.go('/')  
-    }  
+  methods: {
+    async refreshActiveUser () {
+      this.activeUser = await await localStorage.token
+      this.$log.debug('activeUser',this.activeUser)
+    },
+
+    async handleLogout () {
+      await this.$auth.logout()
+      await this.refreshActiveUser()
+      this.$router.go('/')
+    }
   },
   };
 
@@ -168,6 +168,5 @@ import router from "../../router"
 </script>
 
 <style>
- 
-</style>
 
+</style>

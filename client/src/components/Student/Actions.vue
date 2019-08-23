@@ -7,7 +7,7 @@
                         <v-btn color="info" round :disabled="(selected == null)">
                             <i class="fa fa-eye"></i> Detalles
                         </v-btn>
-                        <FormEdit :newStudent="selected" />
+                        <FormEdit :newStudent="selected"/>
                         <FormDelete :objeto="selected" />
                     </div>
                 </div>
