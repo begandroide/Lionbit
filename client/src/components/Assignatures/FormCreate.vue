@@ -44,7 +44,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="error darken-1" flat @click="dialog = false">Cerrar</v-btn>
+          <v-btn color="error darken-1" flat @click="closeDialog">Cerrar</v-btn>
           <v-btn color="success darken-1" type="submit" flat>Guardar</v-btn>
         </v-card-actions>
             </form>
@@ -85,9 +85,32 @@ import Assignatures from './Assignatures'
         }).catch((error) => {  
             this.$log.debug(error);  
             this.error = "Failed to add";  
-        });  
-        this.dialog = false;
+        }).finally( () => {
+
+          if(this.error){
+            this.errorMessage = "Asignatura ya registrada";
+            } else{
+              this.closeDialog();
+            }
+          }
+          );
         },
+        
+      closeDialog() {
+        this.dialog = false;
+        this.cleanErrors();
+        this.cleanNewSemester();
+      },
+      cleanNewSemester(){
+          this.newAssignature.id =  0;
+          this.newAssignature.name = null;
+          this.newAssignature.sigla = null;
+          this.newAssignature.creditos_usm = null;
+      },
+      cleanErrors(){
+        this.errorMessage = "";
+        this.error = false;
+      }
     },
     computed:{
     }

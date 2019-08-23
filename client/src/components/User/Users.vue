@@ -49,7 +49,6 @@
 										<td class="hidden-id">{{props.item.userID}}</td>
 										<td class="text-left">{{props.item.firstName +" "+ props.item.lastName}}</td>
 										<td class="text-left">{{props.item.email}}</td>
-										<td class="text-left">{{props.item.phoneNumber}}</td>
 										<td class="text-xs-left">{{ props.item.office }}</td>
 										<td class="text-xs-left">{{ props.item.roles }}</td>	
 									</tr>
@@ -117,11 +116,6 @@ import Actions from './Actions';
 				align: 'left',
 				sortable: true,
 				value: 'email'
-			},
-			{ 	text: 'Número',
-				align: 'left',
-				sortable: true,
-				value: 'numba'
 			},
 			{ 	text: 'Oficina',
 				align: 'left',

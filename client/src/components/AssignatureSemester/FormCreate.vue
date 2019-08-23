@@ -2,7 +2,7 @@
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="pink lighten-1" dark v-on="on"><i class="fa fa-add"></i>Configurar asignatura en semestre</v-btn>
+        <v-btn color="primary" dark v-on="on"><i class="fa fa-add"></i>Configurar asignatura en semestre</v-btn>
       </template>
       <v-card>
         <v-card-title>

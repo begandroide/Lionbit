@@ -39,6 +39,7 @@
                 <v-flex xs12 sm6 md6>
                     <v-text-field label="Contraseña*"
                         id="last-name-input"
+                        type="password"
                         v-model="newUser.password"
                         :state="newUser.password" 
                         hint="Correo del usuario"></v-text-field>
@@ -49,13 +50,6 @@
                         v-model="newUser.office"
                         :state="newUser.office" 
                         hint="Oficina del usuario"></v-text-field>
-                </v-flex>
-                <v-flex xs12 sm6 md6>
-                    <v-text-field label="Número de teléfono*"
-                        id="last-name-input"
-                        v-model="newUser.phoneNumber"
-                        :state="newUser.phoneNumber" 
-                        hint="Número"></v-text-field>
                 </v-flex>
                 <v-select
                   label="Roles"
@@ -71,7 +65,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Cerrar</v-btn>
+          <v-btn color="blue darken-1" flat @click="closeDialog()">Cerrar</v-btn>
           <v-btn color="blue darken-1" type="submit" flat>Guardar</v-btn>
         </v-card-actions>
             </form>
@@ -94,6 +88,8 @@ const Form =  {
       roles: [ {rolID:1 , role:"ADMIN"}, {rolID:2,role:"TEACHER"},{rolID:3,role:"DEPT_RESPONSABLE"}],
       selectedRole: null,
       dialog: false,
+      error: false,
+      errorMessage: "",
       newUser: {
 				activated: true,
 				email: "",
@@ -135,12 +131,29 @@ const Form =  {
         }).catch((error) => {  
           this.$log.debug(error);  
           this.error = "Failed to add teacher"  
+        }).finally(()=>{
+          this.closeDialog();
         });  
-        // Hide the modal manually
-        this.$nextTick(() => {
-          this.dialog = false;
-        })
+        
     },
+    closeDialog() {
+      this.dialog = false;
+      this.cleanErrors();
+      this.cleanNewSemester();
+    },
+    cleanNewSemester(){
+        this.newUser.id =  0;
+        this.newUser.name = null;
+        this.newUser.lastname = null;
+        this.newUser.email = null;
+        this.newUser.password = null;
+        this.newUser.office = null;
+        this.newUser.role = {};
+    },
+    cleanErrors(){
+      this.errorMessage = "";
+      this.error = false;
+    }
 },
   }
   export default Form;

@@ -20,7 +20,7 @@
 								</div >
 							</div>
 
-							<Actions :selected="selected"/>
+							<Actions :selected="selected" :teachers="teachers"/>
 						</v-layout>
 					</v-container>
 					<!-- contenido estudiantes -->

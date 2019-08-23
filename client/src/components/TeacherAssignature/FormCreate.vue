@@ -28,7 +28,7 @@
                       item-text="name"
                       item-value="id"
                       label="Asignatura"
-                      v-model="newTeacherAssignature.assignatureId"
+                      v-model="newTeacherAssignature.courseID"
                       required
                     ></v-select>
                   </v-flex>
@@ -36,8 +36,8 @@
                     <v-select
                       :items="semesters"
                       :item-text="(v) => v.yearSemester +'-'+ v.numberSemester"
-                      item-value="semesterID"
-                      v-model="newTeacherAssignature.semesterId"
+                      item-value="id"
+                      v-model="newTeacherAssignature.assignatureAndSemesterId"
                       required
                     ></v-select>
                   </v-flex>
@@ -72,7 +72,6 @@ const Form =  {
         courseID: 0,
         assignatureAndSemesterId: 0,
         teacherId: 0,
-        numberParalelo: 1
       },
       teachers: [],
       assignatures: [],
@@ -131,9 +130,9 @@ const Form =  {
           this.$log.debug("New item created:", response);  
           this.teachersAssignatures.push({  
             id: response.data.id,  
-            assignature_id: this.newTeacherAssignature.assignature_id,  
-            teacher_id: this.newTeacherAssignature.teacher_id,
-            semesterId: this.newTeacherAssignature.semesterId
+            assignature_id: this.newTeacherAssignature.courseID,  
+            teacher_id: this.newTeacherAssignature.teacherId,
+            semesterId: this.newTeacherAssignature.assignatureAndSemesterId
           });  
         }).catch((error) => {  
           this.$log.debug(error);  

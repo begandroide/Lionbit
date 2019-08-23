@@ -8,7 +8,7 @@
                             <i class="fa fa-eye"></i> Detalles
                         </v-btn>
                         <FormEdit :newTeacher="selected" />
-                        <FormDelete :objeto="selected" />
+                        <FormDelete :objeto="selected" :teachers="teachers"/>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,6 @@
         </div>
     </div>
 </template>
-
 <style>
 </style>
 
@@ -35,6 +34,7 @@ import FormDelete from './FormDelete';
     },
 	props:{
         selected: Object,
+        teachers: Array,
 	},
     data: function() {
         return {

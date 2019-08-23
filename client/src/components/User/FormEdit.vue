@@ -42,6 +42,7 @@
                     <v-text-field label="Contraseña*"
                         id="last-name-input"
                         type="password"
+                        limit="10"
                         v-model="newUser.password"
                         :state="newUser.password" 
                         hint="Correo del usuario"></v-text-field>
@@ -52,13 +53,6 @@
                         v-model="newUser.office"
                         :state="newUser.office" 
                         hint="Oficina del usuario"></v-text-field>
-                </v-flex>
-                <v-flex xs12 sm6 md6>
-                    <v-text-field label="Número de teléfono*"
-                        id="last-name-input"
-                        v-model="newUser.phoneNumber"
-                        :state="newUser.phoneNumber" 
-                        hint="Número"></v-text-field>
                 </v-flex>
                 <v-select
                   label="Roles"

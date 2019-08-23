@@ -33,7 +33,7 @@
                         label="Rut*" 
                         id="rut-input"
 						            v-model="newTeacher.rut"
-						            :state="newTeacher.rut" 
+                        :error-messages="errorMessage" 
                         hint="Rut del profesor"></v-text-field>
                 </v-flex>
                 </v-layout>
@@ -42,7 +42,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Cerrar</v-btn>
+          <v-btn color="blue darken-1" flat @click="closeDialog">Cerrar</v-btn>
           <v-btn color="blue darken-1" type="submit" flat>Guardar</v-btn>
         </v-card-actions>
             </form>
@@ -86,12 +86,34 @@ const Form =  {
         }).catch((error) => {  
           this.$log.debug(error);  
           this.error = "Failed to add teacher"  
-        });  
-        // Hide the modal manually
-        this.$nextTick(() => {
-          this.dialog = false;
-        })
+          if(error.response.data.message.includes("Duplicate")){
+              this.error = true;
+          }
+        }).finally( () => {
+
+          if(this.error){
+            this.errorMessage = "Profesor ya registrado";
+            } else{
+              this.closeDialog();
+            }
+          }
+        );
     },
+    closeDialog() {
+      this.dialog = false;
+      this.cleanErrors();
+      this.cleanNewSemester();
+    },
+    cleanNewSemester(){
+        this.newTeacher.id =  0;
+        this.newTeacher.name = null;
+        this.newTeacher.lastname = null;
+        this.newTeacher.rut = null;
+    },
+    cleanErrors(){
+      this.errorMessage = "";
+      this.error = false;
+    }
 },
   }
   export default Form;

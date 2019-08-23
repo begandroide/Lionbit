@@ -32,7 +32,7 @@
           <v-btn
             color="primary"
             flat
-            @click="dialog = false"
+            @click="closeDialog"
           >
             Cancelar
           </v-btn>
@@ -52,7 +52,7 @@ import api from '../../Api';
         name: 'FormDelete',
         props:{
             objeto: Object,
-            students: []
+            teachers: Array
         },
         data () {
           return {
@@ -63,19 +63,26 @@ import api from '../../Api';
           
 				deleteStudent(id) {
 					this.loading = true;
-					api.removeForId(id)
+					api.removeTeacherForId(id)
 						.then((response) => {
 							this.$log.debug(response);
-							let index = this.students.findIndex(x => x.id == id);
-							this.$delete(this.students,index);
+							let index = this.teachers.findIndex(x => x.id == id);
+							this.$delete(this.teachers,index);
 							})
 						.catch((err) => {
 							this.$log.debug(err); 
 							this.loading = false;
 						})
-						.finally(() => this.loading = false) 
+						.finally(() => {
+              this.loading = false;
+              this.closeDialog();
+              this.objeto = null;
+              }) 
         },
-        
+
+      closeDialog(){
+        this.dialog = false;
+      }
         }
 
     };

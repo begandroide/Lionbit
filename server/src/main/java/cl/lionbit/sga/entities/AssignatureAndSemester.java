@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name="assignature_semester")
+@Table(name="assignature_semester", uniqueConstraints= @UniqueConstraint(columnNames={"assignatureId", "semesterId"}))
 @ApiModel(description = "This is a table resulting from a relationship many to many")
 public class AssignatureAndSemester implements Serializable {
     
