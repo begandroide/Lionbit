@@ -78,6 +78,11 @@ import api from '../../Api';
               .finally(() => {
                 this.loading = false;
                 this.dialog = false;
+                 this.$notify({
+                  group: 'foo',
+                  title: 'Eliminado exitoso',
+                  text: 'Asignatura semestre eliminada satisfactoriamente!'
+              });
                 }) 
             }
         }

@@ -143,6 +143,11 @@ import AssignatureSemester from './AssignatureSemester'
             this.errorMessage = "Semestre ya registrado";
             } else{
               this.closeDialog();
+               this.$notify({
+                group: 'foo',
+                title: 'Creado exitoso',
+                text: 'Nuevo semestre en asignatura añadido!'
+              });
             }
           }
         );  

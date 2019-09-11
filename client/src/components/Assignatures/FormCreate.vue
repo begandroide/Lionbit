@@ -89,8 +89,18 @@ import Assignatures from './Assignatures'
 
           if(this.error){
             this.errorMessage = "Asignatura ya registrada";
+             this.$notify({
+                group: 'foo',
+                title: 'Errores',
+                text: 'Asignatura ya inscrita en el sistema!'
+              });
             } else{
               this.closeDialog();
+               this.$notify({
+                group: 'foo',
+                title: 'Creado exitoso',
+                text: 'Nueva asignatura creada!'
+              });
             }
           }
           );

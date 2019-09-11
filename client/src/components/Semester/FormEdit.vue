@@ -71,6 +71,11 @@ import Semester from './Semester';
 				this.newSemester.yearSemester = this.newSemesterCpy.yearSemester;
 				this.newSemester.numberSemester = this.newSemesterCpy.numberSemester;
 				this.dialog = false;
+				this.$notify({
+					group: 'foo',
+					title: 'Editado',
+					text: 'Semestre guardado exitosamente!'
+              	});
 		}).catch((error) => {  
 			this.$log.debug(error);  
 			this.error = "Failed to add";  

@@ -141,6 +141,11 @@ const Form =  {
         // Hide the modal manually
         this.$nextTick(() => {
           this.dialog = false;
+           this.$notify({
+                group: 'foo',
+                title: 'Creado exitoso',
+                text: 'Nuevo profesor inscrito en asignatura!'
+              });
         })
     },
 },

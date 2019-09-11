@@ -84,6 +84,11 @@ import Assignatures from './Assignatures'
 			this.error = "Failed to add";  
 		});  
 		this.dialog = false;
+		 this.$notify({
+                group: 'foo',
+                title: 'Editado',
+                text: 'Asignatura guardada satisfactoriamente!'
+              });
 		},
 	},
 	computed:{

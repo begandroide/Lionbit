@@ -133,6 +133,11 @@ const Form =  {
           this.error = "Failed to add teacher"  
         }).finally(()=>{
           this.closeDialog();
+           this.$notify({
+                group: 'foo',
+                title: 'Creado exitoso',
+                text: 'Nuevo usuario añadido!'
+              });
         });  
         
     },

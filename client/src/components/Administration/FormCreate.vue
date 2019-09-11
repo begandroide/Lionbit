@@ -114,6 +114,11 @@ import Users from './Users'
             // Hide the modal manually
             this.$nextTick(() => {
               this.dialog = false;
+              this.$notify({
+                group: 'foo',
+                title: 'Creado exitoso',
+                text: 'Nuevo usuario añadido!'
+              });
             })
     },
 },

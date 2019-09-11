@@ -8,7 +8,7 @@
                             <i class="fa fa-eye"></i> Detalles
                         </v-btn>
                         <FormEdit :newSemester="selected" :semesters="semesters" />
-                        <FormDelete :objeto="selected" />
+                        <FormDelete :semesters="semesters" :objeto="selected" />
                     </div>
                 </div>
             </div>

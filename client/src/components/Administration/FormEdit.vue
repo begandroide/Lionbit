@@ -82,6 +82,11 @@ import api from '../../Api';
             // Hide the modal manually
             this.$nextTick(() => {
               this.dialog = false;
+               this.$notify({
+                group: 'foo',
+                title: 'Editado',
+                text: 'Usuario guardado satisfactoriamente!'
+              });
             })
     },
     },

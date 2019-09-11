@@ -2,6 +2,7 @@
   <v-app>
     <v-content>
       <router-view />  
+      <notifications position="bottom right" group="foo" />
     </v-content>
   </v-app>
 </template>

@@ -97,8 +97,18 @@ import Semester from './Semester'
 
           if(this.error){
             this.errorMessage = "Semestre ya registrado";
+            this.$notify({
+                group: 'foo',
+                title: 'Semestre registrado',
+                text: 'Favor ingresa otro!'
+              });
             } else{
               this.closeDialog();
+              this.$notify({
+                group: 'foo',
+                title: 'Creado exitoso',
+                text: 'Nuevo semestre añadido!'
+              });
             }
           }
         );  

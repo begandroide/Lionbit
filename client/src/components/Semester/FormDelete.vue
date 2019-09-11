@@ -25,7 +25,7 @@
           <v-btn
             color="error"
             flat
-            @click="deleteAssignature(objeto.id)"
+            @click="deleteSemester(objeto.id)"
           >
             Eliminar
           </v-btn>
@@ -65,11 +65,12 @@ import api from '../../Api';
         methods:{
           deleteSemester(id) {
             this.loading = true;
+            self = this;
             api.removeSemesterForId(id)
               .then((response) => {
                 this.$log.debug(response);  
-                let index = this.semesters.findIndex(x => x.id == id);
-                this.$delete(this.semesters,index);
+                let index = self.semesters.findIndex(x => x.id == id);
+                this.$delete(self.semesters,index);
               })
               .catch((err) => {
                 this.$log.debug(err); 
@@ -78,6 +79,11 @@ import api from '../../Api';
               .finally(() => {
                 this.loading = false;
                 this.dialog = false;
+                this.$notify({
+                  group: 'foo',
+                  title: 'Eliminado',
+                  text: 'Semestre eliminado satisfactoriamente!'
+                });
                 }) 
             }
         }

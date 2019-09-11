@@ -24,6 +24,10 @@ import VueLogger from 'vuejs-logger';
 import 'vuetify/dist/vuetify.min.css';
 import NProgress from 'vue-nprogress';
 
+import Notifications from 'vue-notification';
+
+Vue.use(Notifications);
+
 const optionsNpro = {
   latencyThreshold: 800, // Number of ms before progressbar starts showing, default: 100,
   router: true, // Show progressbar when navigating routes, default: true

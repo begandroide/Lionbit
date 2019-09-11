@@ -95,6 +95,11 @@ const Form =  {
             this.errorMessage = "Profesor ya registrado";
             } else{
               this.closeDialog();
+               this.$notify({
+                group: 'foo',
+                title: 'Creado exitoso',
+                text: 'Nuevo profesor añadido!'
+              });
             }
           }
         );
