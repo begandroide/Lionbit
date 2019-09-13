@@ -6,15 +6,13 @@ En la carpeta server:
 ```bash
 mvn spring-boot:run
 ```
-## Microservicio para aplicación SGA
-
 En la carpeta client:
 ```
 npm install
 npm run serve
 ```
 
-## Microservicio para aplicación SGA
+## Servicio para aplicación SGA
 
 ### Entidades
 1. Asignatura
@@ -25,7 +23,6 @@ npm run serve
 6. Asistencia
 7. Sylabus
 
-### Microservicios 
 Ahora, listamos los microservicios y sus funciones específicas dentro de la aplicación:
 
 #### User-Service
