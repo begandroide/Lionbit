@@ -21,7 +21,7 @@
         </b-form-group>
         <b-form-group>
           <div slot="label" class="d-flex justify-content-between align-items-end">
-            <div>Constraseña</div>
+            <div>Contraseña</div>
             <a href="javascript:void(0)" class="d-block small" style="margin-left:100px">¿Olvidó contraseña?</a>
           </div>
           <b-input type="password" v-model="credentials.password" />
