@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "axios": "0.18.0",
+    "axios": "0.21.1",
     "bearer": "0.0.20",
     "vue-auth": "^1.0.0-alpha.1",
     "vuejs-logger": "1.5.3"
