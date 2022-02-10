@@ -16,7 +16,7 @@
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.21",
     "material-design-icons-iconfont": "^5.0.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^7.1.0",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
